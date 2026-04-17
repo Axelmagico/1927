@@ -14,6 +14,7 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
+            --header-height: 90px; /* Definición de altura constante */
         }
 
         * {
@@ -27,13 +28,16 @@
             background-color: var(--primary);
             color: var(--text-light);
             line-height: 1.6;
+            padding-top: var(--header-height); /* Evita que el hero se meta bajo el header */
         }
 
-        /* Navbar */
+        /* Navbar Actualizado para el LOGO */
         header {
             position: fixed;
+            top: 0;
             width: 100%;
-            padding: 20px 5%;
+            height: var(--header-height);
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,11 +46,26 @@
             border-bottom: 1px solid #333;
         }
 
-        .logo {
-            font-family: var(--font-title);
-            font-size: 1.5rem;
-            color: var(--gold);
-            letter-spacing: 2px;
+        /* Contenedor del Logo (Adaptación) */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            /* Escalado profesional: la imagen se adapta a la altura del header minus padding */
+            height: calc(var(--header-height) - 20px);
+            width: auto; /* Mantiene la proporción */
+            display: block;
+            object-fit: contain; /* Previene deformaciones */
+            mix-blend-mode: screen; /* TRUCO PRO: Elimina el fondo negro del JPG fusionándolo con el header */
+            transition: transform 0.3s ease; /* Micro-interacción */
+        }
+
+        .logo-link:hover .logo-img {
+            transform: scale(1.03); /* Efecto sutil al pasar el mouse */
         }
 
         nav a {
@@ -61,9 +80,9 @@
 
         nav a:hover { color: var(--gold); }
 
-        /* Hero Section */
+        /* Hero Section (Ajustado) */
         .hero {
-            height: 100vh;
+            height: calc(100vh - var(--header-height));
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -185,13 +204,17 @@
             .grid-2, .services-list, .stats-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
             nav { display: none; } /* En un proyecto real aquí va el menú hamburguesa */
+            .logo-img { height: 50px; } /* Ajuste de logo en móvil */
+            :root { --header-height: 70px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">CASA 1927</div>
+        <a href="#" class="logo-link" title="CASA 1927 - Inicio">
+            <img src="logo.jpg" alt="Logo oficial de CASA 1927, Asunción" class="logo-img">
+        </a>
         <nav>
             <a href="#historia">El Lugar</a>
             <a href="#espacios">Infraestructura</a>
