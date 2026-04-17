@@ -2,96 +2,276 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CASA 1927 | Espacio de Experiencias Memorables</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASA 1927 | Eventos Memorables</title>
+    <style>
+        /* CSS Integrado - Arquitectura y Rendimiento */
+        :root {
+            --primary: #111111;
+            --secondary: #222222;
+            --gold: #c5a059;
+            --text-light: #f4f4f4;
+            --text-muted: #aaaaaa;
+            --font-main: 'Helvetica Neue', Arial, sans-serif;
+            --font-title: 'Georgia', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(17, 17, 17, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover { color: var(--gold); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('hero-bg.jpg') center/cover;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            max-width: 600px;
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Grid de 2 Columnas (Historia y Espacios) */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .text-block p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Stats / Espacios */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: var(--secondary);
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        .stat-card h3 { color: var(--gold); font-size: 2rem; }
+        .stat-card p { font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; }
+
+        /* Servicios & Catering */
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-item {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .service-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+
+        /* Formulario de Contacto */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 5px;
+        }
+
+        .contact-form input, .contact-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: var(--primary);
+            border: 1px solid #444;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .btn-gold:hover { opacity: 0.8; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2, .services-list, .stats-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* En un proyecto real aquí va el menú hamburguesa */
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">CASA <span>1927</span></div>
-    <nav>
-        <a href="#empresa">La Empresa</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#galeria">Galería</a>
-        <a href="#calendario">Disponibilidad</a>
-        <a href="#contacto" class="btn-reserva">Reservar</a>
-    </nav>
-</header>
+    <header>
+        <div class="logo">CASA 1927</div>
+        <nav>
+            <a href="#historia">El Lugar</a>
+            <a href="#espacios">Infraestructura</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
 
-<section id="hero">
-    <h1>Donde el anfitrión sos VOS</h1>
-    <p>Ubicación privilegiada en Asunción: Avda. España casi Brasil.</p>
-</section>
+    <section class="hero">
+        <h1>Eventos Memorables</h1>
+        <p>Donde el anfitrión sos VOS. Listos para escribir nuevos capítulos con nuevos protagonistas.</p>
+    </section>
 
-<section id="empresa">
-    <div class="container">
-        <h2>La Empresa</h2>
-        <p class="historia">Ubicada entre Ricardo Brugada y Las Mercedes, nuestra casa de 7000 m² cuenta con murales en mosaico de Julián de la Herrería y Josefina Plá.</p>
-        <div class="mv">
-            <div class="box">
-                <h3>Misión</h3>
-                <p>Propiciar espacios y eventos para vivir experiencias memorables, consolidando conexiones fuertes en cada encuentro.</p>
+    <section id="historia" class="grid-2">
+        <div class="text-block">
+            <h2 class="section-title" style="text-align: left;">Un Lugar Lleno de Historia</h2>
+            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Fue construida por el Arquitecto Tomás Romero junto a ingenieros europeos en Berlín.</p>
+            <p>La fachada destaca por sus murales en mosaico de Julián de la Herrería y Josefina Plá. Cada detalle fue importado: pisos de mármol de carrara de Italia y muebles estilo Luis XV desde Francia.</p>
+        </div>
+        <div class="image-block" style="background: url('historia.jpg') center/cover; height: 400px;"></div>
+    </section>
+
+    <section id="espacios" style="background: var(--secondary);">
+        <h2 class="section-title">Infraestructura Exclusiva</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>7000 m²</h3>
+                <p>De Propiedad Exclusiva</p>
             </div>
-            <div class="box">
-                <h3>Visión</h3>
-                <p>Ser el escenario principal de la historia de nuestros protagonistas, combinando tradición arquitectónica con servicio de vanguardia.</p>
+            <div class="stat-card">
+                <h3>3 Niveles</h3>
+                <p>De 250 m² cada uno</p>
+            </div>
+            <div class="stat-card">
+                <h3>1500 m²</h3>
+                <p>De Patio</p>
+            </div>
+            <div class="stat-card">
+                <h3>400 m²</h3>
+                <p>De Salón Principal</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="servicios">
-    <h2>Excelencia en Cada Detalle</h2>
-    <div class="grid-servicios">
-        <div class="item">🛡️ Seguridad Privada 24hs</div>
-        <div class="item">⚡ Generador Propio</div>
-        <div class="item">🅿️ Estacionamiento Interno</div>
-        <div class="item">🍷 3 Opciones de Open Bar</div>
-        <div class="item">👨‍🍳 Catering de Elite (Talleyrand, Pederzani, etc.)</div>
-    </div>
-</section>
-
-<section id="calendario">
-    <h2>Fechas Disponibles</h2>
-    <div id='calendar'></div>
-</section>
-
-<section id="contacto">
-    <h2>Iniciá tu Historia</h2>
-    <form action="enviar.php" method="POST" class="form-gold">
-        <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
-        <input type="email" name="email" placeholder="Correo electrónico" required>
-        <input type="tel" name="tel" placeholder="Teléfono" required>
-        <select name="evento">
-            <option value="infantil">Infantil</option>
-            <option value="15anos">15 Años</option>
-            <option value="boda">Boda</option>
-            <option value="institucional">Institucional</option>
-            <option value="empresarial">Empresarial</option>
-        </select>
-        <input type="date" name="fecha">
-        
-        <div class="captcha">
-            <label>Seguridad: ¿Cuánto es 10 + 5?</label>
-            <input type="number" name="verificacion" required>
+    <section id="servicios">
+        <h2 class="section-title">Servicios "Llave en Mano"</h2>
+        <div class="services-list">
+            <div class="service-item">
+                <h4>🥂 Gastronomía de Élite</h4>
+                <p>Trabajamos con Talleyrand, Pederzani, Asado Benitez, Novecento y más. Ofrecemos 3 opciones de Open Bar por 6 horas.</p>
+            </div>
+            <div class="service-item">
+                <h4>🛡️ Seguridad y Confort</h4>
+                <p>Seguridad privada 24 horas, Generador Propio y cobertura de emergencia médica. Estacionamiento interno y valet parking.</p>
+            </div>
+            <div class="service-item">
+                <h4>⚡ Conectividad Total</h4>
+                <p>Tecnología de última generación con 100 Mbps nacional y WiFi gratuito en todos los salones.</p>
+            </div>
         </div>
-        
-        <button type="submit">Solicitar Presupuesto</button>
-    </form>
-</section>
+    </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'es',
-        events: 'admin/fechas.json'
-    });
-    calendar.render();
-});
-</script>
+    <section id="contacto" style="background: var(--secondary);">
+        <h2 class="section-title">Reservá tu Evento</h2>
+        <p style="text-align: center; margin-bottom: 40px; color: var(--gold);">Avenida España 505 casi Brasil, Asunción</p>
+        
+        <form class="contact-form">
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="tel" placeholder="Teléfono" required>
+            <select required>
+                <option value="" disabled selected>Tipo de Evento</option>
+                <option value="boda">Casamiento</option>
+                <option value="15anos">Fiesta de Quince</option>
+                <option value="corporativo">Evento Corporativo</option>
+                <option value="concierto">Concierto</option>
+            </select>
+            <input type="date" required>
+            <button type="submit" class="btn-gold">Consultar Disponibilidad</button>
+        </form>
+    </section>
+
 </body>
 </html>
