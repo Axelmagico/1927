@@ -1,0 +1,80 @@
+:root {
+    --oro: #c5a059;
+    --negro: #121212;
+    --gris-oscuro: #1e1e1e;
+    --blanco: #f4f4f4;
+}
+
+body {
+    background-color: var(--negro);
+    color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+h1, h2, .logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--oro);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background: rgba(0,0,0,0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo span { color: var(--blanco); }
+
+nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.btn-reserva {
+    border: 1px solid var(--oro);
+    padding: 10px 20px;
+    color: var(--oro);
+}
+
+#hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo-casa.jpg');
+    background-size: cover;
+    text-align: center;
+}
+
+.form-gold {
+    max-width: 500px;
+    margin: auto;
+    background: var(--gris-oscuro);
+    padding: 30px;
+    border-top: 3px solid var(--oro);
+}
+
+input, select, button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: white;
+}
+
+button {
+    background: var(--oro);
+    color: var(--negro);
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
