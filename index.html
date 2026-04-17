@@ -14,7 +14,9 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            --header-height: 110px; 
+            
+            /* AUMENTO RADICAL: Cabecera mucho más alta para alojar el logo gigante */
+            --header-height: 160px; 
         }
 
         * {
@@ -54,16 +56,17 @@
         }
 
         .logo-img {
-            width: 200px; 
+            /* TAMAÑO IMPONENTE: 350px de ancho */
+            width: 350px; 
             height: auto; 
+            max-height: 140px; /* Margen de seguridad para que no toque los bordes arriba y abajo */
             display: block;
             object-fit: contain;
-            /* Se eliminó el mix-blend-mode porque el PNG ya es transparente */
             transition: transform 0.3s ease;
         }
 
         .logo-link:hover .logo-img {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         nav a {
@@ -203,8 +206,9 @@
             .hero h1 { font-size: 2.5rem; }
             nav { display: none; }
             
-            .logo-img { width: 140px; } 
-            :root { --header-height: 80px; }
+            /* En móvil lo achicamos proporcionalmente para que no ocupe toda la pantallita */
+            .logo-img { width: 220px; } 
+            :root { --header-height: 100px; }
         }
     </style>
 </head>
