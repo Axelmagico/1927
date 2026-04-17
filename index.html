@@ -14,7 +14,7 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            --header-height: 90px; /* Definición de altura constante */
+            --header-height: 110px; 
         }
 
         * {
@@ -28,10 +28,10 @@
             background-color: var(--primary);
             color: var(--text-light);
             line-height: 1.6;
-            padding-top: var(--header-height); /* Evita que el hero se meta bajo el header */
+            padding-top: var(--header-height);
         }
 
-        /* Navbar Actualizado para el LOGO */
+        /* Navbar Actualizado */
         header {
             position: fixed;
             top: 0;
@@ -46,7 +46,6 @@
             border-bottom: 1px solid #333;
         }
 
-        /* Contenedor del Logo (Adaptación) */
         .logo-link {
             display: flex;
             align-items: center;
@@ -55,17 +54,16 @@
         }
 
         .logo-img {
-            /* Escalado profesional: la imagen se adapta a la altura del header minus padding */
-            height: calc(var(--header-height) - 20px);
-            width: auto; /* Mantiene la proporción */
+            width: 200px; 
+            height: auto; 
             display: block;
-            object-fit: contain; /* Previene deformaciones */
-            mix-blend-mode: screen; /* TRUCO PRO: Elimina el fondo negro del JPG fusionándolo con el header */
-            transition: transform 0.3s ease; /* Micro-interacción */
+            object-fit: contain;
+            /* Se eliminó el mix-blend-mode porque el PNG ya es transparente */
+            transition: transform 0.3s ease;
         }
 
         .logo-link:hover .logo-img {
-            transform: scale(1.03); /* Efecto sutil al pasar el mouse */
+            transform: scale(1.03);
         }
 
         nav a {
@@ -80,7 +78,7 @@
 
         nav a:hover { color: var(--gold); }
 
-        /* Hero Section (Ajustado) */
+        /* Hero Section */
         .hero {
             height: calc(100vh - var(--header-height));
             display: flex;
@@ -118,7 +116,7 @@
             text-align: center;
         }
 
-        /* Grid de 2 Columnas (Historia y Espacios) */
+        /* Grid de 2 Columnas */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -132,7 +130,7 @@
             font-size: 1.1rem;
         }
 
-        /* Stats / Espacios */
+        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -150,7 +148,7 @@
         .stat-card h3 { color: var(--gold); font-size: 2rem; }
         .stat-card p { font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; }
 
-        /* Servicios & Catering */
+        /* Servicios */
         .services-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -165,7 +163,7 @@
 
         .service-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
 
-        /* Formulario de Contacto */
+        /* Formulario */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -199,13 +197,14 @@
 
         .btn-gold:hover { opacity: 0.8; }
 
-        /* Responsive */
+        /* Responsive para celulares */
         @media (max-width: 768px) {
             .grid-2, .services-list, .stats-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            nav { display: none; } /* En un proyecto real aquí va el menú hamburguesa */
-            .logo-img { height: 50px; } /* Ajuste de logo en móvil */
-            :root { --header-height: 70px; }
+            nav { display: none; }
+            
+            .logo-img { width: 140px; } 
+            :root { --header-height: 80px; }
         }
     </style>
 </head>
