@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CASA 1927 | Espacio de Experiencias Memorables</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">CASA <span>1927</span></div>
+    <nav>
+        <a href="#empresa">La Empresa</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#calendario">Disponibilidad</a>
+        <a href="#contacto" class="btn-reserva">Reservar</a>
+    </nav>
+</header>
+
+<section id="hero">
+    <h1>Donde el anfitrión sos VOS</h1>
+    <p>Ubicación privilegiada en Asunción: Avda. España casi Brasil.</p>
+</section>
+
+<section id="empresa">
+    <div class="container">
+        <h2>La Empresa</h2>
+        <p class="historia">Ubicada entre Ricardo Brugada y Las Mercedes, nuestra casa de 7000 m² cuenta con murales en mosaico de Julián de la Herrería y Josefina Plá.</p>
+        <div class="mv">
+            <div class="box">
+                <h3>Misión</h3>
+                <p>Propiciar espacios y eventos para vivir experiencias memorables, consolidando conexiones fuertes en cada encuentro.</p>
+            </div>
+            <div class="box">
+                <h3>Visión</h3>
+                <p>Ser el escenario principal de la historia de nuestros protagonistas, combinando tradición arquitectónica con servicio de vanguardia.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="servicios">
+    <h2>Excelencia en Cada Detalle</h2>
+    <div class="grid-servicios">
+        <div class="item">🛡️ Seguridad Privada 24hs</div>
+        <div class="item">⚡ Generador Propio</div>
+        <div class="item">🅿️ Estacionamiento Interno</div>
+        <div class="item">🍷 3 Opciones de Open Bar</div>
+        <div class="item">👨‍🍳 Catering de Elite (Talleyrand, Pederzani, etc.)</div>
+    </div>
+</section>
+
+<section id="calendario">
+    <h2>Fechas Disponibles</h2>
+    <div id='calendar'></div>
+</section>
+
+<section id="contacto">
+    <h2>Iniciá tu Historia</h2>
+    <form action="enviar.php" method="POST" class="form-gold">
+        <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <input type="tel" name="tel" placeholder="Teléfono" required>
+        <select name="evento">
+            <option value="infantil">Infantil</option>
+            <option value="15anos">15 Años</option>
+            <option value="boda">Boda</option>
+            <option value="institucional">Institucional</option>
+            <option value="empresarial">Empresarial</option>
+        </select>
+        <input type="date" name="fecha">
+        
+        <div class="captcha">
+            <label>Seguridad: ¿Cuánto es 10 + 5?</label>
+            <input type="number" name="verificacion" required>
+        </div>
+        
+        <button type="submit">Solicitar Presupuesto</button>
+    </form>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        events: 'admin/fechas.json'
+    });
+    calendar.render();
+});
+</script>
+</body>
+</html>
