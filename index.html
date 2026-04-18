@@ -15,8 +15,8 @@
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
             
-            /* Cabecera alta para dar lugar al logo grande en PC */
-            --header-height: 160px; 
+            /* Cabecera súper alta para el logo gigante en PC */
+            --header-height: 180px; 
         }
 
         * {
@@ -49,19 +49,25 @@
             transition: all 0.3s ease;
         }
 
+        /* CONTENEDOR DEL LOGO (La clave para que no se recorte) */
         .logo-link {
             display: flex;
             align-items: center;
             height: 100%;
             text-decoration: none;
+            /* Evita que el logo empuje al menú fuera de la pantalla en celulares */
+            max-width: 75%; 
         }
 
         .logo-img {
-            /* TAMAÑO IMPONENTE EN PC BASADO EN ALTURA */
-            height: 120px; 
-            width: auto; 
-            object-fit: contain;
+            /* TAMAÑO IMPONENTE PARA PC */
+            width: 450px; 
+            max-width: 100%; /* Nunca será más ancho que su contenedor (.logo-link) */
+            height: auto; /* Mantiene la proporción perfecta (no se achata) */
+            max-height: 140px; /* Evita que se desborde del header hacia arriba/abajo */
+            object-fit: contain; /* Obliga a que la imagen se vea COMPLETA siempre */
             transition: all 0.3s ease;
+            display: block;
         }
 
         nav ul {
@@ -247,17 +253,20 @@
         
         /* Tablets */
         @media (max-width: 992px) {
-            :root { --header-height: 130px; }
-            .logo-img { height: 90px; }
+            :root { --header-height: 140px; }
+            .logo-img { width: 350px; }
             nav a { margin-left: 20px; font-size: 0.8rem; }
         }
 
         /* Celulares */
         @media (max-width: 768px) {
-            :root { --header-height: 100px; }
+            :root { --header-height: 110px; }
             
-            /* Logo ajustado perfecto para móvil */
-            .logo-img { height: 70px; }
+            /* Logo ajustado para móvil: Se ve completo y respeta el botón de menú */
+            .logo-img { 
+                width: 280px; /* Buen tamaño para celular */
+                max-height: 80px; 
+            }
 
             /* Aparece el menú hamburguesa */
             .menu-toggle { display: flex; }
@@ -289,7 +298,6 @@
 
             nav a { margin-left: 0; font-size: 1.5rem; }
 
-            /* Ajustes de grillas para que queden en 1 sola columna en el celular */
             .hero-content h1 { font-size: 2.5rem; }
             .grid-2, .stats-grid, .services-list { grid-template-columns: 1fr; }
         }
@@ -399,16 +407,13 @@
     </section>
 
     <script>
-        // Seleccionamos los elementos
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
 
-        // Al hacer clic en las tres rayitas, abrimos/cerramos el menú
         mobileMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Al hacer clic en un enlace del menú, se cierra automáticamente (ideal para móviles)
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
