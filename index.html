@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
+        /* --- VARIABLES GLOBALES --- */
         :root {
             --primary: #111111;
             --secondary: #222222;
@@ -13,7 +14,7 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            --header-height: 180px; 
+            --header-height: 160px; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +27,7 @@
             padding-top: var(--header-height);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER Y NAVEGACIÓN --- */
         header {
             position: fixed;
             top: 0;
@@ -39,6 +40,7 @@
             background: rgba(17, 17, 17, 0.98);
             z-index: 1000;
             border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
         }
 
         .logo-link {
@@ -46,15 +48,16 @@
             align-items: center;
             height: 100%;
             text-decoration: none;
-            max-width: 80%; 
+            max-width: 75%; 
         }
 
         .logo-img {
-            width: 480px; 
+            width: 350px; 
             max-width: 100%; 
             height: auto; 
-            max-height: 150px; 
+            max-height: 140px; 
             object-fit: contain; 
+            transition: all 0.3s ease;
             display: block;
         }
 
@@ -66,15 +69,15 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: color 0.3s ease;
             font-weight: 600;
         }
-
         nav a:hover { color: var(--gold); }
 
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .menu-toggle span { width: 30px; height: 3px; background-color: var(--gold); }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 1100; }
+        .menu-toggle span { width: 30px; height: 3px; background-color: var(--gold); transition: 0.3s; }
 
-        /* --- HERO --- */
+        /* --- SECCIÓN HERO (CON VIDEO) --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--header-height));
@@ -104,6 +107,7 @@
             z-index: -1;
         }
 
+        .hero-content { z-index: 1; position: relative; }
         .hero-content h1 {
             font-family: var(--font-title);
             font-size: 4rem;
@@ -111,32 +115,38 @@
             color: var(--gold);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
+        .hero-content p { font-size: 1.2rem; letter-spacing: 2px; max-width: 600px; margin: 0 auto; }
 
-        /* --- SECCIÓN EL LUGAR (DIAGRAMACIÓN CORREGIDA) --- */
+        /* --- SECCIONES GENERALES --- */
         section { padding: 100px 10%; }
-        
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
-        }
-
         .section-title {
             font-family: var(--font-title);
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 40px;
+            text-align: center;
         }
 
-        /* Columna Izquierda: Texto */
-        .text-block p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        /* --- SECCIÓN "EL LUGAR" - DIAGRAMACIÓN TIPO MAGAZINE --- */
+        #historia.venue-magazine {
+            background-color: var(--primary);
+        }
+
+        /* Contenedor central de la columna única */
+        .magazine-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Párrafo lead/introducción estilo magazine */
+        .section-lead {
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 40px;
             text-align: justify;
         }
 
+        /* El área desplegable */
         .historia-extendida {
             max-height: 0;
             overflow: hidden;
@@ -144,85 +154,169 @@
         }
 
         .historia-extendida.abierto {
-            max-height: 1000px;
+            max-height: 2500px; /* Suficiente altura para el contenido desplegado */
         }
 
+        /* Estilo de párrafos estándar dentro del desplegable */
+        .magazine-paragraph {
+            margin-bottom: 25px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-align: justify;
+            overflow: hidden; /* Clearfix para floats */
+        }
+
+        /* BLOQUES DE FOTO INTERCALADOS TIPO REVISTA */
+        
+        /* Imagen Color flotada a la DERECHA */
+        .float-right-img {
+            float: right;
+            width: 45%;
+            height: auto;
+            margin-left: 25px;
+            margin-bottom: 15px;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Imagen B&N flotada a la IZQUIERDA */
+        .float-left-img {
+            float: left;
+            width: 40%;
+            height: auto;
+            margin-right: 25px;
+            margin-bottom: 15px;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Botón de control del desplegable */
         .btn-leer-mas {
             background: none;
             border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-size: 0.9rem;
             letter-spacing: 2px;
             cursor: pointer;
             text-transform: uppercase;
-            margin-top: 15px;
+            margin: 20px auto 0 auto;
+            display: block;
             transition: all 0.3s;
         }
 
-        .btn-leer-mas:hover { background: var(--gold); color: var(--primary); }
-
-        /* Columna Derecha: Imágenes con Recorte Inteligente */
-        .image-block {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: 100%;
+        .btn-leer-mas:hover {
+            background: var(--gold);
+            color: var(--primary);
         }
 
-        .image-container {
-            flex: 1; /* Distribuye el espacio equitativamente */
-            overflow: hidden;
-            border: 1px solid var(--gold);
-            position: relative;
-            background: #000;
+        /* --- ESTADÍSTICAS Y SERVICIOS (COLUMNA ÚNICA) --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* ELIMINA BORDES BLANCOS Y RECORTA AL CENTRO */
-            display: block;
-            transition: transform 0.5s ease;
+        .stat-card {
+            background: var(--secondary);
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid var(--gold);
         }
-
-        .image-container:hover img { transform: scale(1.05); }
-
-        /* --- RESTO DE SECCIONES --- */
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .stat-card { background: var(--secondary); padding: 30px; text-align: center; border-top: 3px solid var(--gold); }
         .stat-card h3 { color: var(--gold); font-size: 2rem; }
-        .services-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .service-item { background: var(--secondary); padding: 30px; border-radius: 5px; }
-        .contact-form { max-width: 600px; margin: 0 auto; background: var(--secondary); padding: 50px; }
-        .contact-form input, .contact-form select { width: 100%; padding: 15px; margin-bottom: 20px; background: var(--primary); border: 1px solid #444; color: white; }
-        .btn-gold { width: 100%; padding: 15px; background: var(--gold); color: var(--primary); font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; }
+        .stat-card p { font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-item {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 5px;
+        }
+        .service-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 5px;
+        }
+
+        .contact-form input, .contact-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: var(--primary);
+            border: 1px solid #444;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+        .btn-gold:hover { opacity: 0.8; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             :root { --header-height: 140px; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .image-block { height: 600px; } /* Altura fija en tablets para no perder las fotos */
+            .logo-img { width: 350px; }
         }
 
         @media (max-width: 768px) {
-            :root { --header-height: 120px; }
-            .logo-img { width: 100%; min-width: 250px; }
+            :root { --header-height: 100px; }
+            .logo-link { max-width: 85%; }
+            .logo-img { width: 100%; min-width: 250px; max-height: none; }
             .menu-toggle { display: flex; }
-            nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: var(--primary); flex-direction: column; justify-content: center; transition: 0.5s; z-index: 1050; }
+            nav {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 80%; height: 100vh;
+                background: var(--primary);
+                display: flex; justify-content: center; align-items: center;
+                transition: 0.5s ease-in-out;
+                border-left: 1px solid var(--gold);
+                z-index: 1050;
+            }
             nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 30px; }
+            nav ul { flex-direction: column; text-align: center; gap: 40px; }
+            nav a { margin-left: 0; font-size: 1.5rem; }
+
             .hero-content h1 { font-size: 2.5rem; }
-            .image-block { height: 500px; }
-            .services-list { grid-template-columns: 1fr; }
+            .stats-grid, .services-list { grid-template-columns: 1fr; }
+
+            /* Ajuste de imágenes flotantes en móvil para que no se superpongan */
+            .float-right-img, .float-left-img {
+                width: 100%;
+                float: none;
+                margin: 0 0 15px 0;
+            }
+            .magazine-paragraph { text-align: left; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-link">
-            <img src="logo.png" alt="Logo CASA 1927" class="logo-img">
+        <a href="#" class="logo-link" title="CASA 1927 - Inicio">
+            <img src="logo.png" alt="Logo oficial de CASA 1927, Asunción" class="logo-img">
         </a>
         <div class="menu-toggle" id="mobile-menu">
             <span></span><span></span><span></span>
@@ -244,54 +338,61 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Eventos Memorables</h1>
-            <p>Donde el anfitrión sos VOS.</p>
+            <p>Donde el anfitrión sos VOS. Listos para escribir nuevos capítulos con nuevos protagonistas.</p>
         </div>
     </section>
 
-    <section id="historia" class="grid-2">
-        <div class="text-block">
-            <h2 class="section-title">Un Lugar Lleno de Historia</h2>
-            <p>CASA 1927 cuenta con una ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes, sobre la Avda. España casi Brasil.</p>
-            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Con una fachada donde se destacan murales en mosaico de Julián de la Herrería y Josefina Plá, la propiedad fue construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
+    <section id="historia" class="venue-magazine">
+        <div class="magazine-container">
+            <h2 class="section-title">EL LUGAR</h2>
+            
+            <p class="section-lead">CASA 1927 cuenta con una ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes, sobre la Avda. España casi Brasil.</p>
 
-            <div class="historia-extendida" id="texto-historia">
-                <p>El proyecto lo llevó a cabo junto a un grupo de ingenieros europeos en Berlín, notándose esto en cada detalle. Cada material fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, desde sus pisos de mármol de Carrara de Italia hasta sus muebles y apliques de estilo Luis XV de la época.</p>
-                <p>Entre 1927 y 1929 fue residencia del embajador norteamericano, George L. Kreeck. Durante la Guerra del Chaco funcionó como hospital de sangre y luego fue sede del Ministerio de Salud, Radio Cáritas y la Universidad Americana.</p>
-                <p>CASA 1927 te invita a un viaje al pasado a través de su arquitectura. ¡Te esperamos para crear nuevos recuerdos!</p>
+            <div id="historia-magazine-content" class="historia-extendida">
+                
+                <h2 class="section-title" style="text-align: left;">UN LUGAR LLENO DE HISTORIA</h2>
+                
+                <p class="magazine-paragraph">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Con una fachada donde se destacan murales en mosaico de Julián de la Herrería y Josefina Plá, la propiedad de 7000 m2 con múltiples espacios, fue construida por el Arquitecto Tomás Romero para Rigoberto Caballero, hijo de Bernardino Caballero.</p>
+
+                <div class="magazine-paragraph">
+                    <img src="fachacolor.png" alt="Vista a Color de Casa 1927" class="float-right-img">
+                    <p>El proyecto lo llevó a cabo junto a un grupo de ingenieros europeos en Berlín, notándose esto en cada detalle de la casa. Cada material que la construyó fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, desde sus pisos de mármol de Carrara de Italia hasta sus muebles y apliques de estilo Luis XV de la época.</p>
+                </div>
+
+                <div class="magazine-paragraph">
+                    <img src="fachaBN.png" alt="Vista B&N de Casa 1927" class="float-left-img">
+                    <p>Entre 1927 y 1929 fue ocupada como residencia del embajador norteamericano, George L. Kreeck. Durante la Guerra del Chaco funcionó como hospital de sangre y a lo largo de los años fue sede de diferentes instituciones como el Ministerio de Salud, Radio Cáritas y la Universidad Americana.</p>
+                    <p>CASA 1927 te invita a sumergirte en un viaje al pasado a través de su arquitectura y belleza. ¡Te esperamos para compartir eventos únicos y crear nuevos recuerdos en este histórico espacio!</p>
+                </div>
+
             </div>
 
             <button class="btn-leer-mas" id="btn-leer-mas">+ Leer toda la historia</button>
         </div>
-
-        <div class="image-block">
-            <div class="image-container">
-                <img src="fachacolor.png" alt="Fachada Actual Casa 1927">
-            </div>
-            <div class="image-container">
-                <img src="fachaBN.png" alt="Fachada Histórica Casa 1927">
-            </div>
-        </div>
     </section>
 
     <section id="espacios" style="background: var(--secondary);">
-        <h2 class="section-title" style="text-align: center;">Infraestructura</h2>
+        <h2 class="section-title">Infraestructura Exclusiva</h2>
         <div class="stats-grid">
-            <div class="stat-card"><h3>7000 m²</h3><p>Propiedad Exclusiva</p></div>
-            <div class="stat-card"><h3>400 m²</h3><p>Salón Principal</p></div>
+            <div class="stat-card"><h3>7000 m²</h3><p>De Propiedad Exclusiva</p></div>
+            <div class="stat-card"><h3>3 Niveles</h3><p>De 250 m² cada uno</p></div>
+            <div class="stat-card"><h3>1500 m²</h3><p>De Patio</p></div>
+            <div class="stat-card"><h3>400 m²</h3><p>De Salón Principal</p></div>
         </div>
     </section>
 
     <section id="servicios">
-        <h2 class="section-title" style="text-align: center;">Servicios</h2>
+        <h2 class="section-title">Servicios "Llave en Mano"</h2>
         <div class="services-list">
-            <div class="service-item"><h4>🥂 Gastronomía</h4><p>Alianzas con los mejores catering del país.</p></div>
-            <div class="service-item"><h4>🛡️ Seguridad</h4><p>Privada 24 horas y generador propio.</p></div>
-            <div class="service-item"><h4>⚡ Conectividad</h4><p>WiFi de alta velocidad en todo el recinto.</p></div>
+            <div class="service-item"><h4>🥂 Gastronomía de Élite</h4><p>Alianzas con Talleyrand, Pederzani, y Open Bar por 6 horas.</p></div>
+            <div class="service-item"><h4>🛡️ Seguridad y Confort</h4><p>Seguridad privada 24hs, Generador Propio y Valet Parking.</p></div>
+            <div class="service-item"><h4>⚡ Conectividad Total</h4><p>Tecnología de última generación con WiFi gratuito.</p></div>
         </div>
     </section>
 
     <section id="contacto" style="background: var(--secondary);">
-        <h2 class="section-title" style="text-align: center;">Contacto</h2>
+        <h2 class="section-title">Reservá tu Evento</h2>
+        <p style="text-align: center; margin-bottom: 40px; color: var(--gold);">Avenida España 505 casi Brasil, Asunción</p>
         <form class="contact-form">
             <input type="text" placeholder="Nombre completo" required>
             <input type="tel" placeholder="Teléfono" required>
@@ -311,8 +412,10 @@
         const navMenu = document.getElementById('nav-menu');
         mobileMenu.addEventListener('click', () => { navMenu.classList.toggle('active'); });
 
+        // Lógica del desplegable de Historia (Misma lógica existente, aplicada a la nueva estructura)
         const btnLeerMas = document.getElementById('btn-leer-mas');
-        const textoHistoria = document.getElementById('texto-historia');
+        const textoHistoria = document.getElementById('historia-magazine-content');
+
         btnLeerMas.addEventListener('click', () => {
             textoHistoria.classList.toggle('abierto');
             btnLeerMas.innerHTML = textoHistoria.classList.contains('abierto') ? '- Ocultar historia' : '+ Leer toda la historia';
