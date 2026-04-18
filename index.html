@@ -2,25 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
-        /* --- ARQUITECTURA DE DISEÑO --- */
+        /* --- RESET Y BLINDAJE ANTI-SCROLL --- */
         :root {
             --primary: #111111;
             --secondary: #1a1a1a;
             --gold: #c5a059;
-            --gold-dark: #a88746;
             --text-light: #f4f4f4;
             --text-muted: #aaaaaa;
             --font-title: 'Georgia', serif;
             --h-pc: 180px;
-            --h-mobile: 110px;
+            --h-mobile: 100px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Evita que cualquier elemento cause scroll horizontal */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-        html { scroll-behavior: smooth; }
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -28,10 +37,9 @@
             color: var(--text-light);
             line-height: 1.6;
             padding-top: var(--h-pc);
-            overflow-x: hidden;
         }
 
-        /* --- HEADER ESTRUCTURAL (EL QUE QUEDÓ PERFECTO) --- */
+        /* --- HEADER ANTI-DESBORDE --- */
         header {
             position: fixed;
             top: 0; left: 0;
@@ -50,12 +58,13 @@
             flex: 1;
             display: flex;
             align-items: center;
-            min-width: 0;
+            height: 100%;
+            min-width: 0; /* Crucial para que el flex-item pueda encogerse */
         }
 
         .logo-img {
-            height: 90%; 
-            max-height: 155px;
+            height: 85%;
+            max-height: 150px;
             width: auto;
             max-width: 100%;
             object-fit: contain;
@@ -66,25 +75,26 @@
             flex: 0 0 auto;
             display: flex;
             align-items: center;
-            margin-left: 40px;
+            margin-left: 20px;
         }
 
         nav ul { display: flex; list-style: none; white-space: nowrap; }
         nav a {
             color: white; text-decoration: none;
-            margin-left: 30px; font-weight: bold;
+            margin-left: 25px; font-weight: bold;
             text-transform: uppercase; font-size: 0.85rem;
             letter-spacing: 2px; transition: 0.3s;
         }
         nav a:hover { color: var(--gold); }
 
         .menu-btn { display: none; flex-direction: column; gap: 7px; cursor: pointer; }
-        .menu-btn span { width: 35px; height: 3px; background: var(--gold); }
+        .menu-btn span { width: 30px; height: 3px; background: var(--gold); }
 
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--h-pc));
+            width: 100%;
             display: flex; justify-content: center; align-items: center;
             overflow: hidden; text-align: center;
         }
@@ -95,153 +105,86 @@
             object-fit: cover; z-index: -1;
         }
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .hero-content { position: relative; z-index: 1; padding: 0 20px; }
-        .hero h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--gold); margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-light); }
+        .hero-content { position: relative; z-index: 1; padding: 0 20px; width: 100%; }
+        .hero h1 { font-family: var(--font-title); font-size: clamp(2.2rem, 6vw, 4.5rem); color: var(--gold); }
 
-        /* --- SECCIONES GENERALES --- */
-        section { padding: 100px 10%; }
-        .section-title {
-            font-family: var(--font-title);
-            font-size: 3rem;
-            color: var(--gold);
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        /* --- EL LUGAR (MAGAZINE) --- */
+        /* --- MAGAZINE SECTION --- */
+        section { padding: 80px 10%; width: 100%; }
         .magazine-container { max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); text-align: center; margin-bottom: 40px; }
+        
         .historia-content { max-height: 0; overflow: hidden; transition: 0.8s ease-in-out; }
         .historia-content.open { max-height: 3500px; }
         .float-img { width: 48%; border: 1px solid var(--gold); margin: 15px; }
-        .right { float: right; margin-left: 25px; }
-        .left { float: left; margin-right: 25px; }
+        .right { float: right; margin-left: 20px; }
+        .left { float: left; margin-right: 20px; }
         .btn-more {
-            display: block; margin: 40px auto;
+            display: block; margin: 30px auto;
             background: none; border: 1px solid var(--gold);
-            color: var(--gold); padding: 15px 40px;
-            text-transform: uppercase; cursor: pointer; letter-spacing: 2px;
-            transition: 0.3s;
+            color: var(--gold); padding: 12px 30px;
+            text-transform: uppercase; cursor: pointer;
         }
-        .btn-more:hover { background: var(--gold); color: var(--primary); }
 
-        /* --- INFRAESTRUCTURA (CARDS) --- */
+        /* --- INFRAESTRUCTURA --- */
         .espacios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
         .espacio-card {
             background: var(--secondary);
-            padding: 40px;
+            padding: 30px;
             text-align: center;
-            border: 1px solid #333;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            border-top: 3px solid var(--gold);
         }
-        .espacio-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-        }
-        .espacio-card h3 { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; font-family: var(--font-title); }
-        .espacio-card p { text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-muted); }
+        .espacio-card h3 { color: var(--gold); font-size: 2.2rem; font-family: var(--font-title); }
 
-        /* --- SERVICIOS (PREMIUM) --- */
+        /* --- SERVICIOS --- */
         .servicios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
-        .servicio-item {
-            padding: 30px;
-            border-left: 1px solid var(--gold);
-            background: linear-gradient(90deg, rgba(197, 160, 89, 0.05), transparent);
-        }
-        .servicio-item h4 {
-            font-family: var(--font-title);
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .servicio-item p { color: var(--text-muted); font-size: 1rem; }
+        .servicio-item { padding: 25px; border-left: 1px solid var(--gold); background: rgba(197, 160, 89, 0.05); }
 
-        /* --- CONTACTO --- */
-        .contacto-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--secondary);
-            padding: 60px;
-            border: 1px solid #333;
-        }
+        /* --- FORMULARIO --- */
+        .contacto-container { max-width: 700px; margin: 0 auto; background: var(--secondary); padding: 40px; }
         .contact-form input, .contact-form select, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 25px;
-            background: var(--primary);
-            border: 1px solid #444;
-            color: white;
-            font-size: 1rem;
-            outline: none;
+            width: 100%; padding: 12px; margin-bottom: 20px; background: var(--primary); border: 1px solid #444; color: white;
         }
-        .contact-form input:focus { border-color: var(--gold); }
-        .btn-gold {
-            width: 100%;
-            padding: 20px;
-            background: var(--gold);
-            color: var(--primary);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-gold:hover { background: var(--gold-dark); }
+        .btn-gold { width: 100%; padding: 15px; background: var(--gold); color: var(--primary); font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 50px 10%;
-            background: #0a0a0a;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
-        .footer-info { color: var(--gold); letter-spacing: 1px; margin-bottom: 20px; }
-        .copyright { font-size: 0.8rem; color: #555; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 850px) {
             body { padding-top: var(--h-mobile); }
-            header { height: var(--h-mobile); padding: 0 15px; }
-            .logo-img { height: 85%; }
+            header { 
+                height: var(--h-mobile); 
+                padding: 0 15px; /* Menos padding lateral para ganar espacio */
+            }
+
+            .header-logo-area { flex: 1; }
+            .logo-img { height: 75%; } /* Logo un poco más contenido en móvil */
+
+            .header-nav-area { margin-left: 10px; }
+
             .menu-btn { display: flex; }
             nav {
                 position: fixed; top: 0; right: -100%;
-                width: 80%; height: 100vh;
+                width: 85%; height: 100vh;
                 background: #111; display: flex;
                 flex-direction: column; justify-content: center;
                 align-items: center; transition: 0.4s;
                 border-left: 1px solid var(--gold);
             }
             nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 40px; }
-            nav a { margin: 0; font-size: 1.5rem; }
-            .hero h1 { font-size: 2.8rem; }
+            nav ul { flex-direction: column; gap: 35px; }
+            nav a { margin: 0; font-size: 1.4rem; }
+
+            .hero { height: calc(100vh - var(--h-mobile)); }
+            .hero h1 { font-size: 2.2rem; }
             .float-img { width: 100%; float: none; margin: 15px 0; }
-            section { padding: 60px 5%; }
+            section { padding: 50px 20px; }
+            .contacto-container { padding: 25px; }
         }
     </style>
 </head>
@@ -275,27 +218,24 @@
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>Eventos Memorables</h1>
-            <p>Donde el anfitrión sos VOS</p>
+            <p style="letter-spacing: 3px; text-transform: uppercase;">Donde el anfitrión sos VOS</p>
         </div>
     </section>
 
     <section id="historia">
         <div class="magazine-container">
             <h2 class="section-title">EL LUGAR</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: var(--gold); margin-bottom: 40px; font-style: italic;">
-                "Una joya arquitectónica de 1927 en el corazón de Asunción."
-            </p>
             <div class="historia-content" id="historia-txt">
-                <p style="margin-bottom: 25px; text-align: justify; color: var(--text-muted);">
-                    Ubicada estratégicamente entre los barrios Ricardo Brugada y Las Mercedes, CASA 1927 se erige sobre la Avda. España casi Brasil como un testimonio vivo de la opulencia de antaño.
+                <p style="margin-bottom: 20px; text-align: justify; color: var(--text-muted);">
+                    Ubicada entre los barrios Ricardo Brugada y Las Mercedes, CASA 1927 se erige sobre la Avda. España casi Brasil como un testimonio de elegancia.
                 </p>
-                <img src="fachacolor.png" class="float-img right" alt="CASA 1927 Actual">
-                <p style="margin-bottom: 25px; text-align: justify; color: var(--text-muted);">
-                    Construida por el Arquitecto Tomás Romero para Rigoberto Caballero, cada detalle fue seleccionado por catálogo desde Europa. Sus mármoles de Carrara y mobiliario Luis XV transportan a los invitados a una época de distinción absoluta.
+                <img src="fachacolor.png" class="float-img right" alt="Fachada Color">
+                <p style="margin-bottom: 20px; text-align: justify; color: var(--text-muted);">
+                    Construida en 1927, cuenta con mármoles de Carrara y detalles Luis XV traídos de Europa por catálogo, ofreciendo un entorno único.
                 </p>
-                <img src="fachaBN.png" class="float-img left" alt="Historia CASA 1927">
-                <p style="margin-bottom: 25px; text-align: justify; color: var(--text-muted);">
-                    Desde ser residencia de embajadores hasta hospital durante la Guerra del Chaco, sus muros guardan historias que hoy se renuevan con cada celebración. Te invitamos a ser el protagonista de un nuevo capítulo.
+                <img src="fachaBN.png" class="float-img left" alt="Fachada BN">
+                <p style="margin-bottom: 20px; text-align: justify; color: var(--text-muted);">
+                    Desde hospital en la Guerra del Chaco hasta sede diplomática, hoy abre sus puertas para tus eventos más exclusivos.
                 </p>
             </div>
             <button class="btn-more" id="btn-leer">+ Leer toda la historia</button>
@@ -305,70 +245,48 @@
     <section id="espacios" style="background-color: #0d0d0d;">
         <h2 class="section-title">INFRAESTRUCTURA</h2>
         <div class="espacios-grid">
-            <div class="espacio-card">
-                <h3>7000 m²</h3>
-                <p>Propiedad Exclusiva</p>
-            </div>
-            <div class="espacio-card">
-                <h3>400 m²</h3>
-                <p>Salón Principal</p>
-            </div>
-            <div class="espacio-card">
-                <h3>1500 m²</h3>
-                <p>Patio Colonial</p>
-            </div>
-            <div class="espacio-card">
-                <h3>3</h3>
-                <p>Niveles de Lujo</p>
-            </div>
+            <div class="espacio-card"><h3>7000 m²</h3><p>Propiedad Exclusiva</p></div>
+            <div class="espacio-card"><h3>400 m²</h3><p>Salón Principal</p></div>
+            <div class="espacio-card"><h3>1500 m²</h3><p>Patio Colonial</p></div>
+            <div class="espacio-card"><h3>3</h3><p>Niveles de Lujo</p></div>
         </div>
     </section>
 
     <section id="servicios">
-        <h2 class="section-title">SERVICIOS "LLAVE EN MANO"</h2>
+        <h2 class="section-title">SERVICIOS</h2>
         <div class="servicios-grid">
             <div class="servicio-item">
-                <h4>🥂 Gastronomía de Élite</h4>
-                <p>Alianzas exclusivas con Talleyrand, Pederzani y Novecento. Alta cocina para paladares exigentes.</p>
+                <h4>🥂 Gastronomía</h4>
+                <p>Alianzas con Talleyrand y Pederzani para catering de alta gama.</p>
             </div>
             <div class="servicio-item">
-                <h4>🛡️ Seguridad y Confort</h4>
-                <p>Vigilancia privada 24hs, generador propio de alta potencia y Valet Parking interno.</p>
+                <h4>🛡️ Seguridad</h4>
+                <p>Vigilancia 24hs, generador propio y Valet Parking interno.</p>
             </div>
             <div class="servicio-item">
-                <h4>⚡ Técnica y Conectividad</h4>
-                <p>Internet de alta velocidad (100 Mbps) y soporte técnico integral para eventos corporativos o sociales.</p>
+                <h4>⚡ Conectividad</h4>
+                <p>WiFi de alta velocidad para eventos sociales y corporativos.</p>
             </div>
         </div>
     </section>
 
     <section id="contacto" style="background-color: #0d0d0d;">
-        <h2 class="section-title">RESERVÁ TU FECHA</h2>
+        <h2 class="section-title">CONTACTO</h2>
         <div class="contacto-container">
             <form class="contact-form">
                 <input type="text" placeholder="Nombre completo" required>
                 <input type="email" placeholder="Correo electrónico" required>
                 <select required>
                     <option value="" disabled selected>Tipo de Evento</option>
-                    <option value="boda">Boda / Casamiento</option>
-                    <option value="15anos">Fiesta de 15 Años</option>
-                    <option value="corporativo">Evento Corporativo</option>
-                    <option value="social">Otros Eventos Sociales</option>
+                    <option value="boda">Boda</option>
+                    <option value="15anos">15 Años</option>
+                    <option value="corporativo">Corporativo</option>
                 </select>
-                <textarea rows="4" placeholder="Contanos más sobre tu idea..."></textarea>
+                <textarea rows="4" placeholder="Mensaje..."></textarea>
                 <button type="submit" class="btn-gold">Enviar Consulta</button>
             </form>
         </div>
     </section>
-
-    <footer>
-        <div class="footer-info">
-            Avenida España 505 casi Brasil • Asunción, Paraguay
-        </div>
-        <div class="copyright">
-            © 2026 CASA 1927. Todos los derechos reservados.
-        </div>
-    </footer>
 
     <script>
         // Menú Hamburguesa
