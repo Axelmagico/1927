@@ -2,269 +2,134 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
-        /* --- VARIABLES GLOBALES --- */
         :root {
             --primary: #111111;
-            --secondary: #222222;
             --gold: #c5a059;
             --text-light: #f4f4f4;
-            --text-muted: #aaaaaa;
-            --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            
-            /* Altura base para PC */
-            --header-height: 160px; 
+            /* Valores por defecto que el JS va a sobreescribir */
+            --header-h: 160px;
+            --logo-w: 450px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-main);
+            font-family: sans-serif;
             background-color: var(--primary);
             color: var(--text-light);
-            line-height: 1.6;
-            padding-top: var(--header-height);
+            padding-top: var(--header-h);
+            overflow-x: hidden;
         }
 
-        /* --- HEADER Y NAVEGACIÓN --- */
+        /* --- HEADER ADAPTATIVO --- */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: var(--header-height);
-            padding: 0 5%;
-            display: flex;
-            justify-content: space-between; /* Separa logo de menú */
-            align-items: center;
+            top: 0; width: 100%;
+            height: var(--header-h);
             background: rgba(17, 17, 17, 0.98);
-            z-index: 2000; /* Prioridad máxima */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 9999;
             border-bottom: 1px solid #333;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .logo-link {
             display: flex;
             align-items: center;
+            max-width: 70%;
             height: 100%;
-            text-decoration: none;
-            max-width: 70%; /* Deja espacio para el botón de menú en móviles */
         }
 
         .logo-img {
-            /* TAMAÑO PC */
-            height: auto;
-            max-height: 120px; /* No desborda los 160px del header */
-            width: 450px; 
+            width: var(--logo-w);
             max-width: 100%;
+            height: auto;
             object-fit: contain;
             display: block;
-            transition: all 0.3s ease;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
+        /* --- NAVEGACIÓN --- */
+        nav ul { display: flex; list-style: none; }
         nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: color 0.3s ease;
-            font-weight: 600;
+            color: white; text-decoration: none;
+            margin-left: 25px; font-weight: bold;
+            text-transform: uppercase; font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
-        nav a:hover { color: var(--gold); }
-
-        /* Icono Hamburguesa */
+        /* Menu Hamburguesa */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            cursor: pointer;
             gap: 6px;
-            z-index: 2100;
-            padding: 10px;
-        }
-
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background-color: var(--gold);
-            transition: 0.3s;
-        }
-
-        /* --- SECCIÓN HERO --- */
-        .hero {
-            position: relative;
-            height: calc(100vh - var(--header-height));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        .video-bg {
-            position: absolute;
-            top: 50%; left: 50%;
-            min-width: 100%; min-height: 100%;
-            width: auto; height: auto;
-            z-index: -2;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
-
-        .hero-content h1 {
-            font-family: var(--font-title);
-            font-size: 4rem;
-            margin-bottom: 10px;
-            color: var(--gold);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        /* --- SECCIÓN EL LUGAR (MAGAZINE) --- */
-        section { padding: 100px 10%; }
-        
-        .magazine-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-lead {
-            font-size: 1.25rem;
-            color: var(--gold);
-            margin-bottom: 40px;
-            text-align: justify;
-        }
-
-        .historia-extendida {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease-in-out;
-        }
-
-        .historia-extendida.abierto {
-            max-height: 2500px;
-        }
-
-        .magazine-paragraph {
-            margin-bottom: 25px;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            text-align: justify;
-            overflow: hidden;
-        }
-
-        .float-right-img {
-            float: right;
-            width: 45%;
-            margin-left: 25px;
-            margin-bottom: 15px;
-            border: 1px solid var(--gold);
-        }
-
-        .float-left-img {
-            float: left;
-            width: 40%;
-            margin-right: 25px;
-            margin-bottom: 15px;
-            border: 1px solid var(--gold);
-        }
-
-        .btn-leer-mas {
-            background: none;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 12px 30px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
             cursor: pointer;
-            text-transform: uppercase;
-            margin: 20px auto;
-            display: block;
-            transition: all 0.3s;
         }
+        .menu-toggle span { width: 30px; height: 3px; background: var(--gold); }
 
-        /* --- RESPONSIVE --- */
+        /* --- DETECCION POR CLASES (Inyectadas por JS) --- */
+        body.is-mobile header { --header-h: 90px; padding: 0 15px; }
+        body.is-mobile .logo-img { --logo-w: 240px; }
+        body.is-mobile .menu-toggle { display: flex; }
+        body.is-mobile nav {
+            position: fixed; top: 0; right: -100%;
+            width: 80%; height: 100vh;
+            background: #111; transition: 0.4s;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            border-left: 1px solid var(--gold);
+        }
+        body.is-mobile nav.active { right: 0; }
+        body.is-mobile nav ul { flex-direction: column; gap: 30px; }
+
+        body.is-tablet .logo-img { --logo-w: 320px; }
+
+        /* --- SECCIONES --- */
+        .hero {
+            position: relative; height: 70vh;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+        .video-bg {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%;
+            object-fit: cover; z-index: -1;
+        }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 0; }
+        .hero h1 { position: relative; z-index: 1; font-family: var(--font-title); font-size: 3.5rem; color: var(--gold); text-align: center; }
+
+        section { padding: 60px 10%; }
+        .magazine-container { max-width: 900px; margin: 0 auto; }
+        .float-img { width: 40%; margin: 10px; border: 1px solid var(--gold); }
+        .right { float: right; margin-left: 20px; }
+        .left { float: left; margin-right: 20px; }
+        
         @media (max-width: 768px) {
-            :root { --header-height: 80px; } /* Header más compacto en móvil */
-
-            header {
-                padding: 0 15px;
-            }
-
-            .logo-link {
-                max-width: 65%; /* Restringe el contenedor para no pisar el botón */
-            }
-
-            .logo-img { 
-                height: 50px; /* Forzamos altura pequeña para que quepa en los 80px */
-                width: auto;
-                max-width: 100%;
-                max-height: 55px; 
-            }
-
-            .menu-toggle { display: flex; }
-
-            nav {
-                position: fixed;
-                top: 0; right: -100%;
-                width: 80%; height: 100vh;
-                background: var(--primary);
-                display: flex; justify-content: center; align-items: center;
-                transition: 0.5s ease-in-out;
-                border-left: 1px solid var(--gold);
-                z-index: 1050;
-            }
-
-            nav.active { right: 0; }
-            nav ul { flex-direction: column; text-align: center; gap: 40px; }
-            nav a { margin-left: 0; font-size: 1.5rem; }
-
-            .hero-content h1 { font-size: 2.2rem; }
-            .float-right-img, .float-left-img {
-                width: 100%;
-                float: none;
-                margin: 0 0 15px 0;
-            }
+            .float-img { width: 100%; float: none; margin: 10px 0; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
-<body>
+<body id="main-body">
 
-    <header>
+    <header id="dynamic-header">
         <a href="#" class="logo-link">
-            <img src="logo.png" alt="CASA 1927" class="logo-img">
+            <img src="logo.png" alt="CASA 1927" class="logo-img" id="main-logo">
         </a>
-
-        <div class="menu-toggle" id="mobile-menu">
+        <div class="menu-toggle" id="btn-menu">
             <span></span><span></span><span></span>
         </div>
-
-        <nav id="nav-menu">
+        <nav id="nav-list">
             <ul>
                 <li><a href="#historia">El Lugar</a></li>
-                <li><a href="#espacios">Infraestructura</a></li>
+                <li><a href="#espacios">Espacios</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -272,54 +137,54 @@
     </header>
 
     <section class="hero">
-        <video class="video-bg" autoplay loop muted playsinline preload="auto">
+        <video class="video-bg" autoplay loop muted playsinline>
             <source src="videopromo.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Eventos Memorables</h1>
-            <p>Donde el anfitrión sos VOS.</p>
-        </div>
+        <div class="overlay"></div>
+        <h1>Eventos Memorables</h1>
     </section>
 
-    <section id="historia" class="venue-magazine">
+    <section id="historia">
         <div class="magazine-container">
-            <h2 class="section-title" style="text-align: center;">EL LUGAR</h2>
-            <p class="section-lead">CASA 1927 cuenta con una ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes, sobre la Avda. España casi Brasil.</p>
-
-            <div id="historia-magazine-content" class="historia-extendida">
-                <p class="magazine-paragraph">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
-                
-                <div class="magazine-paragraph">
-                    <img src="fachacolor.png" alt="CASA 1927" class="float-right-img">
-                    <p>El proyecto lo llevó a cabo junto a un grupo de ingenieros europeos en Berlín. Cada material fue traído por catálogo desde el viejo continente.</p>
-                </div>
-
-                <div class="magazine-paragraph">
-                    <img src="fachaBN.png" alt="Historia" class="float-left-img">
-                    <p>Durante la Guerra del Chaco funcionó como hospital de sangre y luego fue sede de Radio Cáritas y la Universidad Americana.</p>
-                </div>
-            </div>
-
-            <button class="btn-leer-mas" id="btn-leer-mas">+ Leer toda la historia</button>
+            <h2 style="color:var(--gold); margin-bottom:20px;">EL LUGAR</h2>
+            <p>Ubicación privilegiada en Asunción. Una joya arquitectónica de 1927.</p>
+            <img src="fachacolor.png" class="float-img right" alt="Fachada Color">
+            <p>Construida con materiales importados de Europa, CASA 1927 es hoy el escenario ideal para tus protagonistas.</p>
+            <img src="fachaBN.png" class="float-img left" alt="Fachada BN">
+            <p>Desde mármol de Carrara hasta detalles Luis XV, cada rincón cuenta una historia única de la capital paraguaya.</p>
         </div>
     </section>
 
     <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        (function() {
+            const body = document.getElementById('main-body');
+            const w = window.innerWidth;
+            const ua = navigator.userAgent;
 
-        const btnLeerMas = document.getElementById('btn-leer-mas');
-        const textoHistoria = document.getElementById('historia-magazine-content');
+            // 1. Detección de Sistema Operativo (iOS / Android / PC)
+            const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            const isAndroid = /Android/.test(ua);
+            
+            // 2. Transformación Dinámica de la Estructura
+            if (w <= 768) {
+                body.classList.add('is-mobile');
+                if(isIOS) body.classList.add('is-ios');
+            } else if (w > 768 && w <= 1024) {
+                body.classList.add('is-tablet');
+            } else {
+                body.classList.add('is-desktop');
+            }
 
-        btnLeerMas.addEventListener('click', () => {
-            textoHistoria.classList.toggle('abierto');
-            btnLeerMas.innerHTML = textoHistoria.classList.contains('abierto') ? '- Ocultar historia' : '+ Leer toda la historia';
-        });
+            console.log("Sistema Adaptativo Activo: " + (isIOS ? "iOS Detectado" : "PC/Android Detectado"));
+
+            // 3. Lógica del Menú Hamburguesa
+            const btnMenu = document.getElementById('btn-menu');
+            const nav = document.getElementById('nav-list');
+
+            btnMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        })();
     </script>
 </body>
 </html>
