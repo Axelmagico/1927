@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
+        /* --- VARIABLES GLOBALES --- */
         :root {
             --primary: #111111;
             --secondary: #222222;
@@ -13,7 +14,6 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            /* Altura base para PC */
             --header-height: 180px; 
         }
 
@@ -48,23 +48,20 @@
             align-items: center;
             height: 100%;
             text-decoration: none;
+            max-width: 75%; 
         }
 
         .logo-img {
-            /* TAMAÑO PARA PC: 450px */
             width: 450px; 
+            max-width: 100%; 
             height: auto; 
-            max-height: 150px;
+            max-height: 140px; 
+            object-fit: contain; 
+            transition: all 0.3s ease;
             display: block;
-            object-fit: contain;
-            transition: width 0.3s ease;
         }
 
-        /* Menú de Navegación */
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
+        nav ul { display: flex; list-style: none; }
 
         nav a {
             color: var(--text-light);
@@ -79,12 +76,12 @@
 
         nav a:hover { color: var(--gold); }
 
-        /* Icono Hamburguesa (Oculto en PC) */
         .menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 6px;
+            z-index: 1100;
         }
 
         .menu-toggle span {
@@ -94,7 +91,7 @@
             transition: 0.3s;
         }
 
-        /* --- SECCIÓN HERO --- */
+        /* --- SECCIÓN HERO (CON VIDEO) --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--header-height));
@@ -125,16 +122,25 @@
             z-index: -1;
         }
 
+        .hero-content { z-index: 1; position: relative; }
+
         .hero-content h1 {
             font-family: var(--font-title);
             font-size: 4rem;
             margin-bottom: 10px;
             color: var(--gold);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
-        /* --- SECCIONES CONTENIDO --- */
-        section { padding: 80px 10%; }
+        .hero-content p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 100px 10%; }
         .section-title {
             font-family: var(--font-title);
             font-size: 2.5rem;
@@ -143,17 +149,57 @@
             text-align: center;
         }
 
+        /* --- HISTORIA Y ACORDEÓN --- */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
-            align-items: center;
+            align-items: flex-start; /* Alinea arriba para que el texto no se centre verticalmente */
         }
 
+        .text-block p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor del texto oculto */
+        .historia-extendida {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-out; /* Efecto suave de despliegue */
+        }
+
+        .historia-extendida.abierto {
+            max-height: 1000px; /* Suficiente altura para que entre todo el texto */
+            transition: max-height 0.8s ease-in;
+        }
+
+        .btn-leer-mas {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            padding: 10px 0;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-leer-mas:hover {
+            color: #fff;
+        }
+
+        /* --- ESTADÍSTICAS Y SERVICIOS --- */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .stat-card {
@@ -163,66 +209,109 @@
             border-top: 3px solid var(--gold);
         }
 
-        /* --- RESPONSIVE (MÓVIL) --- */
+        .stat-card h3 { color: var(--gold); font-size: 2rem; }
+        .stat-card p { font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-item {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .service-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 5px;
+        }
+
+        .contact-form input, .contact-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: var(--primary);
+            border: 1px solid #444;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .btn-gold:hover { opacity: 0.8; }
+
+        /* --- RESPONSIVE (CELULARES Y TABLETS) --- */
         @media (max-width: 992px) {
-            :root { --header-height: 110px; }
-            .logo-img { width: 280px; }
+            :root { --header-height: 140px; }
+            .logo-img { width: 350px; }
             nav a { margin-left: 20px; font-size: 0.8rem; }
         }
 
         @media (max-width: 768px) {
-            :root { --header-height: 100px; }
-            .logo-img { width: 220px; }
+            :root { --header-height: 120px; }
+            .logo-link { max-width: 85%; }
+            .logo-img { 
+                width: 100%; 
+                min-width: 250px; 
+                max-height: none; 
+            }
 
-            .menu-toggle { display: flex; z-index: 1100; }
+            .menu-toggle { display: flex; }
 
-            /* Menú móvil desplegable */
             nav {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
+                top: 0; right: -100%;
+                width: 80%; height: 100vh;
                 background: var(--primary);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: 0.5s;
+                display: flex; justify-content: center; align-items: center;
+                transition: 0.5s ease-in-out;
                 border-left: 1px solid var(--gold);
+                z-index: 1050;
             }
 
             nav.active { right: 0; }
+            nav ul { flex-direction: column; text-align: center; gap: 40px; }
+            nav a { margin-left: 0; font-size: 1.5rem; }
 
-            nav ul {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-
-            nav a { margin-left: 0; font-size: 1.2rem; }
-
-            .hero h1 { font-size: 2.5rem; }
-            .grid-2, .stats-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .grid-2, .stats-grid, .services-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-link">
-            <img src="logo.png" alt="CASA 1927" class="logo-img">
+        <a href="#" class="logo-link" title="CASA 1927 - Inicio">
+            <img src="logo.png" alt="Logo oficial de CASA 1927, Asunción" class="logo-img">
         </a>
 
         <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
                 <li><a href="#historia">El Lugar</a></li>
-                <li><a href="#espacios">Espacios</a></li>
+                <li><a href="#espacios">Infraestructura</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -236,36 +325,106 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Eventos Memorables</h1>
-            <p>Donde el anfitrión sos VOS.</p>
+            <p>Donde el anfitrión sos VOS. Listos para escribir nuevos capítulos con nuevos protagonistas.</p>
         </div>
     </section>
 
-    <section id="historia">
-        <h2 class="section-title">Historia y Arte</h2>
-        <div class="grid-2">
-            <p>Un espacio donde la arquitectura de 1927 se fusiona con murales de Josefina Plá, creando un escenario único en el corazón de Asunción.</p>
-            <div class="stats-grid">
-                <div class="stat-card"><h3>7000m²</h3><p>Propiedad</p></div>
-                <div class="stat-card"><h3>400m²</h3><p>Salón Principal</p></div>
+    <section id="historia" class="grid-2">
+        <div class="text-block">
+            <h2 class="section-title" style="text-align: left;">Un Lugar Lleno de Historia</h2>
+            
+            <p>CASA 1927 cuenta con una ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes, sobre la Avda. España casi Brasil.</p>
+            
+            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Con una fachada donde se destacan murales en mosaico de Julián de la Herrería y Josefina Plá, la propiedad de 7000 m² con múltiples espacios, fue construida por el Arquitecto Tomás Romero para Rigoberto Caballero, hijo de Bernardino Caballero.</p>
+
+            <div class="historia-extendida" id="texto-historia">
+                <p>El proyecto lo llevó a cabo junto a un grupo de ingenieros europeos en Berlín, notándose esto en cada detalle de la casa. Cada material que la construyó fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, desde sus pisos de mármol de Carrara hasta sus muebles y apliques de estilo Luis XV de la época.</p>
+                
+                <p>Entre 1927 y 1929 fue ocupada como residencia del embajador norteamericano, George L. Kreeck. Durante la Guerra del Chaco, la casa funcionó como hospital de sangre y a lo largo de los años fue sede de diferentes instituciones como el Ministerio de Salud, Radio Cáritas y la Universidad Americana.</p>
+                
+                <p>CASA 1927 te invita a sumergirte en un viaje al pasado a través de su arquitectura y belleza. ¡Te esperamos para compartir eventos únicos y crear nuevos recuerdos en este histórico espacio!</p>
+            </div>
+
+            <button class="btn-leer-mas" id="btn-leer-mas">+ Leer toda la historia</button>
+
+        </div>
+        <div class="image-block" style="background: url('historia.jpg') center/cover; height: 100%; min-height: 400px; border: 1px solid var(--gold);"></div>
+    </section>
+
+    <section id="espacios" style="background: var(--secondary);">
+        <h2 class="section-title">Infraestructura Exclusiva</h2>
+        <div class="stats-grid">
+            <div class="stat-card"><h3>7000 m²</h3><p>De Propiedad Exclusiva</p></div>
+            <div class="stat-card"><h3>3 Niveles</h3><p>De 250 m² cada uno</p></div>
+            <div class="stat-card"><h3>1500 m²</h3><p>De Patio</p></div>
+            <div class="stat-card"><h3>400 m²</h3><p>De Salón Principal</p></div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2 class="section-title">Servicios "Llave en Mano"</h2>
+        <div class="services-list">
+            <div class="service-item">
+                <h4>🥂 Gastronomía de Élite</h4>
+                <p>Trabajamos con Talleyrand, Pederzani, Asado Benítez, Novecento y más. Ofrecemos 3 opciones de Open Bar por 6 horas.</p>
+            </div>
+            <div class="service-item">
+                <h4>🛡️ Seguridad y Confort</h4>
+                <p>Seguridad privada 24 horas, Generador Propio y cobertura de emergencia médica. Estacionamiento interno y valet parking.</p>
+            </div>
+            <div class="service-item">
+                <h4>⚡ Conectividad Total</h4>
+                <p>Tecnología de última generación con 100 Mbps nacional y WiFi gratuito en todos los salones.</p>
             </div>
         </div>
     </section>
 
+    <section id="contacto" style="background: var(--secondary);">
+        <h2 class="section-title">Reservá tu Evento</h2>
+        <p style="text-align: center; margin-bottom: 40px; color: var(--gold);">Avenida España 505 casi Brasil, Asunción</p>
+        
+        <form class="contact-form">
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="tel" placeholder="Teléfono" required>
+            <select required>
+                <option value="" disabled selected>Tipo de Evento</option>
+                <option value="boda">Casamiento</option>
+                <option value="15anos">Fiesta de Quince</option>
+                <option value="corporativo">Evento Corporativo</option>
+                <option value="concierto">Concierto</option>
+            </select>
+            <input type="date" required>
+            <button type="submit" class="btn-gold">Consultar Disponibilidad</button>
+        </form>
+    </section>
+
     <script>
+        // Lógica del menú móvil
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
 
         mobileMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            // Animación del icono
-            mobileMenu.classList.toggle('is-active');
         });
 
-        // Cerrar menú al hacer clic en un enlace
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
             });
+        });
+
+        // Lógica del acordeón de Historia
+        const btnLeerMas = document.getElementById('btn-leer-mas');
+        const textoHistoria = document.getElementById('texto-historia');
+
+        btnLeerMas.addEventListener('click', () => {
+            textoHistoria.classList.toggle('abierto');
+            
+            if (textoHistoria.classList.contains('abierto')) {
+                btnLeerMas.innerHTML = '- Ocultar historia';
+            } else {
+                btnLeerMas.innerHTML = '+ Leer toda la historia';
+            }
         });
     </script>
 
