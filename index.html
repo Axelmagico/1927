@@ -26,7 +26,7 @@
             padding-top: var(--header-height);
         }
 
-        /* --- HEADER Y NAVEGACIÓN --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -59,7 +59,6 @@
         }
 
         nav ul { display: flex; list-style: none; }
-
         nav a {
             color: var(--text-light);
             text-decoration: none;
@@ -72,20 +71,10 @@
 
         nav a:hover { color: var(--gold); }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-        }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+        .menu-toggle span { width: 30px; height: 3px; background-color: var(--gold); }
 
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background-color: var(--gold);
-        }
-
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--header-height));
@@ -123,14 +112,14 @@
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
-        /* --- SECCIÓN EL LUGAR Y DESPLEGABLE --- */
+        /* --- SECCIÓN EL LUGAR (DIAGRAMACIÓN CORREGIDA) --- */
         section { padding: 100px 10%; }
         
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            align-items: flex-start;
+            align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
         }
 
         .section-title {
@@ -138,9 +127,9 @@
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 40px;
-            text-align: left;
         }
 
+        /* Columna Izquierda: Texto */
         .text-block p {
             margin-bottom: 20px;
             color: var(--text-muted);
@@ -155,34 +144,7 @@
         }
 
         .historia-extendida.abierto {
-            max-height: 2000px;
-        }
-
-        /* Fotografía de Fachadas integrada en el desplegable */
-        .fachada-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 30px;
-            padding-bottom: 20px;
-        }
-
-        .fachada-item {
-            position: relative;
-            border: 1px solid var(--gold);
-            overflow: hidden;
-        }
-
-        .fachada-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .fachada-item:hover img {
-            transform: scale(1.05);
+            max-height: 1000px;
         }
 
         .btn-leer-mas {
@@ -198,95 +160,60 @@
             transition: all 0.3s;
         }
 
-        .btn-leer-mas:hover {
-            background: var(--gold);
-            color: var(--primary);
-        }
+        .btn-leer-mas:hover { background: var(--gold); color: var(--primary); }
 
-        /* --- SERVICIOS Y CONTACTO --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        /* Columna Derecha: Imágenes con Recorte Inteligente */
+        .image-block {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
+            height: 100%;
         }
 
-        .stat-card {
-            background: var(--secondary);
-            padding: 30px;
-            text-align: center;
-            border-top: 3px solid var(--gold);
+        .image-container {
+            flex: 1; /* Distribuye el espacio equitativamente */
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            position: relative;
+            background: #000;
         }
 
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ELIMINA BORDES BLANCOS Y RECORTA AL CENTRO */
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img { transform: scale(1.05); }
+
+        /* --- RESTO DE SECCIONES --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .stat-card { background: var(--secondary); padding: 30px; text-align: center; border-top: 3px solid var(--gold); }
         .stat-card h3 { color: var(--gold); font-size: 2rem; }
-
-        .services-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .service-item {
-            background: var(--secondary);
-            padding: 30px;
-            border-radius: 5px;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--secondary);
-            padding: 50px;
-        }
-
-        .contact-form input, .contact-form select {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            background: var(--primary);
-            border: 1px solid #444;
-            color: white;
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 15px;
-            background: var(--gold);
-            color: var(--primary);
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
+        .services-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-item { background: var(--secondary); padding: 30px; border-radius: 5px; }
+        .contact-form { max-width: 600px; margin: 0 auto; background: var(--secondary); padding: 50px; }
+        .contact-form input, .contact-form select { width: 100%; padding: 15px; margin-bottom: 20px; background: var(--primary); border: 1px solid #444; color: white; }
+        .btn-gold { width: 100%; padding: 15px; background: var(--gold); color: var(--primary); font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             :root { --header-height: 140px; }
-            .logo-img { width: 380px; }
             .grid-2 { grid-template-columns: 1fr; }
+            .image-block { height: 600px; } /* Altura fija en tablets para no perder las fotos */
         }
 
         @media (max-width: 768px) {
             :root { --header-height: 120px; }
-            .logo-link { max-width: 85%; }
             .logo-img { width: 100%; min-width: 250px; }
             .menu-toggle { display: flex; }
-            
-            nav {
-                position: fixed;
-                top: 0; right: -100%;
-                width: 80%; height: 100vh;
-                background: var(--primary);
-                flex-direction: column;
-                justify-content: center;
-                transition: 0.5s;
-                z-index: 1050;
-            }
-
+            nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: var(--primary); flex-direction: column; justify-content: center; transition: 0.5s; z-index: 1050; }
             nav.active { right: 0; }
             nav ul { flex-direction: column; gap: 30px; }
-            
             .hero-content h1 { font-size: 2.5rem; }
-            .fachada-gallery { grid-template-columns: 1fr; }
+            .image-block { height: 500px; }
             .services-list { grid-template-columns: 1fr; }
         }
     </style>
@@ -325,27 +252,25 @@
         <div class="text-block">
             <h2 class="section-title">Un Lugar Lleno de Historia</h2>
             <p>CASA 1927 cuenta con una ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes, sobre la Avda. España casi Brasil.</p>
-            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Con una fachada donde se destacan murales en mosaico de Julián de la Herrería y Josefina Plá, la propiedad de 7000 m2 fue construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
+            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Con una fachada donde se destacan murales en mosaico de Julián de la Herrería y Josefina Plá, la propiedad fue construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
 
             <div class="historia-extendida" id="texto-historia">
                 <p>El proyecto lo llevó a cabo junto a un grupo de ingenieros europeos en Berlín, notándose esto en cada detalle. Cada material fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, desde sus pisos de mármol de Carrara de Italia hasta sus muebles y apliques de estilo Luis XV de la época.</p>
-                
-                <div class="fachada-gallery">
-                    <div class="fachada-item">
-                        <img src="fachaBN.png" alt="Fachada Histórica Blanco y Negro">
-                    </div>
-                    <div class="fachada-item">
-                        <img src="fachacolor.png" alt="Fachada Actual a Color">
-                    </div>
-                </div>
-
                 <p>Entre 1927 y 1929 fue residencia del embajador norteamericano, George L. Kreeck. Durante la Guerra del Chaco funcionó como hospital de sangre y luego fue sede del Ministerio de Salud, Radio Cáritas y la Universidad Americana.</p>
                 <p>CASA 1927 te invita a un viaje al pasado a través de su arquitectura. ¡Te esperamos para crear nuevos recuerdos!</p>
             </div>
 
             <button class="btn-leer-mas" id="btn-leer-mas">+ Leer toda la historia</button>
         </div>
-        <div class="image-block" style="background: url('historia.jpg') center/cover; height: 100%; min-height: 500px; border: 1px solid var(--gold);"></div>
+
+        <div class="image-block">
+            <div class="image-container">
+                <img src="fachacolor.png" alt="Fachada Actual Casa 1927">
+            </div>
+            <div class="image-container">
+                <img src="fachaBN.png" alt="Fachada Histórica Casa 1927">
+            </div>
+        </div>
     </section>
 
     <section id="espacios" style="background: var(--secondary);">
@@ -382,12 +307,10 @@
     </section>
 
     <script>
-        // Menú móvil
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
         mobileMenu.addEventListener('click', () => { navMenu.classList.toggle('active'); });
 
-        // Acordeón Historia
         const btnLeerMas = document.getElementById('btn-leer-mas');
         const textoHistoria = document.getElementById('texto-historia');
         btnLeerMas.addEventListener('click', () => {
