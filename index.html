@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
-        /* --- ARQUITECTURA DE VARIABLES --- */
+        /* --- VARIABLES DE DISEÑO --- */
         :root {
             --primary: #111111;
             --gold: #c5a059;
             --text-light: #f4f4f4;
-            --text-muted: #aaaaaa;
-            --font-title: 'Georgia', serif;
-            
-            /* Alturas de Header Diferenciadas */
             --h-pc: 160px;
-            --h-mobile: 100px; 
+            --h-mobile: 100px;
+            --font-title: 'Georgia', serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,53 +21,60 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--primary);
             color: var(--text-light);
-            line-height: 1.6;
             padding-top: var(--h-pc);
+            overflow-x: hidden;
         }
 
-        /* --- HEADER BLINDADO --- */
+        /* --- HEADER ESTRUCTURAL (EL CONTENEDOR MAESTRO) --- */
         header {
             position: fixed;
             top: 0; left: 0;
             width: 100%;
             height: var(--h-pc);
             background: rgba(17, 17, 17, 0.98);
-            display: flex;
-            justify-content: space-between; /* El secreto: separa logo de menú */
-            align-items: center;
-            padding: 0 5%;
+            display: flex; /* Activa el modo de columnas */
             z-index: 9999;
             border-bottom: 1px solid #333;
+            padding: 0 5%;
         }
 
-        /* Contenedor del Logo: Ocupa el espacio disponible pero respeta al menú */
-        .logo-wrap {
-            flex: 1; 
+        /* DIV 1: ESPACIO EXCLUSIVO DEL LOGOTIPO */
+        .header-logo-area {
+            flex: 0 1 500px; /* PC: Se expande hasta 500px pero puede achicarse */
             display: flex;
+            align-items: center;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: auto;
+            max-height: 130px; /* Deja aire en el header de 160px */
+            object-fit: contain;
+            display: block;
+        }
+
+        /* DIV 2: ESPACIO EXCLUSIVO DEL MENÚ */
+        .header-nav-area {
+            flex: 1; /* Ocupa todo el resto del espacio a la derecha */
+            display: flex;
+            justify-content: flex-end; /* Empuja el contenido al borde derecho */
             align-items: center;
             height: 100%;
         }
 
-        .logo-img {
-            /* PC: Logo imponente de hasta 400px de ancho */
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            max-height: 120px; /* Deja aire arriba y abajo del header de 160px */
-            object-fit: contain;
-        }
-
-        /* Navegación PC */
+        /* Navegación Estilo PC */
         nav ul { display: flex; list-style: none; }
         nav a {
             color: white; text-decoration: none;
-            margin-left: 25px; font-weight: bold;
+            margin-left: 30px; font-weight: bold;
             text-transform: uppercase; font-size: 0.85rem;
-            letter-spacing: 2px;
+            letter-spacing: 2px; transition: 0.3s;
         }
         nav a:hover { color: var(--gold); }
 
-        /* Botón Hamburguesa */
+        /* Botón Hamburguesa (Oculto en PC) */
         .menu-btn {
             display: none;
             flex-direction: column;
@@ -78,19 +82,15 @@
             cursor: pointer;
             padding: 10px;
             z-index: 10001;
-            margin-left: 20px;
         }
-        .menu-btn span { width: 30px; height: 3px; background: var(--gold); transition: 0.3s; }
+        .menu-btn span { width: 30px; height: 3px; background: var(--gold); }
 
         /* --- HERO CON VIDEO --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--h-pc));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-align: center;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; text-align: center;
         }
         .video-bg {
             position: absolute; top: 50%; left: 50%;
@@ -99,59 +99,59 @@
             object-fit: cover; z-index: -1;
         }
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .hero-content { position: relative; z-index: 1; padding: 0 20px; }
+        .hero-content { position: relative; z-index: 1; }
         .hero h1 { font-family: var(--font-title); font-size: clamp(2rem, 8vw, 4rem); color: var(--gold); }
 
-        /* --- SECCIÓN HISTORIA (MAGAZINE) --- */
+        /* --- SECCIÓN HISTORIA MAGAZINE --- */
         section { padding: 80px 10%; }
-        .magazine-box { max-width: 900px; margin: 0 auto; }
-        .section-title { font-family: var(--font-title); color: var(--gold); font-size: 2.5rem; margin-bottom: 30px; text-align: center; }
+        .magazine-container { max-width: 900px; margin: 0 auto; }
+        .section-title { font-family: var(--font-title); color: var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 30px; }
         
-        .historia-content {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.8s ease-in-out;
-        }
-        .historia-content.open { max-height: 3000px; }
-
-        .float-img { 
-            width: 45%; border: 1px solid var(--gold); 
-            margin: 10px; filter: grayscale(0.2);
-        }
+        .float-img { width: 45%; border: 1px solid var(--gold); margin: 15px; }
         .right { float: right; margin-left: 25px; }
         .left { float: left; margin-right: 25px; }
+
+        .historia-content { max-height: 0; overflow: hidden; transition: 0.8s ease-in-out; }
+        .historia-content.open { max-height: 3000px; }
 
         .btn-more {
             display: block; margin: 30px auto;
             background: none; border: 1px solid var(--gold);
             color: var(--gold); padding: 12px 30px;
             text-transform: uppercase; cursor: pointer;
-            letter-spacing: 2px;
         }
 
-        /* --- ADAPTACIÓN MÓVIL (MOBILE FIRST) --- */
-        @media (max-width: 800px) {
+        /* --- REGLAS DE ADAPTABILIDAD (MÓVIL) --- */
+        @media (max-width: 850px) {
             body { padding-top: var(--h-mobile); }
-            header { height: var(--h-mobile); padding: 0 20px; }
-            
-            /* EL AJUSTE CLAVE: Logo en móvil */
-            .logo-img { 
-                max-width: 220px; /* Ancho cómodo para móvil */
-                max-height: 65px; /* Altura que deja aire en el header de 100px */
+            header { height: var(--h-mobile); padding: 0 15px; }
+
+            /* Ajuste dinámico de los dos DIVS en móvil */
+            .header-logo-area {
+                flex: 0 1 280px; /* El logo se achica para no molestar */
+            }
+            .logo-img {
+                max-height: 60px; /* Ajuste solemne para móvil */
+            }
+
+            .header-nav-area {
+                flex: 0 0 50px; /* Solo ocupa lo necesario para la hamburguesa */
             }
 
             .menu-btn { display: flex; }
 
+            /* Menú lateral móvil */
             nav {
                 position: fixed; top: 0; right: -100%;
-                width: 80%; height: 100vh;
+                width: 75%; height: 100vh;
                 background: #111; display: flex;
                 flex-direction: column; justify-content: center;
-                align-items: center; transition: 0.4s;
+                align-items: center; transition: 0.4s ease-in-out;
                 border-left: 1px solid var(--gold);
             }
             nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 30px; text-align: center; }
-            nav a { margin: 0; font-size: 1.2rem; }
+            nav ul { flex-direction: column; gap: 30px; }
+            nav a { margin: 0; font-size: 1.3rem; }
 
             .hero { height: calc(100vh - var(--h-mobile)); }
             .float-img { width: 100%; float: none; margin: 15px 0; }
@@ -161,22 +161,26 @@
 <body>
 
     <header>
-        <div class="logo-wrap">
-            <img src="logo.png" alt="CASA 1927" class="logo-img">
+        <div class="header-logo-area">
+            <a href="#" style="display:block; width:100%;">
+                <img src="logo.png" alt="CASA 1927" class="logo-img">
+            </a>
         </div>
 
-        <div class="menu-btn" id="menu-trigger">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="header-nav-area">
+            <div class="menu-btn" id="btn-toggle">
+                <span></span><span></span><span></span>
+            </div>
 
-        <nav id="nav-container">
-            <ul>
-                <li><a href="#historia">El Lugar</a></li>
-                <li><a href="#espacios">Espacios</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+            <nav id="nav-list">
+                <ul>
+                    <li><a href="#historia">El Lugar</a></li>
+                    <li><a href="#espacios">Espacios</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
@@ -191,48 +195,39 @@
     </section>
 
     <section id="historia">
-        <div class="magazine-box">
+        <div class="magazine-container">
             <h2 class="section-title">EL LUGAR</h2>
-            <p style="font-size: 1.2rem; color: var(--gold); margin-bottom: 20px;">Ubicación privilegiada entre los barrios Ricardo Brugada y Las Mercedes.</p>
+            <p style="color:var(--gold); font-size:1.2rem; text-align:center; margin-bottom:20px;">Ubicación privilegiada en Asunción.</p>
             
-            <div class="historia-content" id="historia-text">
-                <p style="margin-bottom:20px;">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
-                
-                <img src="fachacolor.png" class="float-img right" alt="Fachada Actual">
-                <p style="margin-bottom:20px;">El proyecto se realizó con ingenieros europeos en Berlín. Cada material fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, incluyendo mármoles de Carrara y detalles Luis XV.</p>
-                
-                <img src="fachaBN.png" class="float-img left" alt="Fachada Histórica">
-                <p style="margin-bottom:20px;">Durante la Guerra del Chaco funcionó como hospital de sangre. CASA 1927 te invita a un viaje al pasado a través de su arquitectura y belleza única.</p>
+            <div class="historia-content" id="historia-txt">
+                <p style="margin-bottom:20px;">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Construida por el Arquitecto Tomás Romero.</p>
+                <img src="fachacolor.png" class="float-img right" alt="Fachada Color">
+                <p style="margin-bottom:20px;">Cada material fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, incluyendo mármoles de Carrara.</p>
+                <img src="fachaBN.png" class="float-img left" alt="Fachada BN">
+                <p style="margin-bottom:20px;">CASA 1927 te invita a un viaje al pasado a través de su arquitectura y belleza única para eventos exclusivos.</p>
             </div>
 
-            <button class="btn-more" id="btn-more">+ Leer toda la historia</button>
+            <button class="btn-more" id="btn-leer">+ Leer toda la historia</button>
         </div>
     </section>
 
-    <section id="espacios" style="background:var(--secondary); text-align:center;">
-        <h2 class="section-title">INFRAESTRUCTURA</h2>
-        <p>7000 m² de propiedad exclusiva • Salón principal de 400 m² • Generador propio.</p>
-    </section>
-
     <script>
-        // Lógica de Menú
-        const trigger = document.getElementById('menu-trigger');
-        const nav = document.getElementById('nav-container');
-
-        trigger.addEventListener('click', () => {
+        // Lógica del menú hamburguesa
+        const btn = document.getElementById('btn-toggle');
+        const nav = document.getElementById('nav-list');
+        btn.addEventListener('click', () => {
             nav.classList.toggle('active');
         });
 
-        // Lógica de Historia
-        const btnMore = document.getElementById('btn-more');
-        const text = document.getElementById('historia-text');
-
-        btnMore.addEventListener('click', () => {
-            text.classList.toggle('open');
-            btnMore.innerText = text.classList.contains('open') ? '- Ocultar historia' : '+ Leer toda la historia';
+        // Lógica del desplegable "Leer más"
+        const leerBtn = document.getElementById('btn-leer');
+        const txt = document.getElementById('historia-txt');
+        leerBtn.addEventListener('click', () => {
+            txt.classList.toggle('open');
+            leerBtn.innerText = txt.classList.contains('open') ? '- Ocultar historia' : '+ Leer toda la historia';
         });
 
-        // Cerrar menú al clickear link (para móviles)
+        // Cerrar menú al hacer clic en un enlace (móvil)
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => nav.classList.remove('active'));
         });
