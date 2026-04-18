@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
-        /* --- VARIABLES GLOBALES --- */
         :root {
             --primary: #111111;
             --secondary: #222222;
@@ -14,16 +13,11 @@
             --text-muted: #aaaaaa;
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-title: 'Georgia', serif;
-            
-            /* Cabecera súper alta para el logo gigante en PC */
+            /* Altura base para PC */
             --header-height: 180px; 
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-main);
@@ -49,27 +43,24 @@
             transition: all 0.3s ease;
         }
 
-        /* CONTENEDOR DEL LOGO (La clave para que no se recorte) */
         .logo-link {
             display: flex;
             align-items: center;
             height: 100%;
             text-decoration: none;
-            /* Evita que el logo empuje al menú fuera de la pantalla en celulares */
-            max-width: 75%; 
         }
 
         .logo-img {
-            /* TAMAÑO IMPONENTE PARA PC */
+            /* TAMAÑO PARA PC: 450px */
             width: 450px; 
-            max-width: 100%; /* Nunca será más ancho que su contenedor (.logo-link) */
-            height: auto; /* Mantiene la proporción perfecta (no se achata) */
-            max-height: 140px; /* Evita que se desborde del header hacia arriba/abajo */
-            object-fit: contain; /* Obliga a que la imagen se vea COMPLETA siempre */
-            transition: all 0.3s ease;
+            height: auto; 
+            max-height: 150px;
             display: block;
+            object-fit: contain;
+            transition: width 0.3s ease;
         }
 
+        /* Menú de Navegación */
         nav ul {
             display: flex;
             list-style: none;
@@ -94,7 +85,6 @@
             flex-direction: column;
             cursor: pointer;
             gap: 6px;
-            z-index: 1100;
         }
 
         .menu-toggle span {
@@ -104,7 +94,7 @@
             transition: 0.3s;
         }
 
-        /* --- SECCIÓN HERO (CON VIDEO) --- */
+        /* --- SECCIÓN HERO --- */
         .hero {
             position: relative;
             height: calc(100vh - var(--header-height));
@@ -135,31 +125,16 @@
             z-index: -1;
         }
 
-        .hero-content {
-            z-index: 1;
-            position: relative;
-        }
-
         .hero-content h1 {
             font-family: var(--font-title);
             font-size: 4rem;
             margin-bottom: 10px;
             color: var(--gold);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- SECCIONES GENERALES --- */
-        section {
-            padding: 100px 10%;
-        }
-
+        /* --- SECCIONES CONTENIDO --- */
+        section { padding: 80px 10%; }
         .section-title {
             font-family: var(--font-title);
             font-size: 2.5rem;
@@ -168,7 +143,6 @@
             text-align: center;
         }
 
-        /* Historia */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -176,18 +150,10 @@
             align-items: center;
         }
 
-        .text-block p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* Infraestructura / Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            gap: 20px;
         }
 
         .stat-card {
@@ -197,117 +163,54 @@
             border-top: 3px solid var(--gold);
         }
 
-        .stat-card h3 { color: var(--gold); font-size: 2rem; }
-        .stat-card p { font-size: 0.9rem; text-transform: uppercase; margin-top: 10px; }
-
-        /* Servicios */
-        .services-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .service-item {
-            background: var(--secondary);
-            padding: 30px;
-            border-radius: 5px;
-        }
-
-        .service-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
-
-        /* Contacto */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--secondary);
-            padding: 50px;
-            border-radius: 5px;
-        }
-
-        .contact-form input, .contact-form select {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            background: var(--primary);
-            border: 1px solid #444;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 15px;
-            background: var(--gold);
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: opacity 0.3s;
-        }
-
-        .btn-gold:hover { opacity: 0.8; }
-
-        /* --- RESPONSIVE (CELULARES Y TABLETS) --- */
-        
-        /* Tablets */
+        /* --- RESPONSIVE (MÓVIL) --- */
         @media (max-width: 992px) {
-            :root { --header-height: 140px; }
-            .logo-img { width: 350px; }
+            :root { --header-height: 110px; }
+            .logo-img { width: 280px; }
             nav a { margin-left: 20px; font-size: 0.8rem; }
         }
 
-        /* Celulares */
         @media (max-width: 768px) {
-            :root { --header-height: 110px; }
-            
-            /* Logo ajustado para móvil: Se ve completo y respeta el botón de menú */
-            .logo-img { 
-                width: 280px; /* Buen tamaño para celular */
-                max-height: 80px; 
-            }
+            :root { --header-height: 100px; }
+            .logo-img { width: 220px; }
 
-            /* Aparece el menú hamburguesa */
-            .menu-toggle { display: flex; }
+            .menu-toggle { display: flex; z-index: 1100; }
 
-            /* El menú se oculta a la derecha */
+            /* Menú móvil desplegable */
             nav {
                 position: fixed;
-                top: 0; 
+                top: 0;
                 right: -100%;
-                width: 80%; 
+                width: 70%;
                 height: 100vh;
                 background: var(--primary);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                transition: 0.5s ease-in-out;
+                transition: 0.5s;
                 border-left: 1px solid var(--gold);
-                z-index: 1050;
             }
 
-            /* Clase que activa el menú en pantalla */
             nav.active { right: 0; }
 
             nav ul {
                 flex-direction: column;
                 text-align: center;
-                gap: 40px;
+                gap: 30px;
             }
 
-            nav a { margin-left: 0; font-size: 1.5rem; }
+            nav a { margin-left: 0; font-size: 1.2rem; }
 
-            .hero-content h1 { font-size: 2.5rem; }
-            .grid-2, .stats-grid, .services-list { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2, .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-link" title="CASA 1927 - Inicio">
-            <img src="logo.png" alt="Logo oficial de CASA 1927, Asunción" class="logo-img">
+        <a href="#" class="logo-link">
+            <img src="logo.png" alt="CASA 1927" class="logo-img">
         </a>
 
         <div class="menu-toggle" id="mobile-menu">
@@ -319,7 +222,7 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="#historia">El Lugar</a></li>
-                <li><a href="#espacios">Infraestructura</a></li>
+                <li><a href="#espacios">Espacios</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -331,79 +234,21 @@
             <source src="videopromo.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-        
         <div class="hero-content">
             <h1>Eventos Memorables</h1>
-            <p>Donde el anfitrión sos VOS. Listos para escribir nuevos capítulos con nuevos protagonistas.</p>
+            <p>Donde el anfitrión sos VOS.</p>
         </div>
     </section>
 
-    <section id="historia" class="grid-2">
-        <div class="text-block">
-            <h2 class="section-title" style="text-align: left;">Un Lugar Lleno de Historia</h2>
-            <p>Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Fue construida por el Arquitecto Tomás Romero junto a ingenieros europeos en Berlín.</p>
-            <p>La fachada destaca por sus murales en mosaico de Julián de la Herrería y Josefina Plá. Cada detalle fue importado: pisos de mármol de carrara de Italia y muebles estilo Luis XV desde Francia.</p>
-        </div>
-        <div class="image-block" style="background: url('historia.jpg') center/cover; height: 400px; border: 1px solid var(--gold);"></div>
-    </section>
-
-    <section id="espacios" style="background: var(--secondary);">
-        <h2 class="section-title">Infraestructura Exclusiva</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>7000 m²</h3>
-                <p>De Propiedad Exclusiva</p>
-            </div>
-            <div class="stat-card">
-                <h3>3 Niveles</h3>
-                <p>De 250 m² cada uno</p>
-            </div>
-            <div class="stat-card">
-                <h3>1500 m²</h3>
-                <p>De Patio</p>
-            </div>
-            <div class="stat-card">
-                <h3>400 m²</h3>
-                <p>De Salón Principal</p>
+    <section id="historia">
+        <h2 class="section-title">Historia y Arte</h2>
+        <div class="grid-2">
+            <p>Un espacio donde la arquitectura de 1927 se fusiona con murales de Josefina Plá, creando un escenario único en el corazón de Asunción.</p>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>7000m²</h3><p>Propiedad</p></div>
+                <div class="stat-card"><h3>400m²</h3><p>Salón Principal</p></div>
             </div>
         </div>
-    </section>
-
-    <section id="servicios">
-        <h2 class="section-title">Servicios "Llave en Mano"</h2>
-        <div class="services-list">
-            <div class="service-item">
-                <h4>🥂 Gastronomía de Élite</h4>
-                <p>Trabajamos con Talleyrand, Pederzani, Asado Benitez, Novecento y más. Ofrecemos 3 opciones de Open Bar por 6 horas.</p>
-            </div>
-            <div class="service-item">
-                <h4>🛡️ Seguridad y Confort</h4>
-                <p>Seguridad privada 24 horas, Generador Propio y cobertura de emergencia médica. Estacionamiento interno y valet parking.</p>
-            </div>
-            <div class="service-item">
-                <h4>⚡ Conectividad Total</h4>
-                <p>Tecnología de última generación con 100 Mbps nacional y WiFi gratuito en todos los salones.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" style="background: var(--secondary);">
-        <h2 class="section-title">Reservá tu Evento</h2>
-        <p style="text-align: center; margin-bottom: 40px; color: var(--gold);">Avenida España 505 casi Brasil, Asunción</p>
-        
-        <form class="contact-form">
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="tel" placeholder="Teléfono" required>
-            <select required>
-                <option value="" disabled selected>Tipo de Evento</option>
-                <option value="boda">Casamiento</option>
-                <option value="15anos">Fiesta de Quince</option>
-                <option value="corporativo">Evento Corporativo</option>
-                <option value="concierto">Concierto</option>
-            </select>
-            <input type="date" required>
-            <button type="submit" class="btn-gold">Consultar Disponibilidad</button>
-        </form>
     </section>
 
     <script>
@@ -412,8 +257,11 @@
 
         mobileMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            // Animación del icono
+            mobileMenu.classList.toggle('is-active');
         });
 
+        // Cerrar menú al hacer clic en un enlace
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
