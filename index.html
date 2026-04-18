@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASA 1927 | Eventos Memorables</title>
     <style>
-        /* --- VARIABLES DE ARQUITECTURA --- */
+        /* --- VARIABLES --- */
         :root {
             --primary: #111111;
             --gold: #c5a059;
             --text-light: #f4f4f4;
-            --text-muted: #aaaaaa;
-            /* Aumentamos la altura base para que el logo pueda crecer */
             --h-pc: 180px;
             --h-mobile: 130px;
             --font-title: 'Georgia', serif;
@@ -27,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER DE DOS COLUMNAS OPTIMIZADO --- */
+        /* --- HEADER ANTI-COLAPSO --- */
         header {
             position: fixed;
             top: 0; left: 0;
@@ -35,56 +33,63 @@
             height: var(--h-pc);
             background: rgba(17, 17, 17, 0.98);
             display: flex;
+            align-items: center;
+            justify-content: space-between; /* Extremos opuestos */
             z-index: 9999;
             border-bottom: 1px solid #333;
-            padding: 0 4%;
-            transition: all 0.3s ease;
+            padding: 0 5%;
         }
 
-        /* DIV 1: CONTENEDOR EXPANSIVO DEL LOGOTIPO */
+        /* DIV 1: LOGOTIPO (Flexible) */
         .header-logo-area {
-            flex: 3; /* Toma la gran mayoría del espacio */
+            flex: 1; /* Toma todo el espacio sobrante */
             display: flex;
             align-items: center;
-            height: 100%;
+            min-width: 0; /* Permite que el contenedor se achique si es necesario */
         }
 
         .logo-img {
+            height: 90%; 
+            max-height: 155px;
             width: auto;
             max-width: 100%;
-            /* El logo ahora ocupa el 90% de la altura disponible */
-            height: 90%; 
             object-fit: contain;
             display: block;
-            transition: all 0.3s ease;
         }
 
-        /* DIV 2: CONTENEDOR COMPACTO DEL MENÚ */
+        /* DIV 2: MENÚ (Anclado - NO COLAPSA) */
         .header-nav-area {
-            flex: 1; 
+            flex: 0 0 auto; /* El menú NUNCA se encoge ni cambia de tamaño */
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            height: 100%;
+            margin-left: 40px; /* Separación mínima de seguridad */
         }
 
-        /* Navegación PC */
-        nav ul { display: flex; list-style: none; }
-        nav a {
-            color: white; text-decoration: none;
-            margin-left: 25px; font-weight: bold;
-            text-transform: uppercase; font-size: 0.9rem;
-            letter-spacing: 1px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            white-space: nowrap; /* Evita que el texto salte de línea */
         }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
         nav a:hover { color: var(--gold); }
 
-        /* Hamburguesa */
+        /* Hamburguesa (Solo se activa cuando ya no cabe físicamente) */
         .menu-btn {
             display: none;
             flex-direction: column;
             gap: 7px;
             cursor: pointer;
-            padding: 10px;
             z-index: 10001;
         }
         .menu-btn span { width: 35px; height: 3px; background: var(--gold); }
@@ -108,9 +113,6 @@
         /* --- MAGAZINE SECTION --- */
         section { padding: 80px 10%; }
         .magazine-container { max-width: 1000px; margin: 0 auto; }
-        .section-title { font-family: var(--font-title); color: var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 30px; }
-
-        .magazine-paragraph { margin-bottom: 25px; color: var(--text-muted); font-size: 1.1rem; text-align: justify; overflow: hidden; }
         .float-img { width: 48%; border: 1px solid var(--gold); margin: 15px; }
         .right { float: right; margin-left: 25px; }
         .left { float: left; margin-right: 25px; }
@@ -125,35 +127,33 @@
             text-transform: uppercase; cursor: pointer; letter-spacing: 2px;
         }
 
-        /* --- RESPONSIVE MÓVIL --- */
-        @media (max-width: 850px) {
+        /* --- RESPONSIVE INTELIGENTE --- */
+        
+        /* Cuando el menú y el logo están a punto de tocarse (ajustar este valor si es necesario) */
+        @media (max-width: 1100px) {
+            nav a { margin-left: 15px; font-size: 0.8rem; }
+            .header-nav-area { margin-left: 20px; }
+        }
+
+        @media (max-width: 900px) {
             body { padding-top: var(--h-mobile); }
-            header { height: var(--h-mobile); padding: 0 15px; }
+            header { height: var(--h-mobile); }
 
-            .header-logo-area {
-                flex: 4; /* Le damos aún más prioridad al logo en móvil */
-            }
-            .logo-img {
-                height: 85%; /* Mantenemos el logo grande ocupando casi todo el alto */
-            }
+            .logo-img { height: 85%; }
 
-            .header-nav-area {
-                flex: 1;
-            }
-
+            /* Aquí el menú se vuelve hamburguesa para evitar el colapso visual */
             .menu-btn { display: flex; }
-
             nav {
                 position: fixed; top: 0; right: -100%;
                 width: 80%; height: 100vh;
                 background: #111; display: flex;
                 flex-direction: column; justify-content: center;
-                align-items: center; transition: 0.4s ease-in-out;
+                align-items: center; transition: 0.4s;
                 border-left: 1px solid var(--gold);
             }
             nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 30px; }
-            nav a { margin: 0; font-size: 1.4rem; }
+            nav ul { flex-direction: column; gap: 40px; }
+            nav a { margin: 0; font-size: 1.5rem; }
 
             .hero { height: calc(100vh - var(--h-mobile)); }
             .float-img { width: 100%; float: none; margin: 15px 0; }
@@ -198,30 +198,23 @@
 
     <section id="historia">
         <div class="magazine-container">
-            <h2 class="section-title">EL LUGAR</h2>
-            <p style="color:var(--gold); font-size:1.3rem; text-align:center; margin-bottom:30px;">Una joya arquitectónica de 1927 en el corazón de Asunción.</p>
-            
+            <h2 style="text-align: center; font-family: var(--font-title); color: var(--gold); font-size: 2.5rem; margin-bottom: 30px;">EL LUGAR</h2>
             <div class="historia-content" id="historia-txt">
-                <p class="magazine-paragraph">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927. Construida por el Arquitecto Tomás Romero para Rigoberto Caballero.</p>
-                <img src="fachacolor.png" class="float-img right" alt="Fachada Actual">
-                <p class="magazine-paragraph">Cada material fue traído por catálogo desde el viejo continente hasta el puerto de Asunción, incluyendo mármoles de Carrara y detalles Luis XV importados de Francia.</p>
-                <img src="fachaBN.png" class="float-img left" alt="Fachada Histórica">
-                <p class="magazine-paragraph">Durante la Guerra del Chaco funcionó como hospital de sangre. CASA 1927 te invita a un viaje al pasado a través de su arquitectura y belleza única para eventos exclusivos.</p>
+                <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 1.1rem; text-align: justify;">Conocida como "la rica villa" en los 70, la historia de esta imponente casa se remonta al año 1927.</p>
+                <img src="fachacolor.png" class="float-img right" alt="Fachada Color">
+                <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 1.1rem; text-align: justify;">El proyecto se realizó con ingenieros europeos en Berlín. Cada material fue traído por catálogo desde el viejo continente.</p>
+                <img src="fachaBN.png" class="float-img left" alt="Fachada BN">
+                <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 1.1rem; text-align: justify;">CASA 1927 invita a un viaje al pasado a través de su arquitectura y belleza única.</p>
             </div>
-
             <button class="btn-more" id="btn-leer">+ Leer toda la historia</button>
         </div>
     </section>
 
     <script>
-        // Lógica de Menú
         const btn = document.getElementById('btn-toggle');
         const nav = document.getElementById('nav-list');
-        btn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
+        btn.addEventListener('click', () => nav.classList.toggle('active'));
 
-        // Lógica de "Leer más"
         const leerBtn = document.getElementById('btn-leer');
         const txt = document.getElementById('historia-txt');
         leerBtn.addEventListener('click', () => {
@@ -229,7 +222,6 @@
             leerBtn.innerText = txt.classList.contains('open') ? '- Ocultar historia' : '+ Leer toda la historia';
         });
 
-        // Cerrar menú al clickear link
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => nav.classList.remove('active'));
         });
