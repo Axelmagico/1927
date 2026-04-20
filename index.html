@@ -11,11 +11,10 @@
             --gold: #c5a059;
             --red-py: #e30613; 
             --text-dark: #1a1a1a;
-            --text-muted: #666666;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            /* Altura ajustada para el nuevo logo monumental */
-            --header-h: 360px; 
+            /* Header aumentado para soportar el logo +25% */
+            --header-h: 420px; 
             --header-h-mobile: 280px;
         }
 
@@ -29,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER MONUMENTAL --- */
+        /* --- HEADER MONUMENTAL OPTIMIZADO --- */
         header {
             position: fixed;
             top: 0; left: 0;
@@ -41,54 +40,57 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 20px 5%;
+            padding: 10px 5%;
             border-bottom: 1px solid #f2f2f2;
+            transition: all 0.3s ease;
         }
 
-        /* LOGOTIPO: 30% MÁS GRANDE */
+        /* LOGOTIPO: +25% ADICIONAL (IMPACTO TOTAL) */
         .logo-box {
             width: 100%;
-            max-width: 650px; /* Aumentado sustancialmente */
-            margin-bottom: 15px;
+            max-width: 800px; 
             display: flex;
             justify-content: center;
+            margin-bottom: 5px;
         }
 
         .logo-img {
             width: 100%;
             height: auto;
-            max-height: 210px; /* Incremento del 30% sobre el valor anterior */
+            max-height: 265px; /* Aumento del 25% real sobre los 210px anteriores */
             object-fit: contain;
         }
 
         .brand-info {
             text-align: center;
+            width: 100%;
         }
 
-        /* ASUNCIÓN: REDUCIDO 40% */
+        /* ASUNCIÓN: REDUCIDO Y DISCRETO */
         .city-text {
             color: var(--red-py);
             font-family: var(--font-title);
-            font-size: 1.3rem; /* Reducción proporcional del 40% */
+            font-size: 0.95rem; /* Reducción para jerarquía visual */
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
         }
 
-        /* SLOGAN: +20% TAMAÑO, ESTIRADO Y ELEGANTE */
+        /* SLOGAN: ELEGANTE, ESTIRADO Y GRANDE */
         .slogan-text {
             color: var(--text-dark);
-            font-size: 1.35rem; /* Aumento del 20% */
-            font-weight: 200; /* Más fino para mayor elegancia */
-            letter-spacing: 6px; /* Efecto estirado (luxury spacing) */
+            font-size: 1.45rem; /* +20% de tamaño */
+            font-weight: 200; 
+            letter-spacing: 8px; /* Kerning de lujo estirado */
             text-transform: uppercase;
             border-top: 1px solid #eee;
-            padding-top: 10px;
+            padding-top: 15px;
             display: inline-block;
+            white-space: nowrap;
         }
 
-        /* --- ÁREA DE CONTENIDO (MAGAZINE GRID) --- */
+        /* --- ÁREA DE CONTENIDO (MAGAZINE GRID 20/40/40) --- */
         main {
             margin-top: var(--header-h);
             padding: 60px 5%;
@@ -108,34 +110,26 @@
             color: var(--gold);
             font-size: 1.5rem;
             margin-bottom: 30px;
-            text-transform: italic;
         }
 
         .side-links { list-style: none; }
         .side-links li { margin-bottom: 15px; }
         .side-links a {
-            color: var(--text-muted);
+            color: #888;
             text-decoration: none;
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: color 0.3s;
         }
+        .side-links a:hover { color: var(--gold); }
 
-        .photo-card {
-            width: 100%;
-            background: #fff;
-        }
-
+        .photo-card { width: 100%; background: #fff; }
         .photo-card img {
             width: 100%;
             height: auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.07);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             border: 1px solid #fcfcfc;
-            transition: transform 0.5s ease;
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.02);
         }
 
         .photo-caption {
@@ -147,13 +141,15 @@
             font-style: italic;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
+        /* --- RESPONSIVE INTELIGENTE --- */
+        @media (max-width: 1100px) {
+            .slogan-text { font-size: 1.1rem; letter-spacing: 4px; }
+        }
+
+        @media (max-width: 850px) {
             :root { --header-h: var(--header-h-mobile); }
             .logo-img { max-height: 140px; }
-            .city-text { font-size: 1rem; }
-            .slogan-text { font-size: 0.9rem; letter-spacing: 3px; }
-            
+            .slogan-text { font-size: 0.8rem; letter-spacing: 2px; white-space: normal; padding: 10px 20px 0; }
             .magazine-grid { flex-direction: column; }
             .col-20, .col-40 { flex: 0 0 100%; border: none; padding: 0; }
         }
@@ -176,58 +172,58 @@
         <div class="magazine-grid">
             
             <aside class="col-20">
-                <h3 class="side-title">Explorar</h3>
+                <h3 class="side-title">Descubrir</h3>
                 <ul class="side-links">
-                    <li><a href="#">El Legado Histórico</a></li>
-                    <li><a href="#">Galería de Espacios</a></li>
-                    <li><a href="#">Servicios Premium</a></li>
-                    <li><a href="#">Solicitar Cita</a></li>
+                    <li><a href="#">Historia del Lugar</a></li>
+                    <li><a href="#">Nuestros Salones</a></li>
+                    <li><a href="#">Servicios de Gala</a></li>
+                    <li><a href="#">Contacto Directo</a></li>
                 </ul>
             </aside>
 
             <div class="col-40">
                 <div class="photo-card">
-                    <img src="FOTO1.jpeg" alt="Detalle Casa 1927">
-                    <p class="photo-caption">Arquitectura Centenaria</p>
+                    <img src="FOTO1.jpeg" alt="Casa 1927">
+                    <p class="photo-caption">Elegancia Atemporal</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO3.jpeg" alt="Interior Exclusivo">
-                    <p class="photo-caption">Ambientes de Distinción</p>
+                    <img src="FOTO3.jpeg" alt="Interior">
+                    <p class="photo-caption">Detalles de Mármol</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO5.jpeg" alt="Evento Social">
-                    <p class="photo-caption">La Excelencia en Detalles</p>
+                    <img src="FOTO5.jpeg" alt="Arquitectura">
+                    <p class="photo-caption">Legado Histórico</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO7.jpeg" alt="Decoración de Élite">
-                    <p class="photo-caption">Esencia de Época</p>
+                    <img src="FOTO7.jpeg" alt="Gala">
+                    <p class="photo-caption">Su Evento Soñado</p>
                 </div>
             </div>
 
             <div class="col-40">
                 <div class="photo-card">
-                    <img src="FOTO2.jpeg" alt="Salón Principal">
-                    <p class="photo-caption">Mármoles de Carrara</p>
+                    <img src="FOTO2.jpeg" alt="Salón">
+                    <p class="photo-caption">Ambientes Exclusivos</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO4.jpeg" alt="Fachada Paraguay">
-                    <p class="photo-caption">Legado Rigoberto Caballero</p>
+                    <img src="FOTO4.jpeg" alt="Fachada">
+                    <p class="photo-caption">Asunción Colonial</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO6.jpeg" alt="Jardines">
-                    <p class="photo-caption">Patio Colonial</p>
+                    <img src="FOTO6.jpeg" alt="Patio">
+                    <p class="photo-caption">Rincones con Magia</p>
                 </div>
                 <div class="photo-card">
-                    <img src="FOTO8.jpeg" alt="Reserva">
-                    <p class="photo-caption">Inmortalice su Momento</p>
+                    <img src="FOTO8.jpeg" alt="Noche">
+                    <p class="photo-caption">Distinción Absoluta</p>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <footer style="padding: 80px 5%; text-align: center; border-top: 1px solid #f0f0f0; color: var(--gold); letter-spacing: 4px; font-size: 0.8rem; text-transform: uppercase;">
-        CASA 1927 • Exclusive Venue • Paraguay
+    <footer style="padding: 100px 5% 40px; text-align: center; border-top: 1px solid #f8f8f8; color: var(--gold); letter-spacing: 5px; font-size: 0.7rem; text-transform: uppercase;">
+        CASA 1927 • Luxury Experience • 2026
     </footer>
 
 </body>
