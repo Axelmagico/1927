@@ -13,7 +13,6 @@
             --text-dark: #1a1a1a;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            /* Altura base para el área del header */
             --header-h: 440px; 
             --header-h-mobile: 320px;
         }
@@ -53,7 +52,7 @@
         .logo-img {
             width: 100%;
             height: auto;
-            max-height: 265px; /* Tamaño proporcional solicitado */
+            max-height: 265px;
             object-fit: contain;
         }
 
@@ -86,9 +85,8 @@
             white-space: nowrap;
         }
 
-        /* --- ÁREA DE CONTENIDO (MAGAZINE GRID 20/40/40) --- */
+        /* --- ÁREA DE CONTENIDO (MAGAZINE GRID) --- */
         main {
-            /* Eliminamos el margen superior que requería el header fijo */
             padding: 60px 5%;
         }
 
@@ -99,30 +97,50 @@
         }
 
         /* Proporciones solicitadas */
-        .col-20 { flex: 0 0 20%; border-right: 1px solid #eee; padding-right: 20px; }
-        .col-40 { flex: 0 0 40%; display: flex; flex-direction: column; gap: 60px; }
-
-        .side-title {
-            font-family: var(--font-title);
-            color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .col-40 { 
+            flex: 0 0 40%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 60px; 
         }
 
-        .side-links { list-style: none; }
-        .side-links li { margin-bottom: 15px; }
-        .side-links a {
-            color: #888;
-            text-decoration: none;
+        /* COLUMNA DE CONTACTO (20% - MOVIDA A LA DERECHA) */
+        .col-contacto { 
+            flex: 0 0 20%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Cambiamos borde de derecha a izquierda */
+            border-left: 1px solid #eee; 
+            padding-left: 20px; 
+        }
+
+        /* Estilo para la imagen de la secretaria en TOP */
+        .contact-avatar-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px; /* Espacio para futuro contenido abajo */
+        }
+
+        .contact-avatar-img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Contenedor temporal para futuro contenido abajo */
+        .future-contact-info {
+            width: 100%;
+            text-align: center;
+            color: #ccc;
             font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: color 0.3s;
+            padding: 10px;
+            border: 1px dashed #eee;
         }
-        .side-links a:hover { color: var(--gold); }
 
+        /* Estilo de Fotos Magazine */
         .photo-card { width: 100%; background: #fff; }
         .photo-card img {
             width: 100%;
@@ -150,7 +168,9 @@
             .logo-img { max-height: 160px; }
             .slogan-text { font-size: 0.85rem; letter-spacing: 2px; white-space: normal; padding: 10px 20px 0; }
             .magazine-grid { flex-direction: column; }
-            .col-20, .col-40 { flex: 0 0 100%; border: none; padding: 0; }
+            /* En móvil se apilan, la columna de contacto (imagen) irá al final */
+            .col-40, .col-contacto { flex: 0 0 100%; border: none; padding: 0; }
+            .contact-avatar-wrap { max-width: 300px; margin: 40px auto; }
         }
     </style>
 </head>
@@ -170,16 +190,6 @@
     <main>
         <div class="magazine-grid">
             
-            <aside class="col-20">
-                <h3 class="side-title">Explorar</h3>
-                <ul class="side-links">
-                    <li><a href="#">Legado Histórico</a></li>
-                    <li><a href="#">Galería de Salones</a></li>
-                    <li><a href="#">Experiencia Gourmet</a></li>
-                    <li><a href="#">Reservar Fecha</a></li>
-                </ul>
-            </aside>
-
             <div class="col-40">
                 <div class="photo-card">
                     <img src="FOTO1.jpeg" alt="Detalle 1">
@@ -217,6 +227,16 @@
                     <p class="photo-caption">Su Evento Inmortal</p>
                 </div>
             </div>
+
+            <aside class="col-contacto">
+                <div class="contact-avatar-wrap">
+                    <img src="secretaria.png" alt="Contacto CASA 1927" class="contact-avatar-img">
+                </div>
+                
+                <div class="future-contact-info">
+                    [Aquí continuaremos colocando la dirección, teléfono, email, googlemap, etc.]
+                </div>
+            </aside>
 
         </div>
     </main>
