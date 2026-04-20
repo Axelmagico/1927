@@ -2,227 +2,289 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CASA 1927 | Luxury Venue Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASA 1927 | Exclusive Venue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a0a;
-            --gold: #c5a059;
-            --white: #ffffff;
-            --text-muted: #d1d1d1;
+            --primary: #0c0c0c; /* Fondo oscuro Aqua */
+            --gold: #c5a059;    /* Dorado institucional */
+            --text-light: #ffffff;
+            --text-muted: #b5b5b5;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            --header-h: 100px;
+            --header-h: 140px;
         }
 
-        /* --- RESET Y ESTRUCTURA BASE --- */
+        /* --- RESET Y BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            overflow-x: hidden; 
-            width: 100%; 
-            background: var(--primary); 
-            color: var(--white); 
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--primary);
+            color: var(--text-light);
             font-family: var(--font-body);
-            scroll-behavior: smooth;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* --- HEADER ADAPTATIVO (ESTILO AQUA) --- */
+        /* --- HEADER FIJO Y CENTRADO --- */
         header {
-            position: fixed; top: 0; width: 100%; height: var(--header-h);
-            background: rgba(10, 10, 10, 0.95);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 6%; z-index: 1000;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            transition: all 0.4s ease;
-        }
-        
-        .logo-container { flex: 0 1 300px; display: flex; align-items: center; }
-        .logo-img { width: 100%; height: auto; max-height: 70px; object-fit: contain; }
-
-        .nav-desktop { display: flex; list-style: none; gap: 30px; }
-        .nav-desktop a { 
-            color: var(--white); text-decoration: none; 
-            font-size: 0.75rem; text-transform: uppercase; 
-            letter-spacing: 2px; font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav-desktop a:hover { color: var(--gold); }
-
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .hamburger span { width: 25px; height: 2px; background: var(--gold); }
-
-        /* --- HERO VIDEO (ENTRADA INMERSIVA) --- */
-        .hero {
-            position: relative; width: 100%; height: 80vh;
-            margin-top: var(--header-h); overflow: hidden;
-        }
-        .hero video { width: 100%; height: 100%; object-fit: cover; }
-        .hero-content {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 20px;
-        }
-        .hero-content h1 { 
-            font-family: var(--font-title); font-size: clamp(2.5rem, 8vw, 5rem); 
-            color: var(--gold); margin-bottom: 10px;
-        }
-        .hero-content p { font-size: 1rem; letter-spacing: 5px; text-transform: uppercase; }
-
-        /* --- DASHBOARD INTERACTIVO (BOCETO 1, 2, 3, 4) --- */
-        .dashboard-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            width: 100%; background: #000;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: var(--header-h);
+            background: rgba(12, 12, 12, 0.95);
+            display: flex;
+            justify-content: center; /* Centrado absoluto */
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 20px;
         }
 
-        .grid-block {
-            position: relative; height: 450px;
-            text-decoration: none; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            border: 0.5px solid rgba(197, 160, 89, 0.1);
-        }
-
-        /* Imágenes de fondo con efecto zoom suave */
-        .grid-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            transition: transform 1s ease; z-index: 1; opacity: 0.5;
-        }
-        .grid-block:hover .grid-bg { transform: scale(1.08); opacity: 0.7; }
-
-        .grid-info { position: relative; z-index: 2; text-align: center; }
-        .grid-number { 
-            font-family: var(--font-title); font-size: 5rem; 
-            color: var(--gold); line-height: 1; margin-bottom: 10px;
-        }
-        .grid-label { 
-            font-size: 1.1rem; color: #fff; text-transform: uppercase; 
-            letter-spacing: 4px; font-weight: 300;
-        }
-
-        /* --- SECCIONES DE DETALLE (ESTILO AQUA MAGAZINE) --- */
-        .content-section { 
-            padding: 120px 8%; 
-            display: flex; flex-direction: column; align-items: center;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .section-tag { color: var(--gold); letter-spacing: 4px; font-size: 0.8rem; margin-bottom: 15px; }
-        .section-title { 
-            font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3.5rem); 
-            margin-bottom: 40px; text-align: center;
-        }
-        .magazine-wrap { 
-            max-width: 1100px; width: 100%; 
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px;
+        .logo-box {
+            height: 100%;
+            display: flex;
             align-items: center;
         }
-        .mag-text { font-size: 1.1rem; color: var(--text-muted); line-height: 1.9; text-align: justify; }
-        .mag-img { width: 100%; border: 1px solid var(--gold); padding: 10px; background: #000; }
 
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 1024px) {
-            .magazine-wrap { grid-template-columns: 1fr; gap: 40px; }
-            .nav-desktop { display: none; }
-            .hamburger { display: flex; }
+        .logo-img {
+            height: 90%;
+            max-height: 110px;
+            width: auto;
+            object-fit: contain;
         }
 
-        @media (max-width: 768px) {
-            :root { --header-h: 80px; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .grid-block { height: 350px; }
-            .hero { height: 60vh; }
-            .logo-container { max-width: 200px; }
-            section { padding: 80px 6%; }
+        /* --- CONTENIDO PRINCIPAL --- */
+        main {
+            margin-top: var(--header-h);
+            width: 100%;
+        }
+
+        /* --- HERO VIDEO --- */
+        .hero-video {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- DASHBOARD INTERACTIVO (1, 2, 3, 4) --- */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 100%;
+            background: #000;
+        }
+
+        .dash-item {
+            height: 300px;
+            border: 0.5px solid rgba(197, 160, 89, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-item:hover { background: rgba(197, 160, 89, 0.1); }
+
+        .dash-num {
+            font-family: var(--font-title);
+            font-size: 4rem;
+            color: var(--gold);
+            z-index: 2;
+        }
+
+        .dash-label {
+            font-size: 0.8rem;
+            color: #fff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* --- MAQUETACIÓN POR COLUMNAS (20/40/40) --- */
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            padding: 60px 4%;
+            gap: 20px;
+        }
+
+        /* Columna Izquierda (20%) */
+        .col-left {
+            flex: 0 0 20%;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .col-left h4 {
+            font-family: var(--font-title);
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .side-menu { list-style: none; }
+        .side-menu li { margin-bottom: 15px; }
+        .side-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .side-menu a:hover { color: var(--gold); padding-left: 5px; }
+
+        /* Columnas de Fotos (40% cada una) */
+        .col-center, .col-right {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .magazine-img-box {
+            width: 100%;
+            border: 1px solid var(--gold);
+            padding: 10px;
+            background: #111;
+            transition: transform 0.4s ease;
+        }
+
+        .magazine-img-box:hover { transform: translateY(-5px); }
+
+        .magazine-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .img-caption {
+            font-family: var(--font-title);
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .content-wrapper { flex-direction: column; }
+            .col-left, .col-center, .col-right { flex: 0 0 100%; width: 100%; border: none; }
+            .dashboard { grid-template-columns: repeat(2, 1fr); }
+            :root { --header-h: 100px; }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .dash-item { height: 200px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="logo-container">
+    <header>
+        <div class="logo-box">
             <img src="logo.png" alt="CASA 1927" class="logo-img">
-        </div>
-        
-        <nav class="nav-desktop">
-            <li><a href="#historia">La Historia</a></li>
-            <li><a href="#espacios">Espacios</a></li>
-            <li><a href="#servicios">Experiencia</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </nav>
-
-        <div class="hamburger">
-            <span></span><span></span><span></span>
         </div>
     </header>
 
-    <div class="hero">
-        <video autoplay loop muted playsinline>
-            <source src="videopromo.mp4" type="video/mp4">
-        </video>
-        <div class="hero-content">
-            <p>Exclusive Historical Venue</p>
-            <h1>CASA 1927</h1>
+    <main>
+        <section class="hero-video">
+            <video autoplay loop muted playsinline>
+                <source src="videopromo.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <nav class="dashboard">
+            <a href="#historia" class="dash-item">
+                <span class="dash-num">01</span>
+                <span class="dash-label">Historia</span>
+            </a>
+            <a href="#espacios" class="dash-item">
+                <span class="dash-num">02</span>
+                <span class="dash-label">Espacios</span>
+            </a>
+            <a href="#servicios" class="dash-item">
+                <span class="dash-num">03</span>
+                <span class="dash-label">Servicios</span>
+            </a>
+            <a href="#contacto" class="dash-item">
+                <span class="dash-num">04</span>
+                <span class="dash-label">Contacto</span>
+            </a>
+        </nav>
+
+        <div class="content-wrapper">
+            
+            <aside class="col-left">
+                <h4>Navegación</h4>
+                <ul class="side-menu">
+                    <li><a href="#historia">El Legado</a></li>
+                    <li><a href="#infraestructura">Arquitectura</a></li>
+                    <li><a href="#detalles">Detalles de Élite</a></li>
+                    <li><a href="#reservas">Disponibilidad</a></li>
+                </ul>
+            </aside>
+
+            <div class="col-center">
+                <div class="magazine-img-box">
+                    <img src="FOTO1.jpeg" alt="Detalle 1">
+                    <p class="img-caption">La elegancia en cada rincón</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO3.jpeg" alt="Detalle 3">
+                    <p class="img-caption">Arquitectura Colonial</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO5.jpeg" alt="Detalle 5">
+                    <p class="img-caption">Espacios de Celebración</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO7.jpeg" alt="Detalle 7">
+                    <p class="img-caption">Detalles que Enamoran</p>
+                </div>
+            </div>
+
+            <div class="col-right">
+                <div class="magazine-img-box">
+                    <img src="FOTO2.jpeg" alt="Detalle 2">
+                    <p class="img-caption">Ambiente Exclusivo</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO4.jpeg" alt="Detalle 4">
+                    <p class="img-caption">Mármoles y Lujo</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO6.jpeg" alt="Detalle 6">
+                    <p class="img-caption">Vistas de Ensueño</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO8.jpeg" alt="Detalle 8">
+                    <p class="img-caption">Tu Evento Inmortal</p>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </main>
 
-    <div class="dashboard-grid">
-        <a href="#historia" class="grid-block">
-            <div class="grid-bg" style="background-image: url('historia.jpg');"></div>
-            <div class="grid-info">
-                <div class="grid-number">01</div>
-                <div class="grid-label">Historia</div>
-            </div>
-        </a>
-        <a href="#espacios" class="grid-block">
-            <div class="grid-bg" style="background-image: url('fachacolor.png');"></div>
-            <div class="grid-info">
-                <div class="grid-number">02</div>
-                <div class="grid-label">Espacios</div>
-            </div>
-        </a>
-        <a href="#servicios" class="grid-block">
-            <div class="grid-bg" style="background-image: url('fachaBN.png');"></div>
-            <div class="grid-info">
-                <div class="grid-number">03</div>
-                <div class="grid-label">Servicios</div>
-            </div>
-        </a>
-        <a href="#contacto" class="grid-block">
-            <div class="grid-bg" style="background-image: url('hero-bg.jpg');"></div>
-            <div class="grid-info">
-                <div class="grid-number">04</div>
-                <div class="grid-label">Contacto</div>
-            </div>
-        </a>
-    </div>
-
-    <section id="historia" class="content-section">
-        <span class="section-tag">EL ORIGEN</span>
-        <h2 class="section-title">Un legado que perdura</h2>
-        <div class="magazine-wrap">
-            <div class="mag-text">
-                <p>Desde 1927, esta joya arquitectónica ha sido el epicentro de la distinción en Asunción. Construida por ingenieros berlineses, cada mármol de Carrara y detalle Luis XV cuenta una historia de opulencia y cultura.</p>
-                <br>
-                <p>Nuestra misión es que cada evento sea una extensión de esta historia, donde el anfitrión se sienta protagonista de un capítulo inolvidable.</p>
-            </div>
-            <img src="historia.jpg" class="mag-img" alt="Interior Casa 1927">
-        </div>
-    </section>
-
-    <script>
-        // Efecto de Header al hacer scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.style.padding = "10px 6%";
-                header.style.background = "rgba(10, 10, 10, 1)";
-            } else {
-                header.style.padding = "25px 6%";
-                header.style.background = "rgba(10, 10, 10, 0.95)";
-            }
-        });
-    </script>
+    <footer style="padding: 40px; text-align: center; border-top: 1px solid #222; font-size: 0.7rem; letter-spacing: 2px; color: var(--gold);">
+        CASA 1927 • ASUNCIÓN, PARAGUAY • EXCLUSIVE VENUE
+    </footer>
 
 </body>
 </html>
