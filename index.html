@@ -7,191 +7,184 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0c0c0c; /* Fondo oscuro Aqua */
-            --gold: #c5a059;    /* Dorado institucional */
-            --text-light: #ffffff;
-            --text-muted: #b5b5b5;
+            --primary-bg: #ffffff; /* Fondo Blanco solicitado */
+            --gold: #c5a059;       
+            --text-dark: #1a1a1a;  /* Texto oscuro para contraste */
+            --text-muted: #666666;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            --header-h: 140px;
+            /* Altura de header aumentada para logo más grande */
+            --header-h: 220px; 
+            --header-h-mobile: 140px;
         }
 
         /* --- RESET Y BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            background-color: var(--primary);
-            color: var(--text-light);
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
             font-family: var(--font-body);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- HEADER FIJO Y CENTRADO --- */
+        /* --- HEADER FIJO CON LOGO GRANDE --- */
         header {
             position: fixed;
             top: 0; left: 0;
             width: 100%;
             height: var(--header-h);
-            background: rgba(12, 12, 12, 0.95);
+            background: #ffffff;
             display: flex;
-            justify-content: center; /* Centrado absoluto */
+            justify-content: center;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
             padding: 20px;
+            /* Eliminamos bordes innecesarios para limpieza total */
         }
 
         .logo-box {
             height: 100%;
+            width: 100%;
             display: flex;
+            justify-content: center;
             align-items: center;
         }
 
         .logo-img {
-            height: 90%;
-            max-height: 110px;
+            /* Logo Proporcional y más grande */
+            height: auto;
             width: auto;
+            max-height: 180px; /* Tamaño imponente en PC */
+            max-width: 90%;
             object-fit: contain;
         }
 
-        /* --- CONTENIDO PRINCIPAL --- */
+        /* --- CONTENIDO PRINCIPAL (SIN ESPACIOS) --- */
         main {
             margin-top: var(--header-h);
             width: 100%;
         }
 
-        /* --- HERO VIDEO --- */
-        .hero-video {
-            width: 100%;
-            height: 60vh;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--gold);
-        }
-
-        .hero-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- DASHBOARD INTERACTIVO (1, 2, 3, 4) --- */
+        /* --- DASHBOARD (01, 02, 03, 04) PEGADO AL LOGO --- */
         .dashboard {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             width: 100%;
-            background: #000;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
         }
 
         .dash-item {
-            height: 300px;
-            border: 0.5px solid rgba(197, 160, 89, 0.2);
+            height: 250px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.4s ease;
+            border-right: 1px solid #eee;
+            background: #fff;
         }
 
-        .dash-item:hover { background: rgba(197, 160, 89, 0.1); }
+        .dash-item:last-child { border-right: none; }
+
+        .dash-item:hover {
+            background: #fafafa;
+        }
 
         .dash-num {
             font-family: var(--font-title);
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--gold);
-            z-index: 2;
+            margin-bottom: 5px;
         }
 
         .dash-label {
-            font-size: 0.8rem;
-            color: #fff;
-            letter-spacing: 4px;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            letter-spacing: 3px;
             text-transform: uppercase;
-            z-index: 2;
+            font-weight: 600;
         }
 
-        /* --- MAQUETACIÓN POR COLUMNAS (20/40/40) --- */
+        /* --- MAQUETACIÓN MAGAZINE (20/40/40) --- */
         .content-wrapper {
             display: flex;
             width: 100%;
-            padding: 60px 4%;
-            gap: 20px;
+            padding: 60px 5%;
+            gap: 30px;
         }
 
         /* Columna Izquierda (20%) */
         .col-left {
             flex: 0 0 20%;
-            padding-right: 20px;
-            border-right: 1px solid rgba(255,255,255,0.1);
         }
 
         .col-left h4 {
             font-family: var(--font-title);
             color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            text-transform: capitalize;
         }
 
         .side-menu { list-style: none; }
-        .side-menu li { margin-bottom: 15px; }
+        .side-menu li { margin-bottom: 12px; }
         .side-menu a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
-        .side-menu a:hover { color: var(--gold); padding-left: 5px; }
+        .side-menu a:hover { color: var(--gold); }
 
         /* Columnas de Fotos (40% cada una) */
         .col-center, .col-right {
             flex: 0 0 40%;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 50px;
         }
 
         .magazine-img-box {
             width: 100%;
-            border: 1px solid var(--gold);
-            padding: 10px;
-            background: #111;
-            transition: transform 0.4s ease;
+            background: #fff;
+            transition: opacity 0.4s ease;
         }
-
-        .magazine-img-box:hover { transform: translateY(-5px); }
 
         .magazine-img-box img {
             width: 100%;
             height: auto;
             display: block;
+            /* Efecto sutil de sombra para resaltar sobre blanco */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .img-caption {
             font-family: var(--font-title);
             color: var(--gold);
-            font-size: 0.9rem;
-            margin-top: 15px;
+            font-size: 1rem;
+            margin-top: 20px;
             text-align: center;
-            font-style: italic;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .content-wrapper { flex-direction: column; }
-            .col-left, .col-center, .col-right { flex: 0 0 100%; width: 100%; border: none; }
+            :root { --header-h: var(--header-h-mobile); }
+            .content-wrapper { flex-direction: column; padding-top: 30px; }
+            .col-left, .col-center, .col-right { flex: 0 0 100%; width: 100%; }
             .dashboard { grid-template-columns: repeat(2, 1fr); }
-            :root { --header-h: 100px; }
+            .logo-img { max-height: 100px; }
         }
 
         @media (max-width: 600px) {
             .dashboard { grid-template-columns: 1fr; }
-            .dash-item { height: 200px; }
+            .dash-item { height: 180px; }
+            .dash-num { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -204,20 +197,14 @@
     </header>
 
     <main>
-        <section class="hero-video">
-            <video autoplay loop muted playsinline>
-                <source src="videopromo.mp4" type="video/mp4">
-            </video>
-        </section>
-
         <nav class="dashboard">
             <a href="#historia" class="dash-item">
                 <span class="dash-num">01</span>
-                <span class="dash-label">Historia</span>
+                <span class="dash-label">La Historia</span>
             </a>
             <a href="#espacios" class="dash-item">
                 <span class="dash-num">02</span>
-                <span class="dash-label">Espacios</span>
+                <span class="dash-label">Infraestructura</span>
             </a>
             <a href="#servicios" class="dash-item">
                 <span class="dash-num">03</span>
@@ -235,54 +222,53 @@
                 <h4>Navegación</h4>
                 <ul class="side-menu">
                     <li><a href="#historia">El Legado</a></li>
-                    <li><a href="#infraestructura">Arquitectura</a></li>
-                    <li><a href="#detalles">Detalles de Élite</a></li>
+                    <li><a href="#detalles">Arquitectura</a></li>
                     <li><a href="#reservas">Disponibilidad</a></li>
                 </ul>
             </aside>
 
             <div class="col-center">
                 <div class="magazine-img-box">
-                    <img src="FOTO1.jpeg" alt="Detalle 1">
-                    <p class="img-caption">La elegancia en cada rincón</p>
+                    <img src="FOTO1.jpeg" alt="Casa 1927 - Foto 1">
+                    <p class="img-caption">Elegancia Centenaria</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO3.jpeg" alt="Detalle 3">
+                    <img src="FOTO3.jpeg" alt="Casa 1927 - Foto 3">
+                    <p class="img-caption">Espacios de Élite</p>
+                </div>
+                <div class="magazine-img-box">
+                    <img src="FOTO5.jpeg" alt="Casa 1927 - Foto 5">
                     <p class="img-caption">Arquitectura Colonial</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO5.jpeg" alt="Detalle 5">
-                    <p class="img-caption">Espacios de Celebración</p>
-                </div>
-                <div class="magazine-img-box">
-                    <img src="FOTO7.jpeg" alt="Detalle 7">
-                    <p class="img-caption">Detalles que Enamoran</p>
+                    <img src="FOTO7.jpeg" alt="Casa 1927 - Foto 7">
+                    <p class="img-caption">Momentos Inmortales</p>
                 </div>
             </div>
 
             <div class="col-right">
                 <div class="magazine-img-box">
-                    <img src="FOTO2.jpeg" alt="Detalle 2">
-                    <p class="img-caption">Ambiente Exclusivo</p>
+                    <img src="FOTO2.jpeg" alt="Casa 1927 - Foto 2">
+                    <p class="img-caption">Detalles de Lujo</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO4.jpeg" alt="Detalle 4">
-                    <p class="img-caption">Mármoles y Lujo</p>
+                    <img src="FOTO4.jpeg" alt="Casa 1927 - Foto 4">
+                    <p class="img-caption">Salones Exclusivos</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO6.jpeg" alt="Detalle 6">
-                    <p class="img-caption">Vistas de Ensueño</p>
+                    <img src="FOTO6.jpeg" alt="Casa 1927 - Foto 6">
+                    <p class="img-caption">Mármoles de Carrara</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO8.jpeg" alt="Detalle 8">
-                    <p class="img-caption">Tu Evento Inmortal</p>
+                    <img src="FOTO8.jpeg" alt="Casa 1927 - Foto 8">
+                    <p class="img-caption">Su Evento Soñado</p>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <footer style="padding: 40px; text-align: center; border-top: 1px solid #222; font-size: 0.7rem; letter-spacing: 2px; color: var(--gold);">
+    <footer style="padding: 60px; text-align: center; color: var(--gold); border-top: 1px solid #eee; font-size: 0.7rem; letter-spacing: 3px;">
         CASA 1927 • ASUNCIÓN, PARAGUAY • EXCLUSIVE VENUE
     </footer>
 
