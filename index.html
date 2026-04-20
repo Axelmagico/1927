@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER EN FLUJO NATURAL (NO FIJO) --- */
+        /* --- HEADER EN FLUJO NATURAL --- */
         header {
             width: 100%;
             min-height: var(--header-h);
@@ -40,7 +40,6 @@
             border-bottom: 1px solid #f2f2f2;
         }
 
-        /* LOGOTIPO MONUMENTAL */
         .logo-box {
             width: 100%;
             max-width: 850px; 
@@ -61,7 +60,6 @@
             width: 100%;
         }
 
-        /* ASUNCIÓN: REDUCIDO Y ELEGANTE */
         .city-text {
             color: var(--red-py);
             font-family: var(--font-title);
@@ -72,12 +70,11 @@
             margin-bottom: 15px;
         }
 
-        /* SLOGAN: ESTIRADO Y GRANDE */
         .slogan-text {
             color: var(--text-dark);
             font-size: 1.45rem;
             font-weight: 200; 
-            letter-spacing: 8px; /* Luxury Kerning */
+            letter-spacing: 8px; 
             text-transform: uppercase;
             border-top: 1px solid #eee;
             padding-top: 15px;
@@ -96,31 +93,21 @@
             width: 100%;
         }
 
-        /* Proporciones solicitadas */
-        .col-40 { 
-            flex: 0 0 40%; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 60px; 
-        }
-
-        /* COLUMNA DE CONTACTO (20% - MOVIDA A LA DERECHA) */
+        /* COLUMNA DE SECRETARÍA (20% - LADO IZQUIERDO) */
         .col-contacto { 
             flex: 0 0 20%; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Cambiamos borde de derecha a izquierda */
-            border-left: 1px solid #eee; 
-            padding-left: 20px; 
+            border-right: 1px solid #eee; /* Borde a la derecha para separar de las fotos */
+            padding-right: 20px; 
         }
 
-        /* Estilo para la imagen de la secretaria en TOP */
         .contact-avatar-wrap {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-bottom: 30px; /* Espacio para futuro contenido abajo */
+            margin-bottom: 30px;
         }
 
         .contact-avatar-img {
@@ -130,17 +117,22 @@
             object-fit: contain;
         }
 
-        /* Contenedor temporal para futuro contenido abajo */
         .future-contact-info {
             width: 100%;
             text-align: center;
-            color: #ccc;
-            font-size: 0.8rem;
-            padding: 10px;
-            border: 1px dashed #eee;
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 2;
         }
 
-        /* Estilo de Fotos Magazine */
+        /* COLUMNAS DE FOTOS (40% cada una) */
+        .col-40 { 
+            flex: 0 0 40%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 60px; 
+        }
+
         .photo-card { width: 100%; background: #fff; }
         .photo-card img {
             width: 100%;
@@ -168,9 +160,8 @@
             .logo-img { max-height: 160px; }
             .slogan-text { font-size: 0.85rem; letter-spacing: 2px; white-space: normal; padding: 10px 20px 0; }
             .magazine-grid { flex-direction: column; }
-            /* En móvil se apilan, la columna de contacto (imagen) irá al final */
-            .col-40, .col-contacto { flex: 0 0 100%; border: none; padding: 0; }
-            .contact-avatar-wrap { max-width: 300px; margin: 40px auto; }
+            .col-contacto, .col-40 { flex: 0 0 100%; border: none; padding: 0; }
+            .contact-avatar-wrap { max-width: 250px; margin: 0 auto 30px; }
         }
     </style>
 </head>
@@ -190,6 +181,16 @@
     <main>
         <div class="magazine-grid">
             
+            <aside class="col-contacto">
+                <div class="contact-avatar-wrap">
+                    <img src="secretaria.png" alt="Contacto CASA 1927" class="contact-avatar-img">
+                </div>
+                
+                <div class="future-contact-info">
+                    <p style="color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Atención al Cliente</p>
+                    </div>
+            </aside>
+
             <div class="col-40">
                 <div class="photo-card">
                     <img src="FOTO1.jpeg" alt="Detalle 1">
@@ -227,16 +228,6 @@
                     <p class="photo-caption">Su Evento Inmortal</p>
                 </div>
             </div>
-
-            <aside class="col-contacto">
-                <div class="contact-avatar-wrap">
-                    <img src="secretaria.png" alt="Contacto CASA 1927" class="contact-avatar-img">
-                </div>
-                
-                <div class="future-contact-info">
-                    [Aquí continuaremos colocando la dirección, teléfono, email, googlemap, etc.]
-                </div>
-            </aside>
 
         </div>
     </main>
