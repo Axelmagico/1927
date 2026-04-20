@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASA 1927 | Exclusive Venue</title>
+    <title>CASA 1927 | La Empresa #1 de Eventos</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: #ffffff; /* Fondo Blanco solicitado */
-            --gold: #c5a059;       
-            --text-dark: #1a1a1a;  /* Texto oscuro para contraste */
+            --primary-bg: #ffffff;
+            --gold: #c5a059;
+            --red-paraguay: #e30613; /* Rojo institucional solicitado */
+            --text-dark: #1a1a1a;
             --text-muted: #666666;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
-            /* Altura de header aumentada para logo más grande */
-            --header-h: 220px; 
-            --header-h-mobile: 140px;
+            /* Header dinámico para logo grande + textos */
+            --header-h: 320px; 
+            --header-h-mobile: 240px;
         }
 
-        /* --- RESET Y BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER FIJO CON LOGO GRANDE --- */
+        /* --- HEADER REESTRUCTURADO --- */
         header {
             position: fixed;
             top: 0; left: 0;
@@ -37,79 +37,82 @@
             height: var(--header-h);
             background: #ffffff;
             display: flex;
+            flex-direction: column; /* Coloca logo, ciudad y eslogan uno bajo otro */
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 20px;
-            /* Eliminamos bordes innecesarios para limpieza total */
+            padding: 20px 5%;
+            border-bottom: 1px solid #eee;
         }
 
         .logo-box {
-            height: 100%;
             width: 100%;
+            max-width: 500px; /* Tamaño máximo en PC */
             display: flex;
             justify-content: center;
-            align-items: center;
+            margin-bottom: 10px;
         }
 
         .logo-img {
-            /* Logo Proporcional y más grande */
+            width: 100%;
             height: auto;
-            width: auto;
-            max-height: 180px; /* Tamaño imponente en PC */
-            max-width: 90%;
+            max-height: 160px;
             object-fit: contain;
         }
 
-        /* --- CONTENIDO PRINCIPAL (SIN ESPACIOS) --- */
+        /* Bloque de textos en el Header */
+        .header-info {
+            text-align: center;
+        }
+
+        .city-tag {
+            color: var(--red-paraguay);
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        .slogan-tag {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+
+        /* --- CONTENIDO --- */
         main {
             margin-top: var(--header-h);
             width: 100%;
         }
 
-        /* --- DASHBOARD (01, 02, 03, 04) PEGADO AL LOGO --- */
+        /* DASHBOARD PEGADO AL HEADER */
         .dashboard {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             width: 100%;
-            border-top: 1px solid #eee;
             border-bottom: 1px solid #eee;
         }
 
         .dash-item {
-            height: 250px;
+            height: 200px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            transition: all 0.4s ease;
             border-right: 1px solid #eee;
             background: #fff;
+            transition: 0.3s;
         }
 
-        .dash-item:last-child { border-right: none; }
+        .dash-item:hover { background: #fafafa; }
+        .dash-num { font-family: var(--font-title); font-size: 3rem; color: var(--gold); }
+        .dash-label { font-size: 0.7rem; color: var(--text-dark); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
-        .dash-item:hover {
-            background: #fafafa;
-        }
-
-        .dash-num {
-            font-family: var(--font-title);
-            font-size: 3.5rem;
-            color: var(--gold);
-            margin-bottom: 5px;
-        }
-
-        .dash-label {
-            font-size: 0.75rem;
-            color: var(--text-dark);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        /* --- MAQUETACIÓN MAGAZINE (20/40/40) --- */
+        /* MAQUETACIÓN MAGAZINE (20/40/40) */
         .content-wrapper {
             display: flex;
             width: 100%;
@@ -117,74 +120,30 @@
             gap: 30px;
         }
 
-        /* Columna Izquierda (20%) */
-        .col-left {
-            flex: 0 0 20%;
-        }
+        .col-left { flex: 0 0 20%; }
+        .col-center, .col-right { flex: 0 0 40%; display: flex; flex-direction: column; gap: 50px; }
 
-        .col-left h4 {
-            font-family: var(--font-title);
-            color: var(--gold);
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            text-transform: capitalize;
-        }
+        .magazine-img-box { width: 100%; background: #fff; }
+        .magazine-img-box img { width: 100%; height: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .img-caption { font-family: var(--font-title); color: var(--gold); font-size: 1rem; margin-top: 15px; text-align: center; }
 
         .side-menu { list-style: none; }
-        .side-menu li { margin-bottom: 12px; }
-        .side-menu a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .side-menu a:hover { color: var(--gold); }
-
-        /* Columnas de Fotos (40% cada una) */
-        .col-center, .col-right {
-            flex: 0 0 40%;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-
-        .magazine-img-box {
-            width: 100%;
-            background: #fff;
-            transition: opacity 0.4s ease;
-        }
-
-        .magazine-img-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            /* Efecto sutil de sombra para resaltar sobre blanco */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .img-caption {
-            font-family: var(--font-title);
-            color: var(--gold);
-            font-size: 1rem;
-            margin-top: 20px;
-            text-align: center;
-        }
+        .side-menu a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             :root { --header-h: var(--header-h-mobile); }
-            .content-wrapper { flex-direction: column; padding-top: 30px; }
+            .city-tag { font-size: 1.5rem; }
+            .slogan-tag { font-size: 0.9rem; }
+            .logo-img { max-height: 100px; }
+            .content-wrapper { flex-direction: column; }
             .col-left, .col-center, .col-right { flex: 0 0 100%; width: 100%; }
             .dashboard { grid-template-columns: repeat(2, 1fr); }
-            .logo-img { max-height: 100px; }
         }
 
         @media (max-width: 600px) {
             .dashboard { grid-template-columns: 1fr; }
-            .dash-item { height: 180px; }
-            .dash-num { font-size: 2.8rem; }
+            .dash-item { height: 150px; }
         }
     </style>
 </head>
@@ -193,6 +152,10 @@
     <header>
         <div class="logo-box">
             <img src="logo.png" alt="CASA 1927" class="logo-img">
+        </div>
+        <div class="header-info">
+            <h2 class="city-tag">Asunción - Paraguay</h2>
+            <p class="slogan-tag">Somos la empresa #1 de eventos en Paraguay</p>
         </div>
     </header>
 
@@ -217,54 +180,52 @@
         </nav>
 
         <div class="content-wrapper">
-            
             <aside class="col-left">
-                <h4>Navegación</h4>
+                <h4 style="font-family: var(--font-title); color: var(--gold); margin-bottom: 20px;">Menú</h4>
                 <ul class="side-menu">
                     <li><a href="#historia">El Legado</a></li>
-                    <li><a href="#detalles">Arquitectura</a></li>
-                    <li><a href="#reservas">Disponibilidad</a></li>
+                    <li><a href="#espacios">Arquitectura</a></li>
+                    <li><a href="#contacto">Reservas</a></li>
                 </ul>
             </aside>
 
             <div class="col-center">
                 <div class="magazine-img-box">
-                    <img src="FOTO1.jpeg" alt="Casa 1927 - Foto 1">
+                    <img src="FOTO1.jpeg" alt="Casa 1927">
                     <p class="img-caption">Elegancia Centenaria</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO3.jpeg" alt="Casa 1927 - Foto 3">
+                    <img src="FOTO3.jpeg" alt="Casa 1927">
                     <p class="img-caption">Espacios de Élite</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO5.jpeg" alt="Casa 1927 - Foto 5">
+                    <img src="FOTO5.jpeg" alt="Casa 1927">
                     <p class="img-caption">Arquitectura Colonial</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO7.jpeg" alt="Casa 1927 - Foto 7">
+                    <img src="FOTO7.jpeg" alt="Casa 1927">
                     <p class="img-caption">Momentos Inmortales</p>
                 </div>
             </div>
 
             <div class="col-right">
                 <div class="magazine-img-box">
-                    <img src="FOTO2.jpeg" alt="Casa 1927 - Foto 2">
+                    <img src="FOTO2.jpeg" alt="Casa 1927">
                     <p class="img-caption">Detalles de Lujo</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO4.jpeg" alt="Casa 1927 - Foto 4">
+                    <img src="FOTO4.jpeg" alt="Casa 1927">
                     <p class="img-caption">Salones Exclusivos</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO6.jpeg" alt="Casa 1927 - Foto 6">
+                    <img src="FOTO6.jpeg" alt="Casa 1927">
                     <p class="img-caption">Mármoles de Carrara</p>
                 </div>
                 <div class="magazine-img-box">
-                    <img src="FOTO8.jpeg" alt="Casa 1927 - Foto 8">
+                    <img src="FOTO8.jpeg" alt="Casa 1927">
                     <p class="img-caption">Su Evento Soñado</p>
                 </div>
             </div>
-
         </div>
     </main>
 
