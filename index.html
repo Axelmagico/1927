@@ -32,89 +32,75 @@
         }
         
         .logo-container {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            max-width: 400px;
+            height: 100%; display: flex; align-items: center; max-width: 400px;
         }
         
         .logo-img {
-            width: 100%;
-            height: auto;
-            max-height: 150px;
-            object-fit: contain;
+            width: 100%; height: auto; max-height: 150px; object-fit: contain;
         }
 
-        nav ul { display: flex; list-style: none; gap: 25px; }
-        nav a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        /* --- NAVEGACIÓN DESKTOP --- */
+        nav.nav-desktop ul { display: flex; list-style: none; gap: 25px; }
+        nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* --- RECUADRO DE WHATSAPP CON BORDE DORADO --- */
+        /* --- BOTÓN WHATSAPP DORADO --- */
         .header-contact {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Borde Dorado Solicitado */
-            border: 2px solid var(--gold);
-            padding: 12px 25px;
-            transition: all 0.4s ease-in-out;
-            cursor: pointer;
+            border: 2px solid var(--gold); padding: 12px 25px; transition: all 0.4s ease; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 15px;
         }
+        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+        .whatsapp-link i { font-size: 1.8rem; }
 
-        .whatsapp-link {
-            text-decoration: none;
-            color: var(--gold);
-            /* Tamaño de texto aumentado */
-            font-size: 1.2rem; 
-            font-weight: 700;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 15px; /* Espacio proporcional entre icono y texto */
-        }
+        .header-contact:hover { background: var(--gold); }
+        .header-contact:hover .whatsapp-link { color: var(--white); }
 
-        .whatsapp-link i {
-            /* Tamaño de icono aumentado proporcionalmente */
-            font-size: 1.8rem; 
+        /* --- HAMBURGUESA MÓVIL --- */
+        .hamburger {
+            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001;
         }
+        .hamburger span { width: 30px; height: 3px; background: var(--primary); transition: 0.3s; }
 
-        /* Efecto Overclick / Hover al estilo Aqua */
-        .header-contact:hover {
-            background-color: var(--gold);
-            transform: scale(1.05);
+        /* --- MENÚ OVERLAY MÓVIL --- */
+        .mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+            background: var(--white); z-index: 999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; transition: 0.5s; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
-
-        .header-contact:hover .whatsapp-link {
-            color: var(--white); /* El texto cambia a blanco al pasar el mouse */
-        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu ul { list-style: none; text-align: center; }
+        .mobile-menu li { margin: 25px 0; }
+        .mobile-menu a { font-family: var(--font-title); font-size: 1.8rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
 
         /* --- HERO --- */
-        .hero { height: 85vh; margin-top: var(--header-h); position: relative; }
-        .hero-info {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; z-index: 5;
-        }
-        .hero-info h1 { font-family: var(--font-title); font-size: 4rem; color: var(--white); margin-bottom: 20px; }
+        .hero { height: 80vh; margin-top: var(--header-h); position: relative; }
+        .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; }
+        .hero-info h1 { font-family: var(--font-title); font-size: 4rem; color: var(--white); }
 
-        /* --- UTILIDADES --- */
-        .foto-placeholder { background: var(--placeholder-img); min-height: 300px; display: flex; justify-content: center; align-items: center; color: #666; font-weight: bold; }
-        .video-placeholder { background: var(--placeholder-vid); min-height: 450px; display: flex; justify-content: center; align-items: center; color: #446688; font-weight: bold; }
+        /* --- PLACEHOLDERS --- */
+        .video-placeholder { background: var(--placeholder-vid); height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+        .foto-placeholder { background: var(--placeholder-img); min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; }
 
         section { padding: 80px 10%; }
-        .flex-container { display: flex; align-items: center; gap: 50px; margin-bottom: 60px; }
+        .flex-container { display: flex; align-items: center; gap: 50px; }
         h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE MÓVIL (CORRECCIÓN) --- */
         @media (max-width: 1024px) {
-            .whatsapp-link { font-size: 1rem; }
-            .whatsapp-link i { font-size: 1.5rem; }
+            nav.nav-desktop { display: none; }
+            .hamburger { display: flex; }
+            
+            :root { --header-h: 140px; }
+            .logo-img { max-height: 80px; }
+            
             .header-contact { padding: 8px 15px; }
+            .whatsapp-link { font-size: 0.9rem; }
+            .whatsapp-link i { font-size: 1.3rem; }
         }
 
-        @media (max-width: 900px) {
-            :root { --header-h: 220px; }
-            header { flex-direction: column; justify-content: space-evenly; padding: 20px 0; }
-            .logo-img { max-height: 80px; }
-            nav { display: none; }
+        @media (max-width: 600px) {
+            header { padding: 0 15px; }
+            .header-contact { border-width: 1px; }
+            .whatsapp-link span { display: none; } /* Oculta el número en pantallas muy pequeñas, deja el icono */
         }
     </style>
 </head>
@@ -125,7 +111,7 @@
             <img src="logo.png" alt="Casa 1927" class="logo-img">
         </div>
         
-        <nav>
+        <nav class="nav-desktop">
             <ul>
                 <li><a href="#">blablabla</a></li>
                 <li><a href="#">blablabla</a></li>
@@ -134,32 +120,68 @@
             </ul>
         </nav>
 
-        <div class="header-contact">
-            <a href="https://wa.me/595974812265" target="_blank" class="whatsapp-link">
-                <i class="fab fa-whatsapp"></i> +595 974812265
-            </a>
+        <a href="https://wa.me/595974812265" target="_blank" class="header-contact">
+            <div class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i>
+                <span>+595 974812265</span>
+            </div>
+        </a>
+
+        <div class="hamburger" id="hamburguer-btn">
+            <span></span><span></span><span></span>
         </div>
     </header>
+
+    <div class="mobile-menu" id="mobile-nav">
+        <ul>
+            <li><a href="#">blablabla</a></li>
+            <li><a href="#">blablabla</a></li>
+            <li><a href="#">blablabla</a></li>
+            <li><a href="#">blablabla</a></li>
+        </ul>
+    </div>
 
     <div class="hero">
         <div class="video-placeholder">AQUÍ VA UN VIDEO</div>
         <div class="hero-info">
             <h1>blablabla</h1>
-            <p style="color: white;">blablabla blablabla blablabla</p>
         </div>
     </div>
 
     <section>
         <div class="flex-container">
-            <div class="text-block">
+            <div style="flex:1;">
                 <h2>blablabla</h2>
                 <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
             </div>
-            <div class="media-block">
+            <div style="flex:1;">
                 <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
             </div>
         </div>
     </section>
+
+    <script>
+        // Lógica para el menú móvil
+        const hamburger = document.getElementById('hamburguer-btn');
+        const mobileMenu = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            
+            // Animación simple de la hamburguesa
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = mobileMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = mobileMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = mobileMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -8px)' : 'none';
+        });
+
+        // Cerrar menú al clickear un enlace
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
