@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clon Maestro | Casa 1927</title>
+    <title>Clon Arquitectura | Casa 1927</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -20,11 +20,12 @@
             --header-h: 200px; 
         }
 
+        /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; }
 
-        /* --- HEADER --- */
+        /* --- HEADER FIJO (200PX) --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
             background: var(--white); display: flex;
@@ -36,19 +37,17 @@
         .logo-img { width: 100%; height: auto; max-height: 150px; object-fit: contain; }
 
         /* Navegación Desktop */
-        nav.nav-desktop ul { display: flex; list-style: none; gap: 18px; align-items: center; }
+        nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
         nav.nav-desktop a { 
             text-decoration: none; color: var(--primary); 
-            font-size: 0.72rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 1.5px; 
+            font-size: 0.7rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1.2px; 
             transition: 0.3s; 
         }
         nav.nav-desktop a:hover { color: var(--gold); }
-        
-        /* Estilo para el Idioma */
         .lang-switch { color: var(--gold) !important; font-weight: 400 !important; }
 
-        /* Botón WhatsApp Premium */
+        /* Botón WhatsApp Dorado */
         .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
         .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .whatsapp-link i { font-size: 1.6rem; }
@@ -67,48 +66,52 @@
         }
         .mobile-menu.active { right: 0; }
         .mobile-menu ul { list-style: none; text-align: center; }
-        .mobile-menu li { margin: 20px 0; }
-        .mobile-menu a { font-family: var(--font-title); font-size: 1.6rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
+        .mobile-menu li { margin: 15px 0; }
+        .mobile-menu a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
 
-        /* --- CONTENIDO --- */
+        /* --- PLACEHOLDERS --- */
+        .foto-placeholder { background: var(--placeholder-img); width: 100%; min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; border: 1px solid #bbb; }
+        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #446688; }
+
+        /* --- CUERPO --- */
         main { margin-top: var(--header-h); }
 
         /* Hero */
-        .hero { height: 75vh; position: relative; width: 100%; }
-        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+        .hero { height: 75vh; position: relative; width: 100%; background: #000; }
         .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; width: 90%; }
-        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); }
+        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
 
-        /* Secciones */
+        /* Secciones Flex */
         section { padding: 100px 10%; }
         .flex-container { display: flex; align-items: center; gap: 60px; }
+        .flex-container.reverse { flex-direction: row-reverse; }
+        .text-block { flex: 1; }
+        .media-block { flex: 1; }
         h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; }
-        p { margin-bottom: 20px; line-height: 1.8; color: #555; }
-        .foto-placeholder { background: var(--placeholder-img); min-height: 450px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; }
+        p { margin-bottom: 20px; line-height: 1.8; color: #555; font-size: 1.05rem; }
 
-        /* Footer */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        /* Grid Galería */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .gallery-item { height: 300px; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
         .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        .footer-logo { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
+        .footer-col p { color: #888; font-size: 0.85rem; line-height: 1.6; margin-bottom: 10px; }
+        .footer-logo-box { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 1200px) {
-            nav.nav-desktop ul { gap: 10px; }
-            nav.nav-desktop a { font-size: 0.65rem; }
-        }
-
         @media (max-width: 1024px) {
             nav.nav-desktop { display: none; }
             .hamburger { display: flex; }
             :root { --header-h: 140px; }
             .logo-img { max-height: 90px; }
-            .flex-container { flex-direction: column; text-align: center; }
+            .flex-container, .flex-container.reverse { flex-direction: column; text-align: center; gap: 40px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             footer { grid-template-columns: repeat(2, 1fr); }
-            .header-contact { padding: 8px 15px; }
-            .whatsapp-link { font-size: 0.9rem; }
         }
-
         @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
             .whatsapp-link span { display: none; }
         }
@@ -169,15 +172,42 @@
             <div class="flex-container">
                 <div class="text-block">
                     <h2>Nosotros</h2>
-                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                    <p>blablabla blablabla blablabla blablabla.</p>
                 </div>
                 <div class="media-block">
                     <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
                 </div>
             </div>
         </section>
-        
-        </main>
+
+        <section id="servicios" style="background: var(--light-grey);">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2>Servicios</h2>
+                <p>blablabla blablabla blablabla</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+            </div>
+        </section>
+
+        <section id="eventos">
+            <div class="flex-container reverse">
+                <div class="text-block">
+                    <h2>Eventos</h2>
+                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                </div>
+                <div class="media-block">
+                    <div class="video-placeholder" style="min-height: 400px;">AQUÍ VA UN VIDEO</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-col">
@@ -196,8 +226,8 @@
             <p>Contacto</p>
         </div>
         <div class="footer-col">
-            <div class="footer-logo">
-                <img src="logo.png" alt="Casa 1927" style="max-height: 60px;">
+            <div class="footer-logo-box">
+                <img src="logo.png" alt="Logo Footer" style="max-height: 60px; width: auto;">
             </div>
         </div>
     </footer>
