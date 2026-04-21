@@ -37,8 +37,8 @@
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
         /* Navegación Desktop */
-        nav.nav-desktop ul { display: flex; list-style: none; gap: 12px; align-items: center; }
-        nav.nav-desktop li { position: relative; padding: 10px 0; } /* Contenedor para el dropdown */
+        nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
+        nav.nav-desktop li { position: relative; padding: 20px 0; } 
         
         nav.nav-desktop a { 
             text-decoration: none; color: var(--primary); 
@@ -48,37 +48,49 @@
         }
         nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* SUBMENÚ DESPLEGABLE (PC) */
+        /* --- CORRECCIÓN SUBMENÚ (HOVER EXCLUSIVO) --- */
         .dropdown-content {
-            display: none;
+            /* Estado inicial: Invisible y oculto */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; 
+            
             position: absolute;
-            top: 100%; left: 0;
+            top: 100%; left: 50%;
+            transform: translateX(-50%); /* Centrado respecto al padre */
             background-color: var(--white);
-            min-width: 180px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-            border-top: 2px solid var(--gold);
-            z-index: 1;
-            padding: 10px 0;
+            min-width: 200px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--gold);
+            z-index: 10;
+            padding: 15px 0;
+            transition: all 0.3s ease; /* Transmisión suave */
         }
 
-        .dropdown-content li { padding: 0; }
+        /* Mostrar solo al hacer Hover */
+        nav.nav-desktop li:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
         .dropdown-content a {
             color: var(--primary);
-            padding: 12px 20px;
+            padding: 10px 25px;
             display: block;
             font-size: 0.65rem;
-            text-align: left;
+            text-align: center;
+            letter-spacing: 1px;
         }
-        .dropdown-content a:hover { background-color: var(--light-grey); color: var(--gold); }
-
-        nav.nav-desktop li:hover .dropdown-content { display: block; }
+        .dropdown-content a:hover { background-color: #fafafa; color: var(--gold); }
 
         .lang-switch { color: var(--gold) !important; font-weight: 400 !important; }
 
-        /* Botón WhatsApp */
-        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-        .whatsapp-link i { font-size: 1.4rem; }
+        /* Botón WhatsApp Dorado */
+        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-link i { font-size: 1.6rem; }
         .header-contact:hover { background: var(--gold); }
         .header-contact:hover .whatsapp-link { color: var(--white); }
 
@@ -90,51 +102,37 @@
         .mobile-menu {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
             background: var(--white); z-index: 999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: 0.5s; overflow-y: auto;
+            justify-content: center; align-items: center; transition: 0.5s;
         }
         .mobile-menu.active { right: 0; }
-        .mobile-menu ul { list-style: none; text-align: center; width: 100%; }
-        .mobile-menu li { margin: 12px 0; }
-        .mobile-menu a { font-family: var(--font-title); font-size: 1.3rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
-        
-        /* Submenú Móvil */
-        .mobile-submenu { margin-top: 5px; padding-left: 0; background: #fafafa; }
-        .mobile-submenu a { font-size: 0.9rem !important; color: var(--gold) !important; }
-
-        /* --- PLACEHOLDERS --- */
-        .foto-placeholder { background: var(--placeholder-img); width: 100%; min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; border: 1px solid #bbb; }
-        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #446688; }
+        .mobile-menu ul { list-style: none; text-align: center; }
+        .mobile-menu li { margin: 15px 0; }
+        .mobile-menu a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
+        .mobile-submenu a { font-size: 1rem !important; color: var(--gold) !important; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); }
-        .hero { height: 75vh; position: relative; width: 100%; background: #000; }
-        .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; width: 90%; }
-        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
-
+        .hero { height: 75vh; position: relative; width: 100%; background: #eee; }
+        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+        
         section { padding: 100px 10%; }
         .flex-container { display: flex; align-items: center; gap: 60px; }
-        h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; }
-        p { margin-bottom: 20px; line-height: 1.8; color: #555; }
+        .foto-placeholder { background: var(--placeholder-img); width: 100%; min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .gallery-item { height: 300px; }
 
         /* --- FOOTER --- */
         footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
         .footer-logo-box { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 1100px) {
-            nav.nav-desktop a { font-size: 0.6rem; letter-spacing: 0.5px; }
-        }
         @media (max-width: 1024px) {
             nav.nav-desktop { display: none; }
             .hamburger { display: flex; }
             :root { --header-h: 140px; }
-            .logo-img { max-height: 80px; }
             .flex-container { flex-direction: column; text-align: center; }
             footer { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            footer { grid-template-columns: 1fr; }
-            .whatsapp-link span { display: none; }
         }
     </style>
 </head>
@@ -150,7 +148,7 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#eventos">Eventos</a></li>
                 <li>
-                    <a href="#infraestructura">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem; vertical-align: middle;"></i></a>
+                    <a href="#infraestructura">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="#espacios">Espacios</a></li>
                         <li><a href="#seguridad">Seguridad</a></li>
@@ -179,7 +177,6 @@
     <div class="mobile-menu" id="mobile-nav">
         <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#eventos">Eventos</a></li>
             <li><a href="#infraestructura">Infraestructura</a>
                 <ul class="mobile-submenu">
                     <li><a href="#espacios">Espacios</a></li>
@@ -188,29 +185,35 @@
                 </ul>
             </li>
             <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#" style="color: var(--gold);">ING | ESP</a></li>
         </ul>
     </div>
 
     <main>
         <div class="hero">
             <div class="video-placeholder">AQUÍ VA UN VIDEO</div>
-            <div class="hero-info">
-                <h1>Infraestructura</h1>
-            </div>
         </div>
 
-        <section id="infraestructura">
+        <section id="nosotros">
             <div class="flex-container">
-                <div class="text-block">
-                    <h2>Nuestra Infraestructura</h2>
-                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                <div style="flex:1">
+                    <h2 style="font-family: var(--font-title); color: var(--gold); font-size: 2.8rem; margin-bottom: 20px;">Nosotros</h2>
+                    <p style="line-height: 1.8; color: #555;">blablabla blablabla blablabla blablabla blablabla blablabla.</p>
                 </div>
-                <div class="media-block">
+                <div style="flex:1">
                     <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
                 </div>
+            </div>
+        </section>
+
+        <section id="servicios" style="background: var(--light-grey);">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-family: var(--font-title); color: var(--gold); font-size: 2.8rem;">Servicios</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
             </div>
         </section>
     </main>
@@ -218,19 +221,15 @@
     <footer>
         <div class="footer-col">
             <h4>Infraestructura</h4>
-            <p>Espacios</p>
-            <p>Seguridad</p>
-            <p>Personal</p>
+            <p>Espacios</p><p>Seguridad</p><p>Personal</p>
         </div>
         <div class="footer-col">
-            <h4>Información</h4>
-            <p>Servicios</p>
-            <p>Eventos</p>
+            <h4>Secciones</h4>
+            <p>Inicio</p><p>Eventos</p>
         </div>
         <div class="footer-col">
-            <h4>Empresa</h4>
-            <p>Nosotros</p>
-            <p>Contacto</p>
+            <h4>Contacto</h4>
+            <p>Nosotros</p><p>Contacto</p>
         </div>
         <div class="footer-col">
             <div class="footer-logo-box">
@@ -242,19 +241,8 @@
     <script>
         const hamburger = document.getElementById('hamburguer-btn');
         const mobileMenu = document.getElementById('mobile-nav');
-
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = mobileMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = mobileMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = mobileMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -8px)' : 'none';
-        });
-
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
         });
     </script>
 </body>
