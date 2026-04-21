@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="head-title">Casa 1927 | Exclusive Venue & Eventos</title>
+    <title data-i18n="head-title">Casa 1927 | Exclusive Venue</title>
     
-    <meta name="description" content="Casa 1927 - El lugar más exclusivo para eventos en Asunción, Paraguay. Infraestructura de primer nivel.">
-    <link rel="canonical" href="https://casa1927.com" />
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -17,16 +14,19 @@
             --gold: #c5a059;
             --white: #ffffff;
             --light-grey: #f4f4f4;
+            --placeholder-img: #cccccc;
+            --placeholder-vid: #add8e6;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --header-h: 200px; 
         }
 
+        /* --- RESET Y BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; }
 
-        /* --- HEADER --- */
+        /* --- HEADER FIJO --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
             background: var(--white); display: flex;
@@ -37,28 +37,29 @@
         .logo-container { height: 100%; display: flex; align-items: center; max-width: 300px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
+        /* Navegación Desktop */
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop li { position: relative; padding: 20px 0; } 
+        nav.nav-desktop li { position: relative; padding: 25px 0; } 
         nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; cursor: pointer; }
         nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* Dropdown con Hover Puro */
+        /* --- SUBMENÚ INFRAESTRUCTURA (SOLO HOVER) --- */
         .dropdown-content {
-            opacity: 0; visibility: hidden; position: absolute;
-            top: 100%; left: 50%; transform: translateX(-50%);
+            opacity: 0; visibility: hidden; pointer-events: none;
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
             background-color: var(--white); min-width: 200px;
             box-shadow: 0px 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--gold);
             z-index: 10; padding: 15px 0; transition: all 0.3s ease;
         }
-        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
+        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; }
         .dropdown-content a { color: var(--primary); padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
 
         /* Selector de Idioma */
         .lang-container { display: flex; gap: 8px; color: var(--gold); font-size: 0.75rem; align-items: center; margin-left: 10px; }
-        .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.3s; font-weight: 400; }
+        .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.3s; }
         .lang-btn.active { opacity: 1; font-weight: 700; text-decoration: underline; }
 
-        /* Botón WhatsApp Dorado */
+        /* Botón WhatsApp */
         .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
         .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .header-contact:hover { background: var(--gold); }
@@ -68,7 +69,7 @@
         .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 30px; height: 3px; background: var(--primary); transition: 0.3s; }
 
-        /* Menú Móvil */
+        /* Menú Móvil Overlay */
         .mobile-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--white); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
         .mobile-menu.active { right: 0; }
         .mobile-menu ul { list-style: none; text-align: center; }
@@ -77,28 +78,47 @@
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); }
-        .hero { height: 75vh; position: relative; width: 100%; background: #000; overflow: hidden; }
-        .video-placeholder { background: var(--gold); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0.2; }
-        .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; }
-        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); letter-spacing: 5px; }
 
+        /* Hero */
+        .hero { height: 75vh; position: relative; width: 100%; background: #000; }
+        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; opacity: 0.4; }
+        .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; }
+        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
+
+        /* Secciones */
         section { padding: 100px 10%; }
         .flex-container { display: flex; align-items: center; gap: 60px; }
         .flex-container.reverse { flex-direction: row-reverse; }
+        .text-block { flex: 1; }
+        .media-block { flex: 1; }
         h2 { font-family: var(--font-title); font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
-        p { line-height: 1.8; color: #555; font-size: 1.1rem; }
-        .foto-placeholder { background: #eee; width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; color: #999; border: 1px solid #ddd; }
+        p { margin-bottom: 20px; line-height: 1.8; color: #555; font-size: 1.1rem; }
+        .foto-placeholder { background: var(--placeholder-img); width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; }
+
+        /* Grilla de Galería */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .gallery-item { height: 300px; }
 
         /* --- FOOTER --- */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
         .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        .footer-col p { color: #888; font-size: 0.9rem; margin-bottom: 10px; }
+        .footer-col p { color: #888; font-size: 0.9rem; margin-bottom: 10px; cursor: pointer; }
+        .footer-logo-box { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             nav.nav-desktop { display: none; }
             .hamburger { display: flex; }
             :root { --header-h: 140px; }
-            .flex-container, .flex-container.reverse { flex-direction: column; text-align: center; }
+            .logo-img { max-height: 90px; }
+            .flex-container, .flex-container.reverse { flex-direction: column; text-align: center; gap: 40px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            footer { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; text-align: center; }
+            .whatsapp-link span { display: none; }
         }
     </style>
 </head>
@@ -152,15 +172,15 @@
             <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
             <li><a href="#contacto" data-i18n="nav-contacto">Contacto</a></li>
             <li style="margin-top: 30px;">
-                <span class="lang-btn" onclick="changeLang('en')">ENG</span> | 
-                <span class="lang-btn" onclick="changeLang('es')">ESP</span>
+                <span onclick="changeLang('en')" style="cursor:pointer">ENG</span> | 
+                <span onclick="changeLang('es')" style="cursor:pointer">ESP</span>
             </li>
         </ul>
     </div>
 
     <main>
-        <div class="hero">
-            <div class="video-placeholder">VIDEO BACKGROUND</div>
+        <div class="hero" id="inicio">
+            <div class="video-placeholder" data-i18n="video-placeholder">AQUÍ VA UN VIDEO</div>
             <div class="hero-info">
                 <h1 data-i18n="hero-title">Casa 1927</h1>
             </div>
@@ -173,7 +193,34 @@
                     <p data-i18n="p-nosotros">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
                 </div>
                 <div class="media-block">
-                    <div class="foto-placeholder">IMAGE 1</div>
+                    <div class="foto-placeholder" data-i18n="foto-placeholder">AQUÍ VA UNA FOTO</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" style="background: var(--light-grey);">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 data-i18n="nav-servicios">Servicios</h2>
+                <p>blablabla blablabla blablabla</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 1</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 2</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 3</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 4</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 5</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">FOTO 6</div></div>
+            </div>
+        </section>
+
+        <section id="eventos">
+            <div class="flex-container reverse">
+                <div class="text-block">
+                    <h2 data-i18n="nav-eventos">Eventos</h2>
+                    <p data-i18n="p-eventos">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                </div>
+                <div class="media-block">
+                    <div class="video-placeholder" style="min-height: 400px;" data-i18n="video-placeholder">AQUÍ VA UN VIDEO</div>
                 </div>
             </div>
         </section>
@@ -184,26 +231,30 @@
             <h4 data-i18n="nav-infra">Infraestructura</h4>
             <p data-i18n="nav-espacios">Espacios</p>
             <p data-i18n="nav-seguridad">Seguridad</p>
+            <p data-i18n="nav-personal">Personal</p>
         </div>
         <div class="footer-col">
             <h4 data-i18n="nav-servicios">Servicios</h4>
-            <p>Catering</p><p>Decoración</p>
+            <p>Catering</p><p>Decoración</p><p>Sonido</p>
         </div>
         <div class="footer-col">
             <h4 data-i18n="nav-contacto">Contacto</h4>
             <p>Asunción, Paraguay</p>
             <p>info@casa1927.com</p>
+            <p>+595 974812265</p>
         </div>
         <div class="footer-col">
-            <img src="logo.png" style="max-height: 70px; filter: brightness(0) invert(1);">
+            <div class="footer-logo-box">
+                <img src="logo.png" alt="Logo Footer" style="max-height: 70px; filter: brightness(0) invert(1);">
+            </div>
         </div>
     </footer>
 
     <script>
-        // MOTOR DE TRADUCCIÓN PROFESIONAL
+        // MOTOR DE TRADUCCIÓN
         const translations = {
             es: {
-                "head-title": "Casa 1927 | Exclusive Venue & Eventos",
+                "head-title": "Casa 1927 | Exclusive Venue",
                 "nav-inicio": "Inicio",
                 "nav-eventos": "Eventos",
                 "nav-infra": "Infraestructura",
@@ -214,10 +265,13 @@
                 "nav-nosotros": "Nosotros",
                 "nav-contacto": "Contacto",
                 "hero-title": "Casa 1927",
-                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables en el corazón de Paraguay."
+                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.",
+                "p-eventos": "Nuestra experiencia nos permite llevar su evento a un nivel superior de distinción.",
+                "video-placeholder": "AQUÍ VA UN VIDEO",
+                "foto-placeholder": "AQUÍ VA UNA FOTO"
             },
             en: {
-                "head-title": "Casa 1927 | Exclusive Venue & Events",
+                "head-title": "Casa 1927 | Exclusive Venue",
                 "nav-inicio": "Home",
                 "nav-eventos": "Events",
                 "nav-infra": "Infrastructure",
@@ -228,27 +282,29 @@
                 "nav-nosotros": "About Us",
                 "nav-contacto": "Contact",
                 "hero-title": "Casa 1927",
-                "p-nosotros": "Welcome to the space where history and elegance meet to create unforgettable moments in the heart of Paraguay."
+                "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments.",
+                "p-eventos": "Our experience allows us to take your event to a superior level of distinction.",
+                "video-placeholder": "VIDEO GOES HERE",
+                "foto-placeholder": "IMAGE GOES HERE"
             }
         };
 
         function changeLang(lang) {
-            localStorage.setItem('casa1927_lang', lang);
+            localStorage.setItem('casa_lang', lang);
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`)?.classList.add('active');
-            document.documentElement.lang = lang;
         }
 
         window.onload = () => {
-            const savedLang = localStorage.getItem('casa1927_lang') || 'es';
+            const savedLang = localStorage.getItem('casa_lang') || 'es';
             changeLang(savedLang);
         };
 
-        // Lógica Menú Hamburguesa
+        // Lógica Hamburguesa
         const hamburger = document.getElementById('hamburguer-btn');
         const mobileMenu = document.getElementById('mobile-nav');
         hamburger.addEventListener('click', () => {
