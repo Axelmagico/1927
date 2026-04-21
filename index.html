@@ -48,35 +48,43 @@
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- ESTILO WHATSAPP (AQUA STYLE) --- */
+        /* --- RECUADRO DE WHATSAPP CON BORDE DORADO --- */
         .header-contact {
             display: flex;
             align-items: center;
+            justify-content: center;
+            /* Borde Dorado Solicitado */
+            border: 2px solid var(--gold);
+            padding: 12px 25px;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
         }
 
         .whatsapp-link {
             text-decoration: none;
             color: var(--gold);
-            font-size: 0.9rem;
+            /* Tamaño de texto aumentado */
+            font-size: 1.2rem; 
             font-weight: 700;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease-in-out;
+            gap: 15px; /* Espacio proporcional entre icono y texto */
         }
 
         .whatsapp-link i {
-            font-size: 1.3rem;
-            /* Color verde sutil de WhatsApp solo si se desea, 
-               pero lo mantendré en Dorado para seguir la estética de Aqua */
+            /* Tamaño de icono aumentado proporcionalmente */
+            font-size: 1.8rem; 
         }
 
-        /* Efecto Overclick / Hover */
-        .whatsapp-link:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
-            opacity: 0.8;
+        /* Efecto Overclick / Hover al estilo Aqua */
+        .header-contact:hover {
+            background-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .header-contact:hover .whatsapp-link {
+            color: var(--white); /* El texto cambia a blanco al pasar el mouse */
         }
 
         /* --- HERO --- */
@@ -87,31 +95,25 @@
         }
         .hero-info h1 { font-family: var(--font-title); font-size: 4rem; color: var(--white); margin-bottom: 20px; }
 
-        /* --- UTILIDADES DE REEMPLAZO --- */
-        .foto-placeholder {
-            background-color: var(--placeholder-img);
-            display: flex; justify-content: center; align-items: center;
-            color: #666; font-weight: bold; width: 100%; height: 100%;
-            min-height: 300px; border: 1px solid #999;
-        }
-        .video-placeholder {
-            background-color: var(--placeholder-vid);
-            display: flex; justify-content: center; align-items: center;
-            color: #446688; font-weight: bold; width: 100%; height: 100%;
-            min-height: 450px;
-        }
+        /* --- UTILIDADES --- */
+        .foto-placeholder { background: var(--placeholder-img); min-height: 300px; display: flex; justify-content: center; align-items: center; color: #666; font-weight: bold; }
+        .video-placeholder { background: var(--placeholder-vid); min-height: 450px; display: flex; justify-content: center; align-items: center; color: #446688; font-weight: bold; }
 
         section { padding: 80px 10%; }
         .flex-container { display: flex; align-items: center; gap: 50px; margin-bottom: 60px; }
         h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
-        p { line-height: 1.8; color: #555; }
 
         /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .whatsapp-link { font-size: 1rem; }
+            .whatsapp-link i { font-size: 1.5rem; }
+            .header-contact { padding: 8px 15px; }
+        }
+
         @media (max-width: 900px) {
-            :root { --header-h: 160px; }
-            header { flex-direction: column; justify-content: center; gap: 10px; padding: 10px 0; }
+            :root { --header-h: 220px; }
+            header { flex-direction: column; justify-content: space-evenly; padding: 20px 0; }
             .logo-img { max-height: 80px; }
-            .hero { margin-top: var(--header-h); }
             nav { display: none; }
         }
     </style>
@@ -158,12 +160,6 @@
             </div>
         </div>
     </section>
-
-    <footer style="background: var(--primary); padding: 40px; text-align: center;">
-        <div class="logo-container" style="background: #333; margin: 0 auto; padding: 10px; max-width: 200px;">
-            <img src="logo.png" alt="Casa 1927" class="logo-img">
-        </div>
-    </footer>
 
 </body>
 </html>
