@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clon Arquitectura | Aqua Style</title>
+    <title>Clon Arquitectura | Casa 1927</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -34,19 +34,33 @@
             min-height: 450px;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER ACTUALIZADO --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 90px;
+            position: fixed; top: 0; width: 100%; height: 110px; /* Un poco más de altura para el logo */
             background: var(--white); display: flex;
             justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000; border-bottom: 1px solid #eee;
         }
-        .logo-clon { width: 150px; height: 50px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+        
+        .logo-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            max-width: 250px; /* Control de ancho proporcional */
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+            max-height: 80px; /* Altura máxima profesional */
+            object-fit: contain;
+        }
+
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- HERO --- */
-        .hero { height: 90vh; margin-top: 90px; position: relative; }
+        .hero { height: 90vh; margin-top: 110px; position: relative; }
         .hero-info {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; z-index: 5;
@@ -87,7 +101,9 @@
 <body>
 
     <header>
-        <div class="logo-clon">AQUÍ VA UN LOGO</div>
+        <div class="logo-container">
+            <img src="logo.png" alt="Casa 1927" class="logo-img">
+        </div>
         <nav>
             <ul>
                 <li><a href="#">blablabla</a></li>
@@ -165,7 +181,9 @@
         </div>
         <div class="footer-col">
             <h4>blablabla</h4>
-            <div class="logo-clon" style="background: #333;">LOGO FOOTER</div>
+            <div class="logo-container" style="background: #333; padding: 5px;">
+                <img src="logo.png" alt="Casa 1927" class="logo-img">
+            </div>
         </div>
     </footer>
 
