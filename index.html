@@ -33,24 +33,52 @@
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #eee;
         }
         
-        .logo-container { height: 100%; display: flex; align-items: center; max-width: 350px; }
-        .logo-img { width: 100%; height: auto; max-height: 150px; object-fit: contain; }
+        .logo-container { height: 100%; display: flex; align-items: center; max-width: 300px; }
+        .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
         /* Navegación Desktop */
-        nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
+        nav.nav-desktop ul { display: flex; list-style: none; gap: 12px; align-items: center; }
+        nav.nav-desktop li { position: relative; padding: 10px 0; } /* Contenedor para el dropdown */
+        
         nav.nav-desktop a { 
             text-decoration: none; color: var(--primary); 
-            font-size: 0.7rem; font-weight: 700; 
+            font-size: 0.68rem; font-weight: 700; 
             text-transform: uppercase; letter-spacing: 1.2px; 
             transition: 0.3s; 
         }
         nav.nav-desktop a:hover { color: var(--gold); }
+
+        /* SUBMENÚ DESPLEGABLE (PC) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%; left: 0;
+            background-color: var(--white);
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-top: 2px solid var(--gold);
+            z-index: 1;
+            padding: 10px 0;
+        }
+
+        .dropdown-content li { padding: 0; }
+        .dropdown-content a {
+            color: var(--primary);
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.65rem;
+            text-align: left;
+        }
+        .dropdown-content a:hover { background-color: var(--light-grey); color: var(--gold); }
+
+        nav.nav-desktop li:hover .dropdown-content { display: block; }
+
         .lang-switch { color: var(--gold) !important; font-weight: 400 !important; }
 
-        /* Botón WhatsApp Dorado */
-        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .whatsapp-link i { font-size: 1.6rem; }
+        /* Botón WhatsApp */
+        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .whatsapp-link i { font-size: 1.4rem; }
         .header-contact:hover { background: var(--gold); }
         .header-contact:hover .whatsapp-link { color: var(--white); }
 
@@ -62,12 +90,16 @@
         .mobile-menu {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
             background: var(--white); z-index: 999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: 0.5s;
+            justify-content: center; align-items: center; transition: 0.5s; overflow-y: auto;
         }
         .mobile-menu.active { right: 0; }
-        .mobile-menu ul { list-style: none; text-align: center; }
-        .mobile-menu li { margin: 15px 0; }
-        .mobile-menu a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
+        .mobile-menu ul { list-style: none; text-align: center; width: 100%; }
+        .mobile-menu li { margin: 12px 0; }
+        .mobile-menu a { font-family: var(--font-title); font-size: 1.3rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
+        
+        /* Submenú Móvil */
+        .mobile-submenu { margin-top: 5px; padding-left: 0; background: #fafafa; }
+        .mobile-submenu a { font-size: 0.9rem !important; color: var(--gold) !important; }
 
         /* --- PLACEHOLDERS --- */
         .foto-placeholder { background: var(--placeholder-img); width: 100%; min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; border: 1px solid #bbb; }
@@ -75,44 +107,33 @@
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); }
-
-        /* Hero */
         .hero { height: 75vh; position: relative; width: 100%; background: #000; }
         .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; width: 90%; }
         .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
 
-        /* Secciones Flex */
         section { padding: 100px 10%; }
         .flex-container { display: flex; align-items: center; gap: 60px; }
-        .flex-container.reverse { flex-direction: row-reverse; }
-        .text-block { flex: 1; }
-        .media-block { flex: 1; }
         h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; }
-        p { margin-bottom: 20px; line-height: 1.8; color: #555; font-size: 1.05rem; }
-
-        /* Grid Galería */
-        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
-        .gallery-item { height: 300px; }
+        p { margin-bottom: 20px; line-height: 1.8; color: #555; }
 
         /* --- FOOTER --- */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
-        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        .footer-col p { color: #888; font-size: 0.85rem; line-height: 1.6; margin-bottom: 10px; }
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
         .footer-logo-box { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
         /* --- RESPONSIVE --- */
+        @media (max-width: 1100px) {
+            nav.nav-desktop a { font-size: 0.6rem; letter-spacing: 0.5px; }
+        }
         @media (max-width: 1024px) {
             nav.nav-desktop { display: none; }
             .hamburger { display: flex; }
             :root { --header-h: 140px; }
-            .logo-img { max-height: 90px; }
-            .flex-container, .flex-container.reverse { flex-direction: column; text-align: center; gap: 40px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .logo-img { max-height: 80px; }
+            .flex-container { flex-direction: column; text-align: center; }
             footer { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
-            .gallery-grid { grid-template-columns: 1fr; }
-            footer { grid-template-columns: 1fr; text-align: center; }
+            footer { grid-template-columns: 1fr; }
             .whatsapp-link span { display: none; }
         }
     </style>
@@ -128,7 +149,14 @@
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#eventos">Eventos</a></li>
-                <li><a href="#espacios">Espacios</a></li>
+                <li>
+                    <a href="#infraestructura">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem; vertical-align: middle;"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#espacios">Espacios</a></li>
+                        <li><a href="#seguridad">Seguridad</a></li>
+                        <li><a href="#personal">Personal</a></li>
+                    </ul>
+                </li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -152,7 +180,13 @@
         <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#eventos">Eventos</a></li>
-            <li><a href="#espacios">Espacios</a></li>
+            <li><a href="#infraestructura">Infraestructura</a>
+                <ul class="mobile-submenu">
+                    <li><a href="#espacios">Espacios</a></li>
+                    <li><a href="#seguridad">Seguridad</a></li>
+                    <li><a href="#personal">Personal</a></li>
+                </ul>
+            </li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#contacto">Contacto</a></li>
@@ -164,46 +198,18 @@
         <div class="hero">
             <div class="video-placeholder">AQUÍ VA UN VIDEO</div>
             <div class="hero-info">
-                <h1>Inicio</h1>
+                <h1>Infraestructura</h1>
             </div>
         </div>
 
-        <section id="nosotros">
+        <section id="infraestructura">
             <div class="flex-container">
                 <div class="text-block">
-                    <h2>Nosotros</h2>
-                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
-                    <p>blablabla blablabla blablabla blablabla.</p>
+                    <h2>Nuestra Infraestructura</h2>
+                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
                 </div>
                 <div class="media-block">
                     <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="servicios" style="background: var(--light-grey);">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <h2>Servicios</h2>
-                <p>blablabla blablabla blablabla</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
-            </div>
-        </section>
-
-        <section id="eventos">
-            <div class="flex-container reverse">
-                <div class="text-block">
-                    <h2>Eventos</h2>
-                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
-                </div>
-                <div class="media-block">
-                    <div class="video-placeholder" style="min-height: 400px;">AQUÍ VA UN VIDEO</div>
                 </div>
             </div>
         </section>
@@ -211,23 +217,24 @@
 
     <footer>
         <div class="footer-col">
-            <h4>Secciones</h4>
-            <p>Inicio</p>
-            <p>Eventos</p>
+            <h4>Infraestructura</h4>
+            <p>Espacios</p>
+            <p>Seguridad</p>
+            <p>Personal</p>
         </div>
         <div class="footer-col">
             <h4>Información</h4>
-            <p>Espacios</p>
             <p>Servicios</p>
+            <p>Eventos</p>
         </div>
         <div class="footer-col">
-            <h4>Contacto</h4>
+            <h4>Empresa</h4>
             <p>Nosotros</p>
             <p>Contacto</p>
         </div>
         <div class="footer-col">
             <div class="footer-logo-box">
-                <img src="logo.png" alt="Logo Footer" style="max-height: 60px; width: auto;">
+                <img src="logo.png" alt="Logo Footer" style="max-height: 60px;">
             </div>
         </div>
     </footer>
