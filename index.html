@@ -15,6 +15,8 @@
             --placeholder-vid: #add8e6;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
+            /* HEADER A 200PX SEGÚN SOLICITUD */
+            --header-h: 200px; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,9 +36,9 @@
             min-height: 450px;
         }
 
-        /* --- HEADER ACTUALIZADO --- */
+        /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 110px; /* Un poco más de altura para el logo */
+            position: fixed; top: 0; width: 100%; height: var(--header-h);
             background: var(--white); display: flex;
             justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000; border-bottom: 1px solid #eee;
@@ -46,21 +48,21 @@
             height: 100%;
             display: flex;
             align-items: center;
-            max-width: 250px; /* Control de ancho proporcional */
+            max-width: 400px; /* Incrementado para permitir un logo más ancho */
         }
         
         .logo-img {
             width: 100%;
             height: auto;
-            max-height: 80px; /* Altura máxima profesional */
+            max-height: 150px; /* Logo más grande proporcional a los 200px del header */
             object-fit: contain;
         }
 
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- HERO --- */
-        .hero { height: 90vh; margin-top: 110px; position: relative; }
+        /* --- HERO (AJUSTADO AL NUEVO HEADER) --- */
+        .hero { height: 85vh; margin-top: var(--header-h); position: relative; }
         .hero-info {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; z-index: 5;
@@ -91,6 +93,9 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
+            :root { --header-h: 140px; }
+            .logo-img { max-height: 100px; }
+            .hero { margin-top: var(--header-h); }
             .flex-container, .flex-container.reverse { flex-direction: column; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             footer { grid-template-columns: 1fr; text-align: center; }
@@ -128,7 +133,6 @@
             <div class="text-block">
                 <h2>blablabla</h2>
                 <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
-                <p>blablabla blablabla blablabla.</p>
             </div>
             <div class="media-block">
                 <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
@@ -151,18 +155,6 @@
         </div>
     </section>
 
-    <section>
-        <div class="flex-container reverse">
-            <div class="text-block">
-                <h2>blablabla</h2>
-                <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
-            </div>
-            <div class="media-block">
-                <div class="video-placeholder" style="min-height: 350px;">AQUÍ VA UN VIDEO</div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="footer-col">
             <h4>blablabla</h4>
@@ -171,17 +163,13 @@
         <div class="footer-col">
             <h4>blablabla</h4>
             <p>blablabla</p>
-            <p>blablabla</p>
-            <p>blablabla</p>
         </div>
         <div class="footer-col">
             <h4>blablabla</h4>
             <p>blablabla</p>
-            <p>blablabla</p>
         </div>
         <div class="footer-col">
-            <h4>blablabla</h4>
-            <div class="logo-container" style="background: #333; padding: 5px;">
+            <div class="logo-container" style="background: #333; padding: 10px;">
                 <img src="logo.png" alt="Casa 1927" class="logo-img">
             </div>
         </div>
