@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clon Arquitectura | Casa 1927</title>
+    <title>Clon Maestro | Casa 1927</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -21,6 +21,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; }
 
         /* --- HEADER --- */
@@ -31,36 +32,26 @@
             padding: 0 5%; z-index: 1000; border-bottom: 1px solid #eee;
         }
         
-        .logo-container {
-            height: 100%; display: flex; align-items: center; max-width: 400px;
-        }
-        
-        .logo-img {
-            width: 100%; height: auto; max-height: 150px; object-fit: contain;
-        }
+        .logo-container { height: 100%; display: flex; align-items: center; max-width: 400px; }
+        .logo-img { width: 100%; height: auto; max-height: 150px; object-fit: contain; }
 
-        /* --- NAVEGACIÓN DESKTOP --- */
+        /* Navegación Desktop */
         nav.nav-desktop ul { display: flex; list-style: none; gap: 25px; }
         nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* --- BOTÓN WHATSAPP DORADO --- */
-        .header-contact {
-            border: 2px solid var(--gold); padding: 12px 25px; transition: all 0.4s ease; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 15px;
-        }
+        /* Botón WhatsApp */
+        .header-contact { border: 2px solid var(--gold); padding: 12px 25px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 15px; }
         .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 12px; }
         .whatsapp-link i { font-size: 1.8rem; }
-
         .header-contact:hover { background: var(--gold); }
         .header-contact:hover .whatsapp-link { color: var(--white); }
 
-        /* --- HAMBURGUESA MÓVIL --- */
-        .hamburger {
-            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001;
-        }
+        /* Hamburguesa */
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 30px; height: 3px; background: var(--primary); transition: 0.3s; }
 
-        /* --- MENÚ OVERLAY MÓVIL --- */
+        /* Menú Móvil Overlay */
         .mobile-menu {
             position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
             background: var(--white); z-index: 999; display: flex; flex-direction: column;
@@ -71,36 +62,57 @@
         .mobile-menu li { margin: 25px 0; }
         .mobile-menu a { font-family: var(--font-title); font-size: 1.8rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
 
-        /* --- HERO --- */
-        .hero { height: 80vh; margin-top: var(--header-h); position: relative; }
+        /* --- CONTENIDO --- */
+        main { margin-top: var(--header-h); }
+
+        /* Hero */
+        .hero { height: 80vh; position: relative; width: 100%; }
+        .video-placeholder { background: var(--placeholder-vid); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
         .hero-info { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 5; }
-        .hero-info h1 { font-family: var(--font-title); font-size: 4rem; color: var(--white); }
+        .hero-info h1 { font-family: var(--font-title); font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--white); text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
 
-        /* --- PLACEHOLDERS --- */
-        .video-placeholder { background: var(--placeholder-vid); height: 100%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
-        .foto-placeholder { background: var(--placeholder-img); min-height: 400px; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+        /* Secciones Generales */
+        section { padding: 100px 10%; }
+        .flex-container { display: flex; align-items: center; gap: 60px; }
+        .flex-container.reverse { flex-direction: row-reverse; }
+        .text-block { flex: 1; }
+        .media-block { flex: 1; }
+        
+        h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; }
+        p { margin-bottom: 20px; line-height: 1.8; color: #555; font-size: 1.05rem; }
 
-        section { padding: 80px 10%; }
-        .flex-container { display: flex; align-items: center; gap: 50px; }
-        h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .foto-placeholder { background: var(--placeholder-img); min-height: 450px; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #666; }
 
-        /* --- RESPONSIVE MÓVIL (CORRECCIÓN) --- */
+        /* Grilla Galería */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .gallery-item { height: 300px; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+        .footer-col p { color: #888; font-size: 0.85rem; line-height: 1.6; margin-bottom: 10px; }
+        .footer-logo { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             nav.nav-desktop { display: none; }
             .hamburger { display: flex; }
-            
             :root { --header-h: 140px; }
-            .logo-img { max-height: 80px; }
-            
+            .logo-img { max-height: 90px; }
+            .flex-container, .flex-container.reverse { flex-direction: column; text-align: center; gap: 40px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            footer { grid-template-columns: repeat(2, 1fr); }
             .header-contact { padding: 8px 15px; }
             .whatsapp-link { font-size: 0.9rem; }
-            .whatsapp-link i { font-size: 1.3rem; }
+            .whatsapp-link i { font-size: 1.4rem; }
         }
 
         @media (max-width: 600px) {
-            header { padding: 0 15px; }
-            .header-contact { border-width: 1px; }
-            .whatsapp-link span { display: none; } /* Oculta el número en pantallas muy pequeñas, deja el icono */
+            .gallery-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; text-align: center; }
+            .whatsapp-link span { display: none; }
+            section { padding: 60px 5%; }
+            h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -141,47 +153,97 @@
         </ul>
     </div>
 
-    <div class="hero">
-        <div class="video-placeholder">AQUÍ VA UN VIDEO</div>
-        <div class="hero-info">
-            <h1>blablabla</h1>
+    <main>
+        <div class="hero">
+            <div class="video-placeholder">AQUÍ VA UN VIDEO</div>
+            <div class="hero-info">
+                <h1>blablabla</h1>
+            </div>
         </div>
-    </div>
 
-    <section>
-        <div class="flex-container">
-            <div style="flex:1;">
-                <h2>blablabla</h2>
-                <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+        <section>
+            <div class="flex-container">
+                <div class="text-block">
+                    <h2>blablabla</h2>
+                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                    <p>blablabla blablabla blablabla blablabla.</p>
+                </div>
+                <div class="media-block">
+                    <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
+                </div>
             </div>
-            <div style="flex:1;">
-                <div class="foto-placeholder">AQUÍ VA UNA FOTO</div>
+        </section>
+
+        <section style="background: var(--light-grey);">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2>blablabla</h2>
+                <p>blablabla blablabla blablabla</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+                <div class="gallery-item"><div class="foto-placeholder">AQUÍ VA UNA FOTO</div></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex-container reverse">
+                <div class="text-block">
+                    <h2>blablabla</h2>
+                    <p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                </div>
+                <div class="media-block">
+                    <div class="video-placeholder" style="min-height: 400px;">AQUÍ VA UN VIDEO</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-col">
+            <h4>blablabla</h4>
+            <p>blablabla blablabla</p>
+            <p>blablabla blablabla</p>
+        </div>
+        <div class="footer-col">
+            <h4>blablabla</h4>
+            <p>blablabla</p>
+            <p>blablabla</p>
+            <p>blablabla</p>
+        </div>
+        <div class="footer-col">
+            <h4>blablabla</h4>
+            <p>blablabla</p>
+            <p>blablabla</p>
+        </div>
+        <div class="footer-col">
+            <h4>blablabla</h4>
+            <div class="footer-logo">
+                <img src="logo.png" alt="Logo Footer" style="max-height: 60px; width: auto;">
             </div>
         </div>
-    </section>
+    </footer>
 
     <script>
-        // Lógica para el menú móvil
         const hamburger = document.getElementById('hamburguer-btn');
         const mobileMenu = document.getElementById('mobile-nav');
 
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
-            
-            // Animación simple de la hamburguesa
             const spans = hamburger.querySelectorAll('span');
             spans[0].style.transform = mobileMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
             spans[1].style.opacity = mobileMenu.classList.contains('active') ? '0' : '1';
             spans[2].style.transform = mobileMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -8px)' : 'none';
         });
 
-        // Cerrar menú al clickear un enlace
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
         });
     </script>
-
 </body>
 </html>
