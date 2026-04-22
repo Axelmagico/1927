@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="head-title">Casa 1927 | Exclusive Venue</title>
+    <title data-i18n="head-title">Casa 1927 | Exclusive Venue & Eventos</title>
+    
+    <meta name="description" content="Casa 1927 - El lugar más exclusivo para eventos en Asunción, Paraguay. Infraestructura de primer nivel.">
+    <link rel="canonical" href="https://casa1927.com" />
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -13,22 +17,25 @@
             --gold: #c5a059;
             --white: #ffffff;
             --light-grey: #f4f4f4;
+            --placeholder-img: #cccccc;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --header-h: 200px; 
         }
 
+        /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; }
 
-        /* --- HEADER --- */
+        /* --- HEADER FIJO --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
             background: var(--white); display: flex;
             justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #eee;
         }
+        
         .logo-container { height: 100%; display: flex; align-items: center; max-width: 300px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
@@ -37,66 +44,51 @@
         nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; cursor: pointer; }
         nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* Dropdown */
-        .dropdown-content { opacity: 0; visibility: hidden; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 200px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--gold); padding: 15px 0; transition: 0.3s; }
+        /* Dropdown con Hover */
+        .dropdown-content {
+            opacity: 0; visibility: hidden; position: absolute;
+            top: 100%; left: 50%; transform: translateX(-50%);
+            background-color: var(--white); min-width: 200px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--gold);
+            z-index: 10; padding: 15px 0; transition: all 0.3s ease;
+        }
         nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
         .dropdown-content a { color: var(--primary); padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
 
-        /* WhatsApp */
-        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .header-contact:hover { background: var(--gold); color: white; }
-        .header-contact:hover .whatsapp-link, .header-contact:hover i { color: white; }
-
-        /* Idioma Botones UI */
-        .lang-switch-container { display: flex; gap: 5px; font-weight: 400; color: var(--gold); }
-        .lang-btn { cursor: pointer; opacity: 0.5; transition: 0.3s; }
+        /* Selector de Idioma */
+        .lang-container { display: flex; gap: 8px; color: var(--gold); font-size: 0.75rem; align-items: center; margin-left: 10px; }
+        .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.3s; font-weight: 400; }
         .lang-btn.active { opacity: 1; font-weight: 700; text-decoration: underline; }
 
-        /* Hamburguesa */
+        /* Botón WhatsApp Dorado */
+        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .header-contact:hover { background: var(--gold); }
+        .header-contact:hover .whatsapp-link, .header-contact:hover i { color: var(--white); }
+
+        /* Hamburguesa Móvil */
         .hamburger, .close-menu { cursor: pointer; color: var(--primary); font-size: 1.8rem; display: none; }
 
-        /* --- MENÚ MÓVIL --- */
-        .mobile-overlay { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--white); z-index: 2000; transition: 0.5s; display: flex; flex-direction: column; padding: 40px; }
-        .mobile-overlay.active { right: 0; }
-        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
-        .mobile-nav-list { list-style: none; }
-        .mobile-nav-list li { margin-bottom: 20px; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; display: block; }
+        /* Menú Móvil */
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--white); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu ul { list-style: none; text-align: center; }
+        .mobile-menu li { margin: 15px 0; }
+        .mobile-menu a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; }
 
-        /* --- INFRAESTRUCTURA GRID --- */
-        .infra-section { padding: 80px 10%; text-align: center; }
-        .infra-grid { display: flex; gap: 30px; justify-content: center; margin-top: 40px; }
-        .infra-col { flex: 1; background: #fff; padding: 30px; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .infra-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
-        .infra-col h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase; }
-        .infra-img { width: 100%; height: 200px; background: #eee; object-fit: cover; margin-bottom: 25px; border: 1px solid #f0f0f0; }
-        .infra-list { list-style: none; text-align: left; width: 100%; }
-        .infra-list li { font-size: 0.85rem; line-height: 1.6; color: #555; margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .infra-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
+        /* --- CUERPO --- */
+        main { margin-top: var(--header-h); }
 
-        /* --- FOOTER --- */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-col h4 { color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        .footer-col p { font-size: 0.85rem; margin-bottom: 10px; color: #ccc; }
-
-        @media (max-width: 1024px) {
-            :root { --header-h: 140px; }
-            .nav-desktop { display: none; }
-            .hamburger, .close-menu { display: block; }
-            .infra-grid { flex-direction: column; }
-            footer { grid-template-columns: repeat(2, 1fr); }
-        }
-        /* --- HERO CON VIDEO --- */
+        /* --- HERO CON VIDEO (ACTUALIZADO) --- */
         .hero { 
-            height: 80vh; /* Aumentamos un poco la altura para mayor impacto */
+            height: 80vh; /* Altura de impacto visual */
             position: relative; 
             width: 100%; 
             overflow: hidden; 
+            background: #000; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            background: #000; 
         }
 
         .hero-video {
@@ -105,45 +97,78 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Hace que el video cubra todo el espacio sin deformarse */
+            object-fit: cover; /* Video cubra todo sin deformarse */
             z-index: 1;
         }
 
-        /* Capa oscura para que el texto sea legible */
+        /* Capa oscura transparente al 50% */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Ajusta el 0.4 para más o menos oscuridad */
+            background: rgba(0, 0, 0, 0.5); /* 50% oscuridad */
             z-index: 2;
         }
 
+        /* Contenedor de Info en la Base (ACTUALIZADO) */
         .hero-info {
-            position: relative;
-            z-index: 3;
+            position: absolute;
+            bottom: 30px; /* Separación sutil de la base */
+            left: 0;
+            width: 100%;
             text-align: center;
+            z-index: 3;
+            padding: 0 5%;
         }
 
+        /* Estilo del Título Fino y Elegante (ACTUALIZADO) */
         .hero-title {
-            color: white;
+            color: #f0e6d6; /* Tono crema dorado elegante */
             font-family: var(--font-title);
-            font-size: clamp(3rem, 10vw, 7rem);
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            font-size: clamp(1.8rem, 4vw, 2.5rem); /* Tamaño legible pero no grueso */
+            font-weight: 300; /* Tipografía Fina solicitada */
+            letter-spacing: 3px;
+            line-height: 1.3;
+        }
+
+        /* Secciones Flex */
+        section { padding: 100px 10%; }
+        .flex-container { display: flex; align-items: center; gap: 60px; }
+        h2 { font-family: var(--font-title); font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
+        p { line-height: 1.8; color: #555; font-size: 1.1rem; }
+        .foto-placeholder { background: #eee; width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; color: #999; border: 1px solid #ddd; }
+
+        /* Footer */
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        .footer-logo-box { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; align-items: center; }
+
+        @media (max-width: 1024px) {
+            nav.nav-desktop { display: none; }
+            .hamburger { display: flex; }
+            :root { --header-h: 140px; }
+            .flex-container { flex-direction: column; text-align: center; gap: 40px; }
+            .hero { height: 60vh; }
+            .hero-title { font-size: clamp(1.5rem, 6vw, 2.2rem); letter-spacing: 1px; }
+            .hero-info { bottom: 15px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container"><img src="logo.png" alt="Casa 1927" class="logo-img"></div>
+        <div class="logo-container">
+            <img src="logo.png" alt="Casa 1927" class="logo-img">
+        </div>
+        
         <nav class="nav-desktop">
             <ul>
                 <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
                 <li><a href="#eventos" data-i18n="nav-eventos">Eventos</a></li>
-                <li><a data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down"></i></a>
+                <li>
+                    <a data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="#espacios" data-i18n="nav-espacios">Espacios</a></li>
                         <li><a href="#seguridad" data-i18n="nav-seguridad">Seguridad</a></li>
@@ -152,181 +177,126 @@
                 </li>
                 <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
                 <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
-                <li class="lang-switch-container">
+                <li><a href="#contacto" data-i18n="nav-contacto">Contacto</a></li>
+                
+                <li class="lang-container">
                     <span class="lang-btn" onclick="changeLang('en')" id="btn-en">ENG</span> 
-                    | 
-                    <span class="lang-btn" onclick="changeLang('es')" id="btn-es">ESP</span>
+                    <span style="opacity: 0.3">|</span> 
+                    <span class="lang-btn active" onclick="changeLang('es')" id="btn-es">ESP</span>
                 </li>
             </ul>
         </nav>
+
         <a href="https://wa.me/595974812265" target="_blank" class="header-contact">
-            <div class="whatsapp-link"><i class="fab fa-whatsapp"></i> <span>+595 974812265</span></div>
+            <div class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i>
+                <span>+595 974812265</span>
+            </div>
         </a>
-        <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
+
+        <div class="hamburger" id="hamburguer-btn">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
-    <div class="mobile-overlay" id="mobileMenu">
-        <div class="mobile-header"><img src="logo.png" alt="Logo" style="max-height: 60px;"><div class="close-menu" id="closeBtn"><i class="fas fa-times"></i></div></div>
-        <ul class="mobile-nav-list">
-            <li><a href="#inicio" onclick="closeMenu()" data-i18n="nav-inicio">Inicio</a></li>
-            <li><a href="#servicios" onclick="closeMenu()" data-i18n="nav-servicios">Servicios</a></li>
-            <li><a href="#nosotros" onclick="closeMenu()" data-i18n="nav-nosotros">Nosotros</a></li>
-            <li style="margin-top: 30px; color: var(--gold);">
-                <span onclick="changeLang('en')" style="cursor:pointer">ENGLISH</span> | 
-                <span onclick="changeLang('es')" style="cursor:pointer">ESPAÑOL</span>
+    <div class="mobile-menu" id="mobile-nav">
+        <ul>
+            <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
+            <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
+            <li><a href="#contacto" data-i18n="nav-contacto">Contacto</a></li>
+            <li style="margin-top: 30px;">
+                <span onclick="changeLang('en')">ENG</span> | 
+                <span onclick="changeLang('es')">ESP</span>
             </li>
         </ul>
     </div>
 
-    <main style="margin-top: var(--header-h);">
-       <div class="hero" id="inicio">
-            <video autoplay muted loop playsinline class="hero-video">
+    <main>
+        <div class="hero" id="inicio">
+            <video autoplay muted loop playsinline poster="imagen-de-respaldo.jpg" class="hero-video">
                 <source src="videoportada.mp4" type="video/mp4">
-                Tu navegador no soporta video.
             </video>
             
             <div class="hero-overlay"></div>
 
             <div class="hero-info">
-                <h1 class="hero-title" data-i18n="hero-title">Casa 1927</h1>
+                <h1 class="hero-title" data-i18n="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1>
             </div>
         </div>
 
-        <section id="nosotros" style="padding: 100px 10%;">
-            <div style="display: flex; gap: 60px; align-items: center;">
-                <div style="flex:1;">
-                    <h2 data-i18n="nav-nosotros" style="font-family: var(--font-title); color: var(--gold); font-size: 3rem; margin-bottom: 25px;">Nosotros</h2>
-                    <p data-i18n="p-nosotros" style="line-height: 1.8; color: #555;">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
+        <section id="nosotros">
+            <div class="flex-container">
+                <div class="text-block">
+                    <h2>Nosotros</h2>
+                    <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
                 </div>
-                <div style="flex:1; background: #eee; height: 400px; display: flex; align-items: center; justify-content: center;" data-i18n="placeholder-foto">FOTO AQUÍ</div>
-            </div>
-        </section>
-
-        <section class="infra-section" id="espacios">
-            <h2 style="font-family: var(--font-title); font-size: 3.5rem; color: var(--gold); text-transform: uppercase;" data-i18n="nav-infra">Infraestructura</h2>
-            <div class="infra-grid">
-                <div class="infra-col">
-                    <div class="infra-icon"><i class="fas fa-leaf"></i></div>
-                    <h3 data-i18n="nav-espacios">Espacios</h3>
-                    <div class="infra-img" style="background-image: url('FOTO1.jpeg'); background-size: cover;"></div>
-                    <ul class="infra-list">
-                        <li data-i18n="e1">Propiedad de 7000m2</li>
-                        <li data-i18n="e2">Casa con 3 niveles de 250m2 c/u</li>
-                        <li data-i18n="e3">Patio de 1.500 m2</li>
-                        <li data-i18n="e4">Salón de 400 m2</li>
-                        <li data-i18n="e5">Hermosos espacios de Jardín</li>
-                        <li data-i18n="e6">Espacios exclusivos para catering</li>
-                        <li data-i18n="e7">Acceso vehicular interno</li>
-                        <li data-i18n="e8">Espacios instagrameables</li>
-                        <li data-i18n="e9">Climatización y baños sexados</li>
-                        <li data-i18n="e10">Áreas para proveedores</li>
-                        <li data-i18n="e11">Usufructo por 8 horas</li>
-                        <li data-i18n="e12">DJs Line Up disponible</li>
-                    </ul>
-                </div>
-
-                <div class="infra-col">
-                    <div class="infra-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3 data-i18n="nav-seguridad">Seguridad</h3>
-                    <div class="infra-img" style="background-image: url('seguridad.jpg'); background-size: cover;"></div>
-                    <ul class="infra-list">
-                        <li data-i18n="s1">Cobertura de emergencia médicas</li>
-                        <li data-i18n="s2">Generador Propio</li>
-                        <li data-i18n="s3">Seguridad Privada 24 horas</li>
-                        <li data-i18n="s4">Estacionamiento interno vigilado</li>
-                        <li data-i18n="s5">Prevención contra incendios</li>
-                        <li data-i18n="s6">Seguro RC y AP</li>
-                    </ul>
-                </div>
-
-                <div class="infra-col">
-                    <div class="infra-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3 data-i18n="nav-personal">Personal</h3>
-                    <div class="infra-img" style="background-image: url('moza.jpg'); background-size: cover;"></div>
-                    <ul class="infra-list">
-                        <li data-i18n="p1">Maitre y Mozos profesionales</li>
-                        <li data-i18n="p2">Cantineros y Event Planners</li>
-                        <li data-i18n="p3">Personal de Limpieza permanente</li>
-                        <li data-i18n="p4">Atención personalizada de élite</li>
-                    </ul>
+                <div class="media-block">
+                    <div class="foto-placeholder">IMAGE 1</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="background: var(--primary); color: white; padding: 60px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+    <footer>
         <div class="footer-col">
-            <h4 data-i18n="nav-infra">Infraestructura</h4>
-            <p data-i18n="nav-espacios">Espacios</p>
-            <p data-i18n="nav-seguridad">Seguridad</p>
+            <h4>Infraestructura</h4>
+            <p>Espacios</p><p>Seguridad</p>
         </div>
         <div class="footer-col">
-            <h4 data-i18n="nav-servicios">Servicios</h4>
-            <p data-i18n="f-catering">Catering</p>
-            <p data-i18n="f-deco">Decoración</p>
+            <h4>Secciones</h4>
+            <p>Inicio</p><p>Eventos</p>
         </div>
         <div class="footer-col">
-            <h4 data-i18n="nav-contacto">Contacto</h4>
-            <p data-i18n="f-city">Asunción, Paraguay</p>
+            <h4>Contacto</h4>
+            <p>Asunción, Paraguay</p>
         </div>
-        <div class="footer-col" style="background: #111; padding: 15px;"><img src="logo.png" style="max-height: 60px; filter: invert(1);"></div>
+        <div class="footer-col">
+            <div class="footer-logo-box">
+                <img src="logo.png" alt="Casa 1927" style="max-height: 60px; filter: brightness(0) invert(1);">
+            </div>
+        </div>
     </footer>
 
     <script>
+        // MOTOR DE TRADUCCIÓN PROFESIONAL
         const translations = {
             es: {
-                "head-title": "Casa 1927 | Exclusive Venue",
+                "head-title": "Casa 1927 | Exclusive Venue & Eventos",
                 "nav-inicio": "Inicio", "nav-eventos": "Eventos", "nav-infra": "Infraestructura", 
                 "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", 
                 "nav-servicios": "Servicios", "nav-nosotros": "Nosotros", "nav-contacto": "Contacto",
-                "hero-title": "Casa 1927",
-                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.", 
-                "placeholder-foto": "FOTO AQUÍ",
-                "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles de 250m2 c/u", "e3": "Patio de 1.500 m2", "e4": "Salón de 400 m2", "e5": "Hermosos espacios de Jardín", "e6": "Espacios exclusivos para catering", "e7": "Acceso vehicular interno", "e8": "Espacios instagrameables", "e9": "Climatización y baños sexados", "e10": "Áreas para proveedores", "e11": "Usufructo por 8 horas", "e12": "DJs Line Up disponible",
-                "s1": "Cobertura de emergencia médicas", "s2": "Generador Propio", "s3": "Seguridad Privada 24 horas", "s4": "Estacionamiento interno vigilado", "s5": "Prevención contra incendios", "s6": "Seguro RC y AP",
-                "p1": "Maitre y Mozos profesionales", "p2": "Cantineros y Event Planners", "p3": "Personal de Limpieza permanente", "p4": "Atención personalizada de élite",
-                "f-catering": "Catering", "f-deco": "Decoración", "f-city": "Asunción, Paraguay"
+                "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
+                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables."
             },
             en: {
-                "head-title": "Casa 1927 | Exclusive Venue",
+                "head-title": "Casa 1927 | Exclusive Venue & Events",
                 "nav-inicio": "Home", "nav-eventos": "Events", "nav-infra": "Infrastructure", 
                 "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", 
                 "nav-servicios": "Services", "nav-nosotros": "About Us", "nav-contacto": "Contact",
-                "hero-title": "Casa 1927",
-                "p-nosotros": "Welcome to a place where history and elegance meet to create unforgettable moments.", 
-                "placeholder-foto": "PHOTO HERE",
-                "e1": "7000m2 Property", "e2": "3-level house (250m2 each)", "e3": "1,500 m2 Courtyard", "e4": "400 m2 Main Hall", "e5": "Beautiful Garden spaces", "e6": "Exclusive catering areas", "e7": "Internal vehicular access", "e8": "Instagrammable spaces", "e9": "Climatization & restrooms", "e10": "Staff & Supplier areas", "e11": "8-hour venue hire", "e12": "DJs Line Up available",
-                "s1": "Medical emergency coverage", "s2": "Private Power Generator", "s3": "24-hour Private Security", "s4": "Internal secure parking", "s5": "Fire prevention system", "s6": "RC & AP Insurance",
-                "p1": "Professional Maitre & Waiters", "p2": "Bartenders & Event Planners", "p3": "Permanent cleaning staff", "p4": "Elite personalized service",
-                "f-catering": "Catering", "f-deco": "Decoration", "f-city": "Asuncion, Paraguay"
+                "hero-title": "Today you can be the protagonist of this magical adventure.",
+                "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments."
             }
         };
 
         function changeLang(lang) {
-            localStorage.setItem('lang', lang);
-            
-            // Traducir todos los elementos con data-i18n
+            localStorage.setItem('casa1927_lang', lang);
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
-
-            // Actualizar estado visual de los botones de idioma
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
-            if(lang === 'es') document.getElementById('btn-es').classList.add('active');
+            document.getElementById(`btn-${lang}`)?.classList.add('active');
         }
 
-        const menu = document.getElementById('mobileMenu');
-        document.getElementById('openBtn').onclick = () => menu.classList.add('active');
-        document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
-        
-        function closeMenu() { menu.classList.remove('active'); }
-
-        window.onload = () => { 
-            const savedLang = localStorage.getItem('lang') || 'es';
-            changeLang(savedLang); 
+        window.onload = () => {
+            const savedLang = localStorage.getItem('casa1927_lang') || 'es';
+            changeLang(savedLang);
         };
+
+        // Hamburguesa
+        const hamburger = document.getElementById('hamburguer-btn');
+        const mobileMenu = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
     </script>
 </body>
 </html>
