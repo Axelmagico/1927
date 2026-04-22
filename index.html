@@ -20,52 +20,37 @@
 
         /* --- BASE ANTI-DESBORDE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            width: 100%; 
-            overflow-x: hidden; 
-            background: var(--white); 
-            font-family: var(--font-body);
-        }
+        html, body { width: 100%; overflow-x: hidden; background: var(--white); font-family: var(--font-body); }
 
-        /* --- HEADER PREMIUM --- */
+        /* --- HEADER NEGRO PREMIUM --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
-            background: var(--primary);
-            display: flex; justify-content: space-between; align-items: center;
+            background: var(--primary); display: flex; justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #222;
         }
-        
         .logo-container { height: 100%; display: flex; align-items: center; max-width: 280px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
-        /* Navegación Desktop */
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
         nav.nav-desktop li { position: relative; padding: 20px 0; }
-        nav.nav-desktop a { 
-            text-decoration: none; color: var(--gold); 
-            font-size: 0.68rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s;
-        }
+        nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
         nav.nav-desktop a:hover { color: var(--white); }
 
-        /* FIX SUBMENÚ: Posición absoluta para no empujar elementos */
+        /* Submenú Desktop (Sin desborde) */
         .dropdown-content {
-            opacity: 0; visibility: hidden; 
-            position: absolute; top: 80%; left: 50%; transform: translateX(-50%);
-            background-color: var(--primary); min-width: 180px;
+            opacity: 0; visibility: hidden; position: absolute;
+            top: 100%; left: 50%; transform: translateX(-50%);
+            background-color: var(--primary); min-width: 200px;
             box-shadow: 0px 10px 25px rgba(0,0,0,0.5); border-top: 2px solid var(--gold);
-            z-index: 1100; padding: 15px 0; transition: 0.3s ease;
+            z-index: 1100; padding: 15px 0; transition: 0.3s;
         }
-        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; top: 100%; }
-        .dropdown-content a { 
-            color: var(--white) !important; padding: 10px 20px; 
-            display: block; font-size: 0.6rem; text-align: center; 
-        }
+        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
+        .dropdown-content a { color: var(--white) !important; padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
         .dropdown-content a:hover { color: var(--gold) !important; background: #111; }
 
-        /* WhatsApp y Lang */
-        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.4s; }
-        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        /* WhatsApp Dorado */
+        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .header-contact:hover { background: var(--gold); }
         .header-contact:hover .whatsapp-link { color: var(--primary); }
 
@@ -76,50 +61,63 @@
         .mobile-overlay {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
             background: var(--primary); z-index: 2000; transition: 0.5s;
-            display: flex; flex-direction: column; padding: 30px; overflow-y: auto;
+            display: flex; flex-direction: column; padding: 40px; overflow-y: auto;
         }
         .mobile-overlay.active { right: 0; }
-        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .mobile-nav-list { list-style: none; text-align: center; }
-        .mobile-nav-list li { margin-bottom: 20px; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.6rem; color: var(--gold); text-transform: uppercase; text-decoration: none; }
-        
-        /* Submenú Móvil Acordeón */
+        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold); text-decoration: none; text-transform: uppercase; display: block; margin-bottom: 20px; }
         .mobile-sub-list { display: none; list-style: none; margin-top: 10px; background: #111; padding: 10px; }
         .mobile-sub-list.active { display: block; }
-        .mobile-sub-list a { font-size: 1rem !important; color: var(--white) !important; }
+        .mobile-sub-list a { font-size: 1.1rem !important; color: var(--white) !important; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); width: 100%; }
 
         /* Hero Video */
         .hero { 
-            height: 80vh; position: relative; width: 100%; overflow: hidden; 
-            background: #000; display: flex; justify-content: center; align-items: flex-end; 
+            height: 80vh; position: relative; width: 100%; 
+            overflow: hidden; background: #000; 
+            display: flex; justify-content: center; align-items: flex-end; 
         }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; }
-        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; }
-        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; }
+        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; max-width: 800px; }
+        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; line-height: 1.4; }
 
-        /* Infraestructura */
-        section { padding: 60px 10%; width: 100%; }
+        /* Secciones */
+        section { padding: 80px 10%; width: 100%; }
+        .flex-container { display: flex; align-items: center; gap: 60px; width: 100%; }
+        h2 { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin-bottom: 25px; text-transform: uppercase; }
+        p { line-height: 1.8; color: #555; font-size: 1.1rem; }
+
+        /* Infraestructura Grid */
         .section-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; }
-        .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .infra-col { background: #fff; padding: 20px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
-        .infra-img { width: 100%; height: 200px; object-fit: cover; margin-bottom: 15px; border: 1px solid #eee; }
+        .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; }
+        .infra-col { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .infra-col:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .infra-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
+        .infra-col h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; }
         .infra-list { list-style: none; text-align: left; width: 100%; }
-        .infra-list li { font-size: 0.8rem; line-height: 1.5; color: #444; margin-bottom: 5px; position: relative; padding-left: 15px; }
+        .infra-list li { font-size: 0.85rem; line-height: 1.6; color: #444; margin-bottom: 8px; position: relative; padding-left: 18px; }
         .infra-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        .footer-col p { color: #888; font-size: 0.9rem; margin-bottom: 10px; cursor: pointer; }
+        .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
+
         /* --- RESPONSIVE --- */
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
             :root { --header-h: 140px; }
             .nav-desktop { display: none; }
             .hamburger { display: block; }
             .logo-img { max-height: 70px; }
             .hero { height: 65vh; }
+            .flex-container { flex-direction: column; text-align: center; }
             .infra-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; text-align: center; }
             .whatsapp-link span { display: none; }
         }
     </style>
@@ -127,16 +125,13 @@
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="logo2.png" alt="Casa 1927" class="logo-img">
-        </div>
-        
+        <div class="logo-container"><img src="logo2.png" alt="Casa 1927" class="logo-img"></div>
         <nav class="nav-desktop">
             <ul>
                 <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
                 <li><a href="#eventos" data-i18n="nav-eventos">Eventos</a></li>
                 <li>
-                    <a href="javascript:void(0)" data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
+                    <a data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="#espacios" data-i18n="nav-espacios">Espacios</a></li>
                         <li><a href="#seguridad" data-i18n="nav-seguridad">Seguridad</a></li>
@@ -146,18 +141,13 @@
                 <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
                 <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
                 <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer;">
-                    <span onclick="changeLang('en')">ENG</span> | <span onclick="changeLang('es')">ESP</span>
+                    <span onclick="changeLang('en')" id="btn-en">ENG</span> | <span onclick="changeLang('es')" id="btn-es">ESP</span>
                 </li>
             </ul>
         </nav>
-
         <a href="https://wa.me/595974812265" target="_blank" class="header-contact">
-            <div class="whatsapp-link">
-                <i class="fab fa-whatsapp"></i>
-                <span>+595 974812265</span>
-            </div>
+            <div class="whatsapp-link"><i class="fab fa-whatsapp"></i> <span>+595 974812265</span></div>
         </a>
-
         <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
     </header>
 
@@ -168,8 +158,7 @@
         </div>
         <ul class="mobile-nav-list">
             <li><a href="#inicio" onclick="closeMenu()" data-i18n="nav-inicio">Inicio</a></li>
-            <li>
-                <a href="javascript:void(0)" onclick="toggleMobileSub()" data-i18n="nav-infra">Infraestructura <i class="fas fa-plus" style="font-size: 1rem; float: right;"></i></a>
+            <li><a href="javascript:void(0)" onclick="toggleMobileSub()" data-i18n="nav-infra">Infraestructura <i class="fas fa-plus" style="float:right"></i></a>
                 <ul class="mobile-sub-list" id="mobileSub">
                     <li><a href="#espacios" onclick="closeMenu()" data-i18n="nav-espacios">Espacios</a></li>
                     <li><a href="#seguridad" onclick="closeMenu()" data-i18n="nav-seguridad">Seguridad</a></li>
@@ -193,53 +182,90 @@
             </div>
         </div>
 
-        <section id="infraestructura">
+        <section id="nosotros">
+            <div class="flex-container">
+                <div style="flex:1;">
+                    <h2 data-i18n="nav-nosotros">Nosotros</h2>
+                    <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
+                </div>
+                <div style="flex:1; background: #eee; height: 400px; display: flex; align-items: center; justify-content: center;" data-i18n="placeholder-foto">FOTO AQUÍ</div>
+            </div>
+        </section>
+
+        <section id="espacios">
             <h2 class="section-title" data-i18n="nav-infra">Infraestructura</h2>
             <div class="infra-grid">
-                <div class="infra-col" id="espacios">
-                    <h3 data-i18n="nav-espacios" style="color:var(--gold); margin-bottom:10px;">Espacios</h3>
+                <div class="infra-col">
+                    <h3 data-i18n="nav-espacios">Espacios</h3>
                     <img src="FOTO1.jpeg" class="infra-img">
                     <ul class="infra-list">
                         <li data-i18n="e1">Propiedad de 7000m2</li>
                         <li data-i18n="e2">Casa con 3 niveles</li>
+                        <li data-i18n="e3">Patio de 1.500 m2</li>
+                        <li data-i18n="e4">Salón de 400 m2</li>
                         <li data-i18n="e5">Hermosos Jardines</li>
                     </ul>
                 </div>
-                <div class="infra-col" id="seguridad">
-                    <h3 data-i18n="nav-seguridad" style="color:var(--gold); margin-bottom:10px;">Seguridad</h3>
+                <div class="infra-col">
+                    <h3 data-i18n="nav-seguridad">Seguridad</h3>
                     <img src="seguridad.jpg" class="infra-img">
                     <ul class="infra-list">
+                        <li data-i18n="s1">Cobertura emergencias</li>
+                        <li data-i18n="s2">Generador Propio</li>
                         <li data-i18n="s3">Seguridad 24h</li>
-                        <li data-i18n="s4">Estacionamiento vigilado</li>
+                        <li data-i18n="s4">Estacionamiento interno</li>
                     </ul>
                 </div>
-                <div class="infra-col" id="personal">
-                    <h3 data-i18n="nav-personal" style="color:var(--gold); margin-bottom:10px;">Personal</h3>
+                <div class="infra-col">
+                    <h3 data-i18n="nav-personal">Personal</h3>
                     <img src="moza.jpg" class="infra-img">
                     <ul class="infra-list">
                         <li data-i18n="p1">Maitre y Mozos</li>
-                        <li data-i18n="p4">Atención personalizada</li>
+                        <li data-i18n="p2">Cantineros y Planners</li>
+                        <li data-i18n="p3">Limpieza permanente</li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
 
+    <footer>
+        <div class="footer-col">
+            <h4 data-i18n="nav-infra">Infraestructura</h4>
+            <p data-i18n="nav-espacios">Espacios</p>
+            <p data-i18n="nav-seguridad">Seguridad</p>
+            <p data-i18n="nav-personal">Personal</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="nav-servicios">Servicios</h4>
+            <p>Catering</p><p>Decoración</p><p>Sonido e Iluminación</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="nav-contacto">Contacto</h4>
+            <p>Asunción, Paraguay</p>
+            <p>info@casa1927.com</p>
+            <p>+595 974812265</p>
+        </div>
+        <div class="footer-col">
+            <div class="footer-logo-box">
+                <img src="logo2.png" alt="Casa 1927" style="max-height: 60px; filter: brightness(0) invert(1);">
+            </div>
+        </div>
+    </footer>
+
     <script>
         const translations = {
             es: {
-                "nav-inicio": "Inicio", "nav-eventos": "Eventos", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
+                "head-title": "Casa 1927 | Exclusive Venue", "nav-inicio": "Inicio", "nav-eventos": "Eventos", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
                 "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
-                "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e5": "Hermosos Jardines",
-                "s3": "Seguridad 24h", "s4": "Estacionamiento vigilado",
-                "p1": "Maitre y Mozos", "p4": "Atención personalizada"
+                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.",
+                "placeholder-foto": "FOTO AQUÍ", "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e3": "Patio de 1.500 m2", "e4": "Salón de 400 m2", "e5": "Hermosos Jardines", "s1": "Cobertura emergencias", "s2": "Generador Propio", "s3": "Seguridad 24h", "s4": "Estacionamiento interno", "p1": "Maitre y Mozos", "p2": "Cantineros y Planners", "p3": "Limpieza permanente"
             },
             en: {
-                "nav-inicio": "Home", "nav-eventos": "Events", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
+                "head-title": "Casa 1927 | Exclusive Venue", "nav-inicio": "Home", "nav-eventos": "Events", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
                 "hero-title": "Today you can be the protagonist of this magical adventure.",
-                "e1": "7000m2 Property", "e2": "3-level House", "e5": "Beautiful Gardens",
-                "s3": "24h Security", "s4": "Secure Parking",
-                "p1": "Maitre & Staff", "p4": "Personalized Service"
+                "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments.",
+                "placeholder-foto": "PHOTO HERE", "e1": "7000m2 Property", "e2": "3-level House", "e3": "1,500 m2 Yard", "e4": "400 m2 Hall", "e5": "Beautiful Gardens", "s1": "Emergency Coverage", "s2": "Power Generator", "s3": "24h Security", "s4": "Internal Parking", "p1": "Maitre & Staff", "p2": "Bartenders & Planners", "p3": "Permanent Cleaning"
             }
         };
 
@@ -249,16 +275,16 @@
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
+            if(lang === 'es') document.getElementById('btn-es').classList.add('active');
         }
 
         const menu = document.getElementById('mobileMenu');
         document.getElementById('openBtn').onclick = () => menu.classList.add('active');
         document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
         function closeMenu() { menu.classList.remove('active'); }
-
-        function toggleMobileSub() {
-            document.getElementById('mobileSub').classList.toggle('active');
-        }
+        function toggleMobileSub() { document.getElementById('mobileSub').classList.toggle('active'); }
 
         window.onload = () => { changeLang(localStorage.getItem('lang') || 'es'); };
     </script>
