@@ -19,6 +19,7 @@
             --header-h: 200px; 
         }
 
+        /* --- BASE RESPONSIVA --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; overflow-x: hidden; }
         body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; width: 100%; }
@@ -31,15 +32,14 @@
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #eee;
         }
         
-        .logo-container { height: 100%; display: flex; align-items: center; max-width: 300px; }
+        .logo-container { height: 100%; display: flex; align-items: center; max-width: 280px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop li { position: relative; padding: 25px 0; } 
         nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
         nav.nav-desktop a:hover { color: var(--gold); }
 
-        /* Submenú Desktop */
+        /* Dropdown Desktop */
         .dropdown-content {
             opacity: 0; visibility: hidden; position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
@@ -48,18 +48,10 @@
             z-index: 10; padding: 15px 0; transition: 0.3s;
         }
         nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
-        .dropdown-content a { color: var(--primary); padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
 
         /* WhatsApp */
         .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .header-contact:hover { background: var(--gold); color: white; }
-        .header-contact:hover .whatsapp-link, .header-contact:hover i { color: white; }
-
-        /* Idioma UI */
-        .lang-switch { display: flex; gap: 8px; color: var(--gold); font-size: 0.75rem; cursor: pointer; }
-        .lang-btn { opacity: 0.5; transition: 0.3s; }
-        .lang-btn.active { opacity: 1; font-weight: 700; text-decoration: underline; }
 
         /* Hamburguesa */
         .hamburger { cursor: pointer; color: var(--primary); font-size: 1.8rem; display: none; }
@@ -72,13 +64,13 @@
         }
         .mobile-overlay.active { right: 0; }
         .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .mobile-nav-list { list-style: none; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.5rem; text-decoration: none; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 20px; }
+        .mobile-nav-list { list-style: none; text-align: center; }
+        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; text-decoration: none; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 20px; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); width: 100%; }
 
-        /* HERO CON VIDEO RESTAURADO */
+        /* HERO CON VIDEO Y TEXTO EN LA BASE */
         .hero { 
             height: 80vh; position: relative; width: 100%; 
             overflow: hidden; background: #000; 
@@ -86,52 +78,58 @@
         }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; }
-        
-        .hero-info { 
-            position: relative; z-index: 3; text-align: center; 
-            padding-bottom: 50px; width: 90%; max-width: 900px; 
-        }
-        .hero-title { 
-            color: #f0e6d6; font-family: var(--font-title); 
-            font-size: clamp(1.4rem, 4vw, 2.5rem); 
-            font-weight: 200; /* Texto Fino */
-            letter-spacing: 2px; line-height: 1.4; 
-        }
+        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; max-width: 800px; }
+        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; line-height: 1.4; }
 
         /* SECCIONES FLEX */
         section { padding: 80px 10%; width: 100%; }
-        .flex-container { display: flex; align-items: center; gap: 60px; }
-        h2 { font-family: var(--font-title); font-size: 3rem; color: var(--gold); margin-bottom: 25px; text-transform: uppercase; }
-        p { line-height: 1.8; color: #555; font-size: 1.1rem; }
+        .flex-container { display: flex; align-items: center; gap: 60px; width: 100%; }
+        
+        /* TÍTULO INFRAESTRUCTURA SIN RECORTE */
+        .section-title { 
+            font-family: var(--font-title); 
+            font-size: clamp(1.8rem, 8vw, 3.5rem); /* Ajuste automático para no desbordar */
+            color: var(--gold); 
+            margin-bottom: 40px; 
+            text-transform: uppercase; 
+            text-align: center;
+            width: 100%;
+        }
 
-        /* INFRAESTRUCTURA GRID (RESTAURADA) */
+        /* GRID INFRAESTRUCTURA */
         .infra-grid { 
-            display: grid; grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; margin-top: 50px; width: 100%;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            width: 100%;
         }
         .infra-col { 
-            background: #fff; padding: 30px; border: 1px solid #eee; 
+            background: #fff; padding: 25px; border: 1px solid #eee; 
             display: flex; flex-direction: column; align-items: center; 
         }
         .infra-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
+        .infra-col h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; }
         .infra-list { list-style: none; text-align: left; width: 100%; }
         .infra-list li { font-size: 0.85rem; line-height: 1.6; color: #444; margin-bottom: 8px; position: relative; padding-left: 18px; }
         .infra-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
         /* FOOTER */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
+        footer { background: var(--primary); color: var(--white); padding: 60px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
 
-        /* --- RESPONSIVE --- */
+        /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
         @media (max-width: 1024px) {
             :root { --header-h: 140px; }
+            header { padding: 0 5%; }
             .nav-desktop { display: none; }
             .hamburger { display: block; }
-            .logo-img { max-height: 80px; }
+            .logo-img { max-height: 70px; }
+            .hero { height: 60vh; }
+            section { padding: 50px 5%; }
             .flex-container { flex-direction: column; text-align: center; }
             .infra-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
-            .whatsapp-link span { display: none; }
+            .whatsapp-link span { display: none; } /* Solo icono en móviles pequeños */
         }
     </style>
 </head>
@@ -153,9 +151,8 @@
                 </li>
                 <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
                 <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
-                <li class="lang-switch">
-                    <span class="lang-btn" onclick="changeLang('en')" id="btn-en">ENG</span> | 
-                    <span class="lang-btn" onclick="changeLang('es')" id="btn-es">ESP</span>
+                <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer;">
+                    <span onclick="changeLang('en')" id="btn-en">ENG</span> | <span onclick="changeLang('es')" id="btn-es">ESP</span>
                 </li>
             </ul>
         </nav>
@@ -175,7 +172,7 @@
             <li><a href="#espacios" onclick="closeMenu()" data-i18n="nav-infra">Infraestructura</a></li>
             <li><a href="#servicios" onclick="closeMenu()" data-i18n="nav-servicios">Servicios</a></li>
             <li><a href="#nosotros" onclick="closeMenu()" data-i18n="nav-nosotros">Nosotros</a></li>
-            <li style="margin-top: 20px;"><span onclick="changeLang('en')">ENGLISH</span> | <span onclick="changeLang('es')">ESPAÑOL</span></li>
+            <li style="margin-top: 30px;"><span onclick="changeLang('en')">ENGLISH</span> | <span onclick="changeLang('es')">ESPAÑOL</span></li>
         </ul>
     </div>
 
@@ -196,16 +193,18 @@
                     <h2 data-i18n="nav-nosotros">Nosotros</h2>
                     <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
                 </div>
-                <div style="flex:1; background: #eee; height: 400px; display: flex; align-items: center; justify-content: center;" data-i18n="placeholder-foto">FOTO AQUÍ</div>
+                <div style="flex:1;">
+                    <div class="foto-placeholder" data-i18n="placeholder-foto">FOTO AQUÍ</div>
+                </div>
             </div>
         </section>
 
         <section id="espacios">
-            <h2 style="text-align: center;" data-i18n="nav-infra">Infraestructura</h2>
+            <h2 class="section-title" data-i18n="nav-infra">Infraestructura</h2>
             <div class="infra-grid">
                 <div class="infra-col">
                     <h3 data-i18n="nav-espacios">Espacios</h3>
-                    <img src="FOTO1.jpeg" class="infra-img">
+                    <img src="FOTO1.jpeg" alt="Espacios" class="infra-img">
                     <ul class="infra-list">
                         <li data-i18n="e1">Propiedad de 7000m2</li>
                         <li data-i18n="e2">Casa con 3 niveles</li>
@@ -216,7 +215,7 @@
                 </div>
                 <div class="infra-col">
                     <h3 data-i18n="nav-seguridad">Seguridad</h3>
-                    <img src="seguridad.jpg" class="infra-img">
+                    <img src="seguridad.jpg" alt="Seguridad" class="infra-img">
                     <ul class="infra-list">
                         <li data-i18n="s1">Cobertura emergencias</li>
                         <li data-i18n="s2">Generador Propio</li>
@@ -226,7 +225,7 @@
                 </div>
                 <div class="infra-col">
                     <h3 data-i18n="nav-personal">Personal</h3>
-                    <img src="moza.jpg" class="infra-img">
+                    <img src="moza.jpg" alt="Personal" class="infra-img">
                     <ul class="infra-list">
                         <li data-i18n="p1">Maitre y Mozos</li>
                         <li data-i18n="p2">Cantineros y Planners</li>
@@ -237,11 +236,11 @@
         </section>
     </main>
 
-    <footer style="background: var(--primary); color: white; padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+    <footer>
         <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p></div>
         <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p>Catering</p></div>
-        <div class="footer-col"><h4 data-i18n="nav-contacto">Contacto</h4><p>Asunción, Paraguay</p></div>
-        <div class="footer-col" style="background: #111; padding: 15px;"><img src="logo.png" style="max-height: 60px; filter: invert(1);"></div>
+        <div class="footer-col"><h4 data-i18n="nav-nosotros">Nosotros</h4><p>Nuestra Historia</p></div>
+        <div class="footer-col"><img src="logo.png" style="max-height: 50px; filter: invert(1);"></div>
     </footer>
 
     <script>
@@ -270,9 +269,6 @@
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
-            if(lang === 'es') document.getElementById('btn-es').classList.add('active');
         }
 
         const menu = document.getElementById('mobileMenu');
