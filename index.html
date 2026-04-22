@@ -10,7 +10,7 @@
     
     <style>
         :root {
-            --primary: #0c0c0c;
+            --primary: #000000; /* Negro Puro */
             --gold: #c5a059;
             --white: #ffffff;
             --light-grey: #f4f4f4;
@@ -22,55 +22,56 @@
         /* --- BASE RESPONSIVA --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { font-family: var(--font-body); background: var(--white); color: var(--primary); overflow-x: hidden; width: 100%; }
+        body { font-family: var(--font-body); background: var(--white); color: #0c0c0c; overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER --- */
+        /* --- HEADER NEGRO Y DORADO --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
-            background: var(--white); display: flex;
+            background: var(--primary); /* Fondo Negro */
+            display: flex;
             justify-content: space-between; align-items: center;
-            padding: 0 4%; z-index: 1000; border-bottom: 1px solid #eee;
+            padding: 0 4%; z-index: 1000; 
+            border-bottom: 1px solid #222; /* Borde sutil oscuro */
         }
         
         .logo-container { height: 100%; display: flex; align-items: center; max-width: 280px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
+        /* Menú Dorado */
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop a { text-decoration: none; color: var(--primary); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
-        nav.nav-desktop a:hover { color: var(--gold); }
-
-        /* Dropdown Desktop */
-        .dropdown-content {
-            opacity: 0; visibility: hidden; position: absolute;
-            top: 100%; left: 50%; transform: translateX(-50%);
-            background-color: var(--white); min-width: 200px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--gold);
-            z-index: 10; padding: 15px 0; transition: 0.3s;
+        nav.nav-desktop a { 
+            text-decoration: none; 
+            color: var(--gold); /* Letras Doradas */
+            font-size: 0.68rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1.2px; 
+            transition: 0.3s; 
         }
-        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
+        nav.nav-desktop a:hover { color: var(--white); }
 
-        /* WhatsApp */
+        /* WhatsApp Dorado */
         .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .whatsapp-link { text-decoration: none; color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .header-contact:hover { background: var(--gold); }
+        .header-contact:hover .whatsapp-link { color: var(--primary); }
 
-        /* Hamburguesa */
-        .hamburger { cursor: pointer; color: var(--primary); font-size: 1.8rem; display: none; }
+        /* Hamburguesa Dorada */
+        .hamburger { cursor: pointer; color: var(--gold); font-size: 1.8rem; display: none; }
 
         /* --- MENÚ MÓVIL --- */
         .mobile-overlay {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-            background: var(--white); z-index: 2000; transition: 0.5s;
+            background: var(--primary); z-index: 2000; transition: 0.5s;
             display: flex; flex-direction: column; padding: 40px;
         }
         .mobile-overlay.active { right: 0; }
         .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .mobile-nav-list { list-style: none; text-align: center; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; text-decoration: none; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 20px; }
+        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; text-decoration: none; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 20px; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); width: 100%; }
 
-        /* HERO CON VIDEO Y TEXTO EN LA BASE */
+        /* HERO VIDEO CON CAPA 50% */
         .hero { 
             height: 80vh; position: relative; width: 100%; 
             overflow: hidden; background: #000; 
@@ -81,43 +82,18 @@
         .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; max-width: 800px; }
         .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; line-height: 1.4; }
 
-        /* SECCIONES FLEX */
+        /* INFRAESTRUCTURA GRID */
         section { padding: 80px 10%; width: 100%; }
-        .flex-container { display: flex; align-items: center; gap: 60px; width: 100%; }
-        
-        /* TÍTULO INFRAESTRUCTURA SIN RECORTE */
-        .section-title { 
-            font-family: var(--font-title); 
-            font-size: clamp(1.8rem, 8vw, 3.5rem); /* Ajuste automático para no desbordar */
-            color: var(--gold); 
-            margin-bottom: 40px; 
-            text-transform: uppercase; 
-            text-align: center;
-            width: 100%;
-        }
-
-        /* GRID INFRAESTRUCTURA */
-        .infra-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-            width: 100%;
-        }
-        .infra-col { 
-            background: #fff; padding: 25px; border: 1px solid #eee; 
-            display: flex; flex-direction: column; align-items: center; 
-        }
+        .section-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); margin-bottom: 40px; text-transform: uppercase; text-align: center; width: 100%; }
+        .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; }
+        .infra-col { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
         .infra-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
         .infra-col h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; }
         .infra-list { list-style: none; text-align: left; width: 100%; }
         .infra-list li { font-size: 0.85rem; line-height: 1.6; color: #444; margin-bottom: 8px; position: relative; padding-left: 18px; }
         .infra-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
-        /* FOOTER */
-        footer { background: var(--primary); color: var(--white); padding: 60px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .footer-col h4 { color: var(--gold); margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-
-        /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             :root { --header-h: 140px; }
             header { padding: 0 5%; }
@@ -125,18 +101,18 @@
             .hamburger { display: block; }
             .logo-img { max-height: 70px; }
             .hero { height: 60vh; }
-            section { padding: 50px 5%; }
-            .flex-container { flex-direction: column; text-align: center; }
             .infra-grid { grid-template-columns: 1fr; }
-            footer { grid-template-columns: 1fr; text-align: center; }
-            .whatsapp-link span { display: none; } /* Solo icono en móviles pequeños */
+            .whatsapp-link span { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container"><img src="logo.png" alt="Casa 1927" class="logo-img"></div>
+        <div class="logo-container">
+            <img src="logo2.png" alt="Casa 1927" class="logo-img">
+        </div>
+        
         <nav class="nav-desktop">
             <ul>
                 <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
@@ -156,15 +132,20 @@
                 </li>
             </ul>
         </nav>
+
         <a href="https://wa.me/595974812265" target="_blank" class="header-contact">
-            <div class="whatsapp-link"><i class="fab fa-whatsapp"></i> <span>+595 974812265</span></div>
+            <div class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i>
+                <span>+595 974812265</span>
+            </div>
         </a>
+
         <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
     </header>
 
     <div class="mobile-overlay" id="mobileMenu">
         <div class="mobile-header">
-            <img src="logo.png" alt="Logo" style="max-height: 50px;">
+            <img src="logo2.png" alt="Logo" style="max-height: 50px;">
             <div class="hamburger" id="closeBtn"><i class="fas fa-times"></i></div>
         </div>
         <ul class="mobile-nav-list">
@@ -186,18 +167,6 @@
                 <h1 class="hero-title" data-i18n="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1>
             </div>
         </div>
-
-        <section id="nosotros">
-            <div class="flex-container">
-                <div style="flex:1;">
-                    <h2 data-i18n="nav-nosotros">Nosotros</h2>
-                    <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
-                </div>
-                <div style="flex:1;">
-                    <div class="foto-placeholder" data-i18n="placeholder-foto">FOTO AQUÍ</div>
-                </div>
-            </div>
-        </section>
 
         <section id="espacios">
             <h2 class="section-title" data-i18n="nav-infra">Infraestructura</h2>
@@ -236,11 +205,11 @@
         </section>
     </main>
 
-    <footer>
+    <footer style="background: var(--primary); color: white; padding: 60px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
         <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p></div>
         <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p>Catering</p></div>
         <div class="footer-col"><h4 data-i18n="nav-nosotros">Nosotros</h4><p>Nuestra Historia</p></div>
-        <div class="footer-col"><img src="logo.png" style="max-height: 50px; filter: invert(1);"></div>
+        <div class="footer-col"><img src="logo2.png" style="max-height: 50px; filter: brightness(0) invert(1);"></div>
     </footer>
 
     <script>
@@ -248,7 +217,6 @@
             es: {
                 "nav-inicio": "Inicio", "nav-eventos": "Eventos", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
                 "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
-                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.",
                 "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e3": "Patio de 1.500 m2", "e4": "Salón de 400 m2", "e5": "Hermosos Jardines",
                 "s1": "Cobertura emergencias", "s2": "Generador Propio", "s3": "Seguridad 24h", "s4": "Estacionamiento interno",
                 "p1": "Maitre y Mozos", "p2": "Cantineros y Planners", "p3": "Limpieza permanente"
@@ -256,7 +224,6 @@
             en: {
                 "nav-inicio": "Home", "nav-eventos": "Events", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
                 "hero-title": "Today you can be the protagonist of this magical adventure.",
-                "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments.",
                 "e1": "7000m2 Property", "e2": "3-level House", "e3": "1,500 m2 Yard", "e4": "400 m2 Hall", "e5": "Beautiful Gardens",
                 "s1": "Emergency Coverage", "s2": "Power Generator", "s3": "24h Security", "s4": "Internal Parking",
                 "p1": "Maitre & Waiters", "p2": "Bartenders & Planners", "p3": "Permanent Cleaning"
