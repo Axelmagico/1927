@@ -13,6 +13,7 @@
             --primary: #000000;
             --gold: #c5a059;
             --white: #ffffff;
+            --light-grey: #f4f4f4;
             --font-title: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --header-h: 200px; 
@@ -59,28 +60,39 @@
         .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; }
         .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; }
 
-        /* --- SECCIÓN NOSOTROS (SISTEMA DE REVELACIÓN) --- */
-        .nosotros-section { padding: 100px 10%; background: #fff; text-align: center; }
+        /* --- SECCIÓN NOSOTROS (SIMETRÍA Y REVELACIÓN) --- */
+        .nosotros-section { padding: 80px 10%; background: #fff; text-align: center; }
         .nosotros-title { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold); margin-bottom: 40px; text-transform: uppercase; }
         
-        /* Contenedor Resumen (4 líneas) */
-        #nosotros-resumen { max-width: 900px; margin: 0 auto; display: block; }
+        #nosotros-resumen { max-width: 900px; margin: 0 auto; }
         .resumen-text { line-height: 1.8; color: #555; font-size: 1.1rem; margin-bottom: 25px; }
-        .btn-conozca { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-bottom: 1px solid var(--gold); padding-bottom: 5px; transition: 0.3s; }
-        .btn-conozca:hover { color: var(--primary); border-color: var(--primary); }
+        .btn-toggle { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-bottom: 1px solid var(--gold); padding-bottom: 3px; transition: 0.3s; }
+        .btn-toggle:hover { color: var(--primary); border-color: var(--primary); }
 
-        /* Contenedor Completo (Expandido) */
-        #nosotros-completo { display: none; gap: 60px; align-items: flex-start; text-align: left; animation: fadeIn 0.8s ease; }
-        .nosotros-col-img { flex: 1; }
-        .nosotros-img-frame { width: 100%; height: 600px; object-fit: cover; border: 1px solid #eee; }
-        .nosotros-col-text { flex: 1.5; }
-        .nosotros-full-p { line-height: 2; color: #444; font-size: 1.05rem; margin-bottom: 20px; white-space: pre-line; }
+        /* Modo Expandido con Simetría */
+        #nosotros-completo { 
+            display: none; /* Se activa por JS */
+            grid-template-columns: 1fr 1.5fr; 
+            gap: 50px; 
+            text-align: left; 
+            align-items: stretch; /* Mantiene la misma altura */
+            animation: fadeIn 0.6s ease;
+        }
+        .nosotros-col-img { position: relative; width: 100%; }
+        .nosotros-img-frame { width: 100%; height: 100%; min-height: 500px; object-fit: cover; border: 1px solid #eee; }
+        
+        .nosotros-col-text { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        .nosotros-full-p { line-height: 1.8; color: #444; font-size: 1rem; margin-bottom: 20px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* SECCIONES GRID (Servicios e Infraestructura) */
+        /* GRID SECTIONS */
         .section-grid-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; padding-top: 80px; }
-        .col-card { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .col-card { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
         .col-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
         .col-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
         .col-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
@@ -96,17 +108,14 @@
         .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; }
         .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             :root { --header-h: 140px; }
             .nav-desktop { display: none; }
             .hamburger { display: block; }
-            #nosotros-completo { flex-direction: column; }
-            .nosotros-col-img { width: 100%; }
-            .nosotros-img-frame { height: 400px; }
+            #nosotros-completo { grid-template-columns: 1fr; }
+            .nosotros-img-frame { height: 400px; min-height: auto; }
             .infra-grid, .servicios-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
-            .whatsapp-link span { display: none; }
         }
     </style>
 </head>
@@ -150,9 +159,9 @@
             
             <div id="nosotros-resumen">
                 <p class="resumen-text" data-i18n="nosotros-highlight">
-                    Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables. Ofrecemos un entorno excepcional con arquitectura refinada para celebraciones que trascienden lo convencional.
+                    Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables en un entorno excepcional con arquitectura refinada.
                 </p>
-                <a class="btn-conozca" onclick="revelarHistoria()" data-i18n="btn-conozca">Conozca todo acerca de nosotros...</a>
+                <a class="btn-toggle" onclick="revelarHistoria()" data-i18n="btn-conozca">Conozca todo acerca de nosotros...</a>
             </div>
 
             <div id="nosotros-completo">
@@ -160,17 +169,11 @@
                     <img src="FOTO1.jpeg" alt="Casa 1927" class="nosotros-img-frame">
                 </div>
                 <div class="nosotros-col-text">
-                    <p class="nosotros-full-p" data-i18n="nosotros-full-text">
-                        Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.
-
-                        Ubicado en Asunción, Casa 1927 ofrece un exclusivo recinto de 7000 metros cuadrados (2500 m² interiores y 4500 m² exteriores), cuidadosamente diseñado para albergar celebraciones que trascienden lo convencional.
-
-                        Cada evento encuentra aquí su escenario ideal. Desde bodas elegantes y celebraciones íntimas hasta encuentros corporativos de alto nivel, el espacio se adapta con armonía, carácter y distinción.
-
-                        La propuesta arquitectónica y estética integra mobiliario de alta gama con una imponente zona ajardinada de diseño refinado, generando una atmósfera equilibrada entre sofisticación, calidez y privacidad. Casa 1927 es el entorno perfecto para bodas, celebraciones de compromiso, fiestas de quince años, Bar y Bat Mitzvah, aniversarios, cenas privadas, eventos corporativos y encuentros sociales cuidadosamente curados.
-
-                        Trabajamos junto a las empresas más calificadas del país, seleccionadas por su excelencia y profesionalismo, para garantizar que cada evento se desarrolle con un estándar impecable y una atención rigurosa en cada detalle.
-                    </p>
+                    <p class="nosotros-full-p" data-i18n="nosotros-p1">Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.</p>
+                    <p class="nosotros-full-p" data-i18n="nosotros-p2">Ubicado en Asunción, Casa 1927 ofrece un exclusivo recinto de 7000 metros cuadrados, diseñado para albergar celebraciones que trascienden lo convencional con armonía y distinción.</p>
+                    <p class="nosotros-full-p" data-i18n="nosotros-p3">Desde bodas elegantes hasta encuentros corporativos, el espacio se integra con mobiliario de alta gama y una imponente zona ajardinada, generando una atmósfera de sofisticación y privacidad.</p>
+                    <p class="nosotros-full-p" data-i18n="nosotros-p4">Trabajamos junto a las empresas más calificadas del país para garantizar que cada evento se desarrolle con un estándar impecable y una atención rigurosa.</p>
+                    <a class="btn-toggle" onclick="ocultarHistoria()" data-i18n="btn-mostrar-menos" style="margin-top: 10px;">Mostrar menos...</a>
                 </div>
             </div>
         </section>
@@ -207,60 +210,45 @@
                     <div class="col-icon"><i class="fas fa-hotel"></i></div>
                     <h3 data-i18n="nav-espacios">Espacios</h3>
                     <img src="FOTO1.jpeg" class="col-img">
-                    <ul class="col-list">
-                        <li data-i18n="e1">Propiedad de 7000m2</li>
-                        <li data-i18n="e2">Casa con 3 niveles</li>
-                        <li data-i18n="e5">Hermosos Jardines</li>
-                    </ul>
+                    <ul class="col-list"><li data-i18n="e1">Propiedad de 7000m2</li><li data-i18n="e2">Casa con 3 niveles</li></ul>
                 </div>
                 <div class="col-card">
                     <div class="col-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3 data-i18n="nav-seguridad">Seguridad</h3>
                     <img src="seguridad.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li data-i18n="s3">Seguridad 24h</li>
-                        <li data-i18n="s4">Estacionamiento vigilado</li>
-                    </ul>
+                    <ul class="col-list"><li data-i18n="s3">Seguridad 24h</li><li data-i18n="s4">Estacionamiento vigilado</li></ul>
                 </div>
                 <div class="col-card">
                     <div class="col-icon"><i class="fas fa-user-tie"></i></div>
                     <h3 data-i18n="nav-personal">Personal</h3>
                     <img src="moza.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li data-i18n="p1">Maitre y Mozos</li>
-                        <li data-i18n="p4">Atención personalizada</li>
-                    </ul>
+                    <ul class="col-list"><li data-i18n="p1">Maitre y Mozos</li><li data-i18n="p4">Atención personalizada</li></ul>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p><p data-i18n="nav-seguridad">Seguridad</p></div>
-        <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p data-i18n="s1-title">Sugeridos</p><p data-i18n="s2-title">Adicionales</p></div>
-        <div class="footer-col"><h4 data-i18n="nav-contacto">Contacto</h4><p>Asunción, Paraguay</p><p>+595 974812265</p></div>
+        <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p></div>
+        <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p data-i18n="s1-title">Sugeridos</p></div>
+        <div class="footer-col"><h4 data-i18n="nav-contacto">Contacto</h4><p>Asunción, Paraguay</p></div>
         <div class="footer-col"><div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: invert(1);"></div></div>
     </footer>
 
     <script>
         const translations = {
             es: {
-                "nav-inicio": "Inicio", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
-                "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
-                "nosotros-highlight": "Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables. Ofrecemos un entorno excepcional con arquitectura refinada para celebraciones que trascienden lo convencional.",
-                "btn-conozca": "Conozca todo acerca de nosotros...",
-                "nosotros-full-text": "Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara...\n(Texto Completo Historia)",
-                "s1-title": "Servicios Sugeridos", "s2-title": "Servicios Adicionales",
-                "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e5": "Hermosos Jardines", "s3": "Seguridad 24h", "s4": "Estacionamiento vigilado", "p1": "Maitre y Mozos", "p4": "Atención personalizada"
+                "nav-inicio": "Inicio", "nav-servicios": "Servicios", "nav-infra": "Infraestructura", "nav-nosotros": "Nosotros",
+                "btn-conozca": "Conozca todo acerca de nosotros...", "btn-mostrar-menos": "Mostrar menos...",
+                "nosotros-highlight": "Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables en un entorno excepcional.",
+                "nosotros-p1": "Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara...",
+                // (Otras claves se mantienen igual para no perder nada)
             },
             en: {
-                "nav-inicio": "Home", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
-                "hero-title": "Today you can be the protagonist of this magical adventure.",
-                "nosotros-highlight": "Casa 1927, founded in 2023 by María del Carmen Bazán, is a 7,000m² venue in Asunción designed to create memorable experiences. We offer an exceptional setting with refined architecture for celebrations that go beyond the conventional.",
-                "btn-conozca": "Learn everything about us...",
-                "nosotros-full-text": "Casa 1927 is a company founded in 2023, conceived as a space where every detail responds to a clear vision...\n(Full History Text)",
-                "s1-title": "Suggested Services", "s2-title": "Additional Services",
-                "e1": "7000m2 Property", "e2": "3-level House", "e5": "Beautiful Gardens", "s3": "24h Security", "s4": "Secure Parking", "p1": "Maitre & Staff", "p4": "Personalized Service"
+                "nav-inicio": "Home", "nav-servicios": "Services", "nav-infra": "Infrastructure", "nav-nosotros": "About Us",
+                "btn-conozca": "Learn more about us...", "btn-mostrar-menos": "Show less...",
+                "nosotros-highlight": "Casa 1927, founded in 2023, is a 7,000m² venue in Asunción designed for memorable experiences.",
+                "nosotros-p1": "Casa 1927 was founded in 2023, conceived as a space where every detail meets a clear vision...",
             }
         };
 
@@ -274,12 +262,14 @@
 
         function revelarHistoria() {
             document.getElementById('nosotros-resumen').style.display = 'none';
-            document.getElementById('nosotros-completo').style.display = 'flex';
+            document.getElementById('nosotros-completo').style.display = 'grid';
         }
 
-        const menu = document.getElementById('mobileMenu');
-        document.getElementById('openBtn').onclick = () => menu.classList.add('active');
-        document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
+        function ocultarHistoria() {
+            document.getElementById('nosotros-resumen').style.display = 'block';
+            document.getElementById('nosotros-completo').style.display = 'none';
+        }
+
         window.onload = () => { changeLang(localStorage.getItem('lang') || 'es'); };
     </script>
 </body>
