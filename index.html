@@ -28,20 +28,7 @@
         body { top: 0px !important; position: static !important; }
         .goog-te-balloon-frame { display: none !important; }
         #google_translate_element { display: none; }
-        
-        /* Evita que las etiquetas font inyectadas rompan el layout */
-        font { 
-            background-color: transparent !important; 
-            box-shadow: none !important; 
-            display: inline !important; 
-            vertical-align: inherit !important;
-            font-family: inherit !important;
-            font-size: inherit !important;
-            color: inherit !important;
-        }
-        
-        /* Previene que el traductor cambie el tamaño de contenedores críticos */
-        .skiptranslate { display: inline !important; }
+        font { background-color: transparent !important; box-shadow: none !important; display: inline !important; vertical-align: inherit !important; font-family: inherit !important; font-size: inherit !important; color: inherit !important; }
 
         /* --- HEADER PREMIUM --- */
         header {
@@ -53,9 +40,9 @@
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop li { position: relative; }
         nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; white-space: nowrap; }
-        
+        nav.nav-desktop a:hover { color: var(--white); }
+
         .dropdown-content {
             opacity: 0; visibility: hidden; position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
@@ -66,13 +53,26 @@
         nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
         .dropdown-content a { color: var(--white); padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
 
-        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.4s; }
         .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .hamburger { cursor: pointer; color: var(--gold); font-size: 1.8rem; display: none; }
+
+        /* --- MENÚ MÓVIL --- */
+        .mobile-overlay {
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+            background: var(--primary); z-index: 2000; transition: 0.5s;
+            display: flex; flex-direction: column; padding: 40px; overflow-y: auto;
+        }
+        .mobile-overlay.active { right: 0; }
+        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .mobile-nav-list { list-style: none; text-align: center; }
+        .mobile-nav-list li { margin-bottom: 25px; }
+        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.6rem; color: var(--gold); text-decoration: none; text-transform: uppercase; }
 
         /* --- CUERPO --- */
         main { margin-top: 0; width: 100%; }
 
+        /* HERO */
         .hero { 
             height: 90vh; position: relative; width: 100%; overflow: hidden; background: #000; 
             display: flex; justify-content: center; align-items: flex-end; 
@@ -93,11 +93,13 @@
             display: none; grid-template-columns: 1fr 1.5fr; gap: 50px; text-align: left; align-items: stretch; animation: fadeIn 0.6s ease;
         }
         .nosotros-img-frame { width: 100%; height: 100%; min-height: 550px; object-fit: cover; border: 1px solid #eee; }
+        .nosotros-col-text { display: flex; flex-direction: column; justify-content: space-between; padding: 10px 0; }
         .nosotros-full-p { line-height: 1.7; color: #444; font-size: 0.95rem; margin-bottom: 15px; white-space: pre-line; }
 
-        /* GRIDS GENERALES */
+        /* GRIDS */
         .section-grid-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; padding-top: 60px; }
         .col-card { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; width: 100%; }
+        .col-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .col-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
         .col-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
         .col-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
@@ -107,6 +109,22 @@
 
         .servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; }
         .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; }
+
+        /* --- CONTACTO --- */
+        .contact-section { padding: 80px 10%; background: var(--light-grey); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: stretch; }
+        .map-container { width: 100%; min-height: 500px; border: 1px solid #ddd; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.1); }
+
+        .contact-form { display: flex; flex-direction: column; gap: 15px; background: #fff; padding: 30px; border: 1px solid #eee; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { display: flex; flex-direction: column; text-align: left; }
+        .form-group label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+        .form-group input, .form-group select { padding: 12px; border: 1px solid #ddd; font-family: var(--font-body); font-size: 0.9rem; }
+        .error-field { border: 1px solid #ff4d4d !important; background: #fff5f5 !important; }
+        .btn-enviar { background: var(--primary); color: var(--gold); border: 1px solid var(--gold); padding: 15px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.4s; letter-spacing: 2px; margin-top: 10px; }
+        .btn-enviar:hover { background: var(--gold); color: var(--primary); }
+        .h-pot { display: none; }
 
         /* FOOTER */
         footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
@@ -118,12 +136,10 @@
         /* RESPONSIVE */
         @media (max-width: 1100px) {
             :root { --header-h: 140px; }
-            header { padding: 0 5%; }
             .nav-desktop, .whatsapp-link span { display: none; }
             .hamburger { display: block; }
             .logo-img { max-height: 70px; }
-            #nosotros-completo { grid-template-columns: 1fr; }
-            .infra-grid, .servicios-grid { grid-template-columns: 1fr; }
+            #nosotros-completo, .contact-grid, .infra-grid, .servicios-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
@@ -147,7 +163,7 @@
                     </ul>
                 </li>
                 <li><a href="#nosotros">Nosotros</a></li>
-                <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer; white-space: nowrap;">
+                <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer;">
                     <span onclick="triggerGoogle('en')" class="skiptranslate">ENG</span> | <span onclick="triggerGoogle('es')" class="skiptranslate">ESP</span>
                 </li>
             </ul>
@@ -157,6 +173,15 @@
         </a>
         <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
     </header>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <div class="mobile-header"><img src="logo2.png" style="max-height: 50px;"><div class="hamburger" id="closeBtn"><i class="fas fa-times"></i></div></div>
+        <ul class="mobile-nav-list">
+            <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
+            <li><a href="#servicios" onclick="closeMenu()">Servicios</a></li>
+            <li><a href="#nosotros" onclick="closeMenu()">Nosotros</a></li>
+        </ul>
+    </div>
 
     <main>
         <div class="hero" id="inicio">
@@ -168,11 +193,11 @@
         <section id="nosotros" class="nosotros-section">
             <h2 class="nosotros-title">Nosotros</h2>
             <div id="nosotros-resumen">
-                <p class="resumen-text">Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio exclusivo de 7000m² en Asunción diseñado para crear experiencias memorables en un entorno excepcional con arquitectura refinada.</p>
+                <p class="resumen-text">Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio exclusivo de 7000m² en Asunción diseñado para crear experiencias memorables.</p>
                 <a class="btn-toggle" onclick="revelarHistoria()">Conozca todo acerca de nosotros...</a>
             </div>
             <div id="nosotros-completo">
-                <div class="nosotros-col-img"><img src="FOTO1.jpeg" alt="Casa 1927" class="nosotros-img-frame"></div>
+                <div class="nosotros-col-img"><img src="FOTO1.jpeg" class="nosotros-img-frame"></div>
                 <div class="nosotros-col-text">
                     <p class="nosotros-full-p">Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.
 
@@ -191,25 +216,8 @@
         <section id="servicios" style="background: var(--light-grey);">
             <h2 class="section-grid-title">Servicios</h2>
             <div class="servicios-grid">
-                <div class="col-card">
-                    <div class="col-icon"><i class="fas fa-utensils"></i></div>
-                    <h3>Servicios Sugeridos</h3>
-                    <img src="servicio1.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li>Mesa de Dulces - Coffee Breaks</li>
-                        <li>Mobiliarios Especiales - Barra de Tragos</li>
-                    </ul>
-                </div>
-                <div class="col-card">
-                    <div class="col-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Servicios Adicionales</h3>
-                    <img src="servicio2.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li>Iluminación & Audio - Valet Parking</li>
-                        <li>Booking de Artistas</li>
-                        <li>DECORACIÓN & AMBIENTACIÓN</li>
-                    </ul>
-                </div>
+                <div class="col-card"><h3>Servicios Sugeridos</h3><img src="servicio1.jpg" class="col-img"><ul><li>Mesa de Dulces</li><li>Barra de Tragos</li></ul></div>
+                <div class="col-card"><h3>Servicios Adicionales</h3><img src="servicio2.jpg" class="col-img"><ul><li>Iluminación & Audio</li><li>Booking de Artistas</li></ul></div>
             </div>
         </section>
 
@@ -217,79 +225,90 @@
             <h2 class="section-grid-title">Infraestructura</h2>
             <div class="infra-grid">
                 <div class="col-card">
-                    <div class="col-icon"><i class="fas fa-hotel"></i></div>
-                    <h3>Espacios</h3>
-                    <img src="FOTO1.jpeg" class="col-img">
-                    <ul class="col-list">
-                        <li>Propiedad de 7000m2</li>
-                        <li>Casa con 3 niveles de 250m2 c/u</li>
-                        <li>Patio de 1.500 m2</li>
-                        <li>Salón de 400 m2</li>
-                        <li>Hermosos espacios de Jardin</li>
-                        <li>Espacios exclusivos para catering</li>
-                        <li>Acceso vehicular y calles internas</li>
-                        <li>Multiples espacios "Instagrameables"</li>
-                        <li>Espacios climatizados y baños sexados</li>
-                        <li>Áreas exclusivas para proveedores</li>
-                        <li>Usufructo del local por 8 horas</li>
-                        <li>Line Up de DJs disponible</li>
-                    </ul>
+                    <div class="col-icon"><i class="fas fa-hotel"></i></div><h3>Espacios</h3>
+                    <ul class="col-list"><li>Propiedad 7000m2</li><li>3 Niveles</li><li>Patio 1500m2</li><li>Salón 400m2</li><li>Jardines</li><li>Catering Area</li><li>Calles internas</li><li>Instagrameable</li><li>Climatización</li><li>Proveedores Area</li><li>8 Horas Uso</li><li>DJs Line Up</li></ul>
                 </div>
                 <div class="col-card">
-                    <div class="col-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Seguridad</h3>
-                    <img src="seguridad.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li>Cobertura de emergencia médicas</li>
-                        <li>Generador Propio</li>
-                        <li>Seguridad Privada 24 horas</li>
-                        <li>Estacionamiento interno vigilado</li>
-                        <li>Sistema de Prevención contra incendios</li>
-                        <li>Seguro RC y AP</li>
-                    </ul>
+                    <div class="col-icon"><i class="fas fa-shield-alt"></i></div><h3>Seguridad</h3>
+                    <ul class="col-list"><li>Emergencias</li><li>Generador</li><li>Seguridad 24h</li><li>Estacionamiento</li><li>Antincendio</li><li>Seguro RC/AP</li></ul>
                 </div>
                 <div class="col-card">
-                    <div class="col-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Personal</h3>
-                    <img src="moza.jpg" class="col-img">
-                    <ul class="col-list">
-                        <li>Maitre, Mozos, Cantineros, Planners</li>
-                        <li>Personal de Limpieza permanente</li>
-                    </ul>
+                    <div class="col-icon"><i class="fas fa-user-tie"></i></div><h3>Personal</h3>
+                    <ul class="col-list"><li>Maitre & Staff</li><li>Limpieza permanente</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-section">
+            <h2 class="section-grid-title">Contacto</h2>
+            <div class="contact-grid">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.963494796338!2d-57.6048!3d-25.2847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDE3JzA0LjkiUyA1N8KwMzYnMTcuMyJX!5e0!3m2!1ses!2spy!4v1650000000000" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="form-container">
+                    <form id="contactForm" class="contact-form" action="procesar_contacto.php" method="POST" onsubmit="return validateContact(event)">
+                        <input type="text" name="hp_field" class="h-pot" value="">
+                        <div class="form-row">
+                            <div class="form-group"><label>Nombre</label><input type="text" id="nombre" name="nombre"></div>
+                            <div class="form-group"><label>Apellido</label><input type="text" id="apellido" name="apellido"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Teléfono</label><input type="text" id="telefono" name="telefono"></div>
+                            <div class="form-group"><label>Email</label><input type="text" id="email" name="email"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Evento</label>
+                            <select id="tipo_evento" name="tipo_evento">
+                                <option value="">Seleccione...</option>
+                                <option>Corporativo</option><option>Casamientos</option><option>15 Años</option><option>Aniversarios</option><option>Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Fecha</label><input type="date" id="fecha" name="fecha"></div>
+                            <div class="form-group"><label>Personas</label><input type="text" id="personas" name="personas"></div>
+                        </div>
+                        <button type="submit" class="btn-enviar">Enviar Solicitud</button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-col"><h4>Infraestructura</h4><p>Espacios</p><p>Seguridad</p></div>
+        <div class="footer-col"><h4>Infraestructura</h4><p>Espacios</p></div>
         <div class="footer-col"><h4>Servicios</h4><p>Sugeridos</p></div>
-        <div class="footer-col"><h4>Contacto</h4><p>Asunción, Paraguay</p></div>
-        <div class="footer-col"><div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: invert(1);"></div></div>
+        <div class="footer-col"><h4>Contacto</h4><p>+595 974812265</p></div>
+        <div class="footer-col"><div class="footer-logo-box"><img src="logo2.png" style="max-height: 50px; filter: invert(1);"></div></div>
     </footer>
 
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'es',
-                includedLanguages: 'en,es',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-
-        function triggerGoogle(lang) {
-            var select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            }
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <script>
+        function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,es', autoDisplay: false}, 'google_translate_element'); }
+        function triggerGoogle(lang) { var select = document.querySelector('.goog-te-combo'); if (select) { select.value = lang; select.dispatchEvent(new Event('change')); } }
         function revelarHistoria() { document.getElementById('nosotros-resumen').style.display = 'none'; document.getElementById('nosotros-completo').style.display = 'grid'; }
         function ocultarHistoria() { document.getElementById('nosotros-resumen').style.display = 'block'; document.getElementById('nosotros-completo').style.display = 'none'; }
+        
+        // Validación Contacto
+        function validateContact(e) {
+            let valid = true;
+            const fields = [
+                {id: 'nombre', reg: /^[a-zA-Z\s]+$/}, {id: 'apellido', reg: /^[a-zA-Z\s]+$/},
+                {id: 'telefono', reg: /^[0-9]+$/}, {id: 'email', reg: /^[^\s@]+@[^\s@]+\.[^\s@]+$/},
+                {id: 'personas', reg: /^[0-9]+$/}, {id: 'tipo_evento', isSel: true}, {id: 'fecha', isReq: true}
+            ];
+            fields.forEach(f => {
+                let el = document.getElementById(f.id);
+                let isOk = f.isSel ? el.value !== "" : (f.isReq ? el.value !== "" : f.reg.test(el.value));
+                if (!isOk) { el.classList.add('error-field'); valid = false; } else { el.classList.remove('error-field'); }
+            });
+            if (!valid) e.preventDefault();
+            return valid;
+        }
+
+        const menuOverlay = document.getElementById('mobileMenu');
+        document.getElementById('openBtn').onclick = () => menuOverlay.classList.add('active');
+        document.getElementById('closeBtn').onclick = () => menuOverlay.classList.remove('active');
+        function closeMenu() { menuOverlay.classList.remove('active'); }
     </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
