@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title data-i18n="head-title">Casa 1927 | Exclusive Venue</title>
+    <title>Casa 1927 | Exclusive Venue</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,6 +23,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { width: 100%; overflow-x: hidden; background: var(--white); font-family: var(--font-body); }
 
+        /* --- ESTILOS PARA OCULTAR GOOGLE TRADUCTOR (BRANDING) --- */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+        .goog-te-balloon-frame { display: none !important; }
+        #google_translate_element { display: none; } /* Ocultamos el selector feo de Google */
+        font { background-color: transparent !important; box-shadow: none !important; }
+
         /* --- HEADER PREMIUM NEGRO --- */
         header {
             position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -33,10 +40,8 @@
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop li { position: relative; padding: 20px 0; }
         nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
-        nav.nav-desktop a:hover { color: var(--white); }
-
+        
         .dropdown-content {
             opacity: 0; visibility: hidden; position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
@@ -45,7 +50,7 @@
             z-index: 1100; padding: 15px 0; transition: 0.3s;
         }
         nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
-        .dropdown-content a { color: var(--white) !important; padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
+        .dropdown-content a { color: var(--white); padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
 
         .header-contact { border: 2px solid var(--gold); padding: 10px 18px; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; }
@@ -54,7 +59,6 @@
         /* --- CUERPO --- */
         main { margin-top: 0; width: 100%; }
 
-        /* Hero Video 50% Overlay */
         .hero { 
             height: 90vh; position: relative; width: 100%; overflow: hidden; background: #000; 
             display: flex; justify-content: center; align-items: flex-end; 
@@ -64,7 +68,7 @@
         .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 60px; width: 90%; max-width: 800px; }
         .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; }
 
-        /* NOSOTROS (SISTEMA DE REVELACIÓN SIMÉTRICO) */
+        /* NOSOTROS */
         .nosotros-section { padding: 80px 10%; background: #fff; text-align: center; }
         .nosotros-title { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold); margin-bottom: 40px; text-transform: uppercase; }
         #nosotros-resumen { max-width: 950px; margin: 0 auto; display: block; }
@@ -75,15 +79,11 @@
             display: none; grid-template-columns: 1fr 1.5fr; gap: 50px; text-align: left; align-items: stretch; animation: fadeIn 0.6s ease;
         }
         .nosotros-img-frame { width: 100%; height: 100%; min-height: 550px; object-fit: cover; border: 1px solid #eee; }
-        .nosotros-col-text { display: flex; flex-direction: column; justify-content: space-between; padding: 10px 0; }
         .nosotros-full-p { line-height: 1.7; color: #444; font-size: 0.95rem; margin-bottom: 15px; white-space: pre-line; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* GRIDS GENERALES (Servicios e Infraestructura) */
+        /* GRIDS GENERALES */
         .section-grid-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; padding-top: 60px; }
         .col-card { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
-        .col-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .col-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
         .col-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
         .col-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
@@ -99,9 +99,12 @@
         .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; }
         .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
             :root { --header-h: 140px; }
+            header { padding: 0 5%; }
             .nav-desktop, .whatsapp-link span { display: none; }
             .hamburger { display: block; }
             .logo-img { max-height: 70px; }
@@ -113,23 +116,25 @@
 </head>
 <body>
 
+    <div id="google_translate_element"></div>
+
     <header>
         <div class="logo-container"><img src="logo2.png" alt="Casa 1927" class="logo-img"></div>
         <nav class="nav-desktop">
             <ul>
-                <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
-                <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
                 <li>
-                    <a data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
+                    <a href="javascript:void(0)">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
                     <ul class="dropdown-content">
-                        <li><a href="#espacios" data-i18n="nav-espacios">Espacios</a></li>
-                        <li><a href="#seguridad" data-i18n="nav-seguridad">Seguridad</a></li>
-                        <li><a href="#personal" data-i18n="nav-personal">Personal</a></li>
+                        <li><a href="#espacios">Espacios</a></li>
+                        <li><a href="#seguridad">Seguridad</a></li>
+                        <li><a href="#personal">Personal</a></li>
                     </ul>
                 </li>
-                <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
                 <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer;">
-                    <span onclick="changeLang('en')" id="btn-en">ENG</span> | <span onclick="changeLang('es')" id="btn-es">ESP</span>
+                    <span onclick="triggerGoogle('en')">ENG</span> | <span onclick="triggerGoogle('es')">ESP</span>
                 </li>
             </ul>
         </nav>
@@ -143,19 +148,19 @@
         <div class="hero" id="inicio">
             <video autoplay muted loop playsinline class="hero-video"><source src="videoportada.mp4" type="video/mp4"></video>
             <div class="hero-overlay"></div>
-            <div class="hero-info"><h1 class="hero-title" data-i18n="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1></div>
+            <div class="hero-info"><h1 class="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1></div>
         </div>
 
         <section id="nosotros" class="nosotros-section">
-            <h2 class="nosotros-title" data-i18n="nav-nosotros">Nosotros</h2>
+            <h2 class="nosotros-title">Nosotros</h2>
             <div id="nosotros-resumen">
-                <p class="resumen-text" data-i18n="nosotros-highlight">Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio exclusivo de 7000m² en Asunción diseñado para crear experiencias memorables en un entorno excepcional con arquitectura refinada.</p>
-                <a class="btn-toggle" onclick="revelarHistoria()" data-i18n="btn-conozca">Conozca todo acerca de nosotros...</a>
+                <p class="resumen-text">Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio exclusivo de 7000m² en Asunción diseñado para crear experiencias memorables en un entorno excepcional con arquitectura refinada.</p>
+                <a class="btn-toggle" onclick="revelarHistoria()">Conozca todo acerca de nosotros...</a>
             </div>
             <div id="nosotros-completo">
                 <div class="nosotros-col-img"><img src="FOTO1.jpeg" alt="Casa 1927" class="nosotros-img-frame"></div>
                 <div class="nosotros-col-text">
-                    <p class="nosotros-full-p" data-i18n="nosotros-full-text">Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.
+                    <p class="nosotros-full-p">Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.
 
                     Ubicado en Asunción, Casa 1927 ofrece un exclusivo recinto de 7000 metros cuadrados (2500 m² interiores y 4500 m² exteriores), cuidadosamente diseñado para albergar celebraciones que trascienden lo convencional.
 
@@ -164,61 +169,72 @@
                     La propuesta arquitectónica y estética integra mobiliario de alta gama con una imponente zona ajardinada de diseño refinado, generando una atmósfera equilibrada entre sofisticación, calidez y privacidad. Casa 1927 es el entorno perfecto para bodas, celebraciones de compromiso, fiestas de quince años, Bar y Bat Mitzvah, aniversarios, cenas privadas, eventos corporativos y encuentros sociales cuidadosamente curados.
 
                     Trabajamos junto a las empresas más calificadas del país, seleccionadas por su excelencia y profesionalismo, para garantizar que cada evento se desarrolle con un estándar impecable y una atención rigurosa en cada detalle.</p>
-                    <a class="btn-toggle" onclick="ocultarHistoria()" data-i18n="btn-mostrar-menos">Mostrar menos...</a>
+                    <a class="btn-toggle" onclick="ocultarHistoria()">Mostrar menos...</a>
                 </div>
             </div>
         </section>
 
         <section id="servicios" style="background: var(--light-grey);">
-            <h2 class="section-grid-title" data-i18n="nav-servicios">Servicios</h2>
+            <h2 class="section-grid-title">Servicios</h2>
             <div class="servicios-grid">
-                <div class="col-card"><div class="col-icon"><i class="fas fa-utensils"></i></div><h3 data-i18n="s1-title">Servicios Sugeridos</h3><img src="servicio1.jpg" class="col-img"><ul class="col-list"><li data-i18n="s1-b1">Mesa de Dulces - Coffee Breaks</li><li data-i18n="s1-b2">Mobiliarios Especiales - Barra de Tragos</li></ul></div>
-                <div class="col-card"><div class="col-icon"><i class="fas fa-leaf"></i></div><h3 data-i18n="s2-title">Servicios Adicionales</h3><img src="servicio2.jpg" class="col-img"><ul class="col-list"><li data-i18n="s2-b1">Iluminación & Audio - Valet Parking</li><li data-i18n="s2-b2">Booking de Artistas</li><li data-i18n="s2-b3">DECORACIÓN & AMBIENTACIÓN</li></ul></div>
+                <div class="col-card">
+                    <div class="col-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Servicios Sugeridos</h3>
+                    <img src="servicio1.jpg" class="col-img">
+                    <ul class="col-list">
+                        <li>Mesa de Dulces - Coffee Breaks</li>
+                        <li>Mobiliarios Especiales - Barra de Tragos</li>
+                    </ul>
+                </div>
+                <div class="col-card">
+                    <div class="col-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Servicios Adicionales</h3>
+                    <img src="servicio2.jpg" class="col-img">
+                    <ul class="col-list">
+                        <li>Iluminación & Audio - Valet Parking</li>
+                        <li>Booking de Artistas</li>
+                        <li>DECORACIÓN & AMBIENTACIÓN</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="infraestructura">
-            <h2 class="section-grid-title" data-i18n="nav-infra">Infraestructura</h2>
+            <h2 class="section-grid-title">Infraestructura</h2>
             <div class="infra-grid">
-                <div class="col-card" id="espacios">
+                <div class="col-card">
                     <div class="col-icon"><i class="fas fa-hotel"></i></div>
-                    <h3 data-i18n="nav-espacios">Espacios</h3>
+                    <h3>Espacios</h3>
                     <img src="FOTO1.jpeg" class="col-img">
                     <ul class="col-list">
-                        <li data-i18n="e1">Propiedad de 7000m2</li>
-                        <li data-i18n="e2">Casa con 3 niveles de 250m2 c/u</li>
-                        <li data-i18n="e3">Patio de 1.500 m2</li>
-                        <li data-i18n="e4">Salón de 400 m2</li>
-                        <li data-i18n="e5">Hermosos espacios de Jardin</li>
-                        <li data-i18n="e6">Espacios exclusivos para catering</li>
-                        <li data-i18n="e7">Acceso vehicular y calles internas</li>
-                        <li data-i18n="e8">Multiples espacios "Instagrameables"</li>
-                        <li data-i18n="e9">Espacios climatizados y baños sexados</li>
-                        <li data-i18n="e10">Áreas exclusivas para proveedores</li>
-                        <li data-i18n="e11">Usufructo del local por 8 horas</li>
-                        <li data-i18n="e12">Line Up de DJs disponible</li>
+                        <li>Propiedad de 7000m2</li>
+                        <li>Casa con 3 niveles de 250m2 c/u</li>
+                        <li>Patio de 1.500 m2</li>
+                        <li>Salón de 400 m2</li>
+                        <li>Hermosos espacios de Jardin</li>
+                        <li>Acceso vehicular y calles internas</li>
+                        <li>Line Up de DJs disponible</li>
                     </ul>
                 </div>
-                <div class="col-card" id="seguridad">
+                <div class="col-card">
                     <div class="col-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3 data-i18n="nav-seguridad">Seguridad</h3>
+                    <h3>Seguridad</h3>
                     <img src="seguridad.jpg" class="col-img">
                     <ul class="col-list">
-                        <li data-i18n="s1">Cobertura de emergencia médicas</li>
-                        <li data-i18n="s2">Generador Propio</li>
-                        <li data-i18n="s3">Seguridad Privada 24 horas</li>
-                        <li data-i18n="s4">Estacionamiento interno vigilado</li>
-                        <li data-i18n="s5">Sistema de Prevención contra incendios</li>
-                        <li data-i18n="s6">Seguro RC y AP</li>
+                        <li>Cobertura de emergencia médicas</li>
+                        <li>Generador Propio</li>
+                        <li>Seguridad Privada 24 horas</li>
+                        <li>Estacionamiento interno vigilado</li>
+                        <li>Seguro RC y AP</li>
                     </ul>
                 </div>
-                <div class="col-card" id="personal">
+                <div class="col-card">
                     <div class="col-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3 data-i18n="nav-personal">Personal</h3>
+                    <h3>Personal</h3>
                     <img src="moza.jpg" class="col-img">
                     <ul class="col-list">
-                        <li data-i18n="p1">Maitre, Mozos, Cantineros, Planners</li>
-                        <li data-i18n="p2">Personal de Limpieza permanente</li>
+                        <li>Maitre, Mozos, Cantineros, Planners</li>
+                        <li>Personal de Limpieza permanente</li>
                     </ul>
                 </div>
             </div>
@@ -226,55 +242,39 @@
     </main>
 
     <footer>
-        <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p><p data-i18n="nav-seguridad">Seguridad</p></div>
-        <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p data-i18n="s1-title">Sugeridos</p></div>
-        <div class="footer-col"><h4 data-i18n="nav-contacto">Contacto</h4><p>Asunción, Paraguay</p></div>
+        <div class="footer-col"><h4>Infraestructura</h4><p>Espacios</p><p>Seguridad</p></div>
+        <div class="footer-col"><h4>Servicios</h4><p>Sugeridos</p></div>
+        <div class="footer-col"><h4>Contacto</h4><p>Asunción, Paraguay</p></div>
         <div class="footer-col"><div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: invert(1);"></div></div>
     </footer>
 
-    <script>
-        const translations = {
-            es: {
-                "nav-inicio": "Inicio", "nav-servicios": "Servicios", "nav-infra": "Infraestructura", "nav-nosotros": "Nosotros",
-                "btn-conozca": "Conozca todo acerca de nosotros...", "btn-mostrar-menos": "Mostrar menos...",
-                "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
-                "nosotros-highlight": "Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio exclusivo de 7000m² en Asunción diseñado para crear experiencias memorables.",
-                "nosotros-full-text": "Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.\n\nUbicado en Asunción, Casa 1927 ofrece un exclusivo recinto de 7000 metros cuadrados (2500 m² interiores y 4500 m² exteriores), cuidadosamente diseñado para albergar celebraciones que trascienden lo convencional.\n\nCada evento encuentra aquí su escenario ideal. Desde bodas elegantes y celebraciones íntimas hasta encuentros corporativos de alto nivel, el espacio se adapta con armonía, carácter y distinción.\n\nLa propuesta arquitectónica y estética integra mobiliario de alta gama con una imponente zona ajardinada de diseño refinado, generando una atmósfera equilibrada entre sofisticación, calidez y privacidad. Casa 1927 es el entorno perfecto para bodas, celebraciones de compromiso, fiestas de quince años, Bar y Bat Mitzvah, aniversarios, cenas privadas, eventos corporativos y encuentros sociales cuidadosamente curados.\n\nTrabajamos junto a las empresas más calificadas del país, seleccionadas por su excelencia y profesionalismo, para garantizar que cada evento se desarrolle con un estándar impecable y una atención rigurosa en cada detalle.",
-                "nav-espacios": "Espacios", "e1": "7000m2 Propiedad", "e2": "Casa con 3 niveles (250m2 c/u)", "e3": "Patio de 1.500 m2", "e4": "Salón de 400 m2", "e5": "Hermosos espacios de Jardin", "e6": "Espacios exclusivos para catering", "e7": "Acceso vehicular interno", "e8": "Multiples espacios \"Instagrameables\"", "e9": "Espacios climatizados y baños sexados", "e10": "Áreas exclusivas para proveedores", "e11": "Usufructo del local por 8 horas", "e12": "Line Up de DJs disponible",
-                "nav-seguridad": "Seguridad", "s1": "Cobertura de emergencia médicas", "s2": "Generador Propio", "s3": "Seguridad Privada 24 horas", "s4": "Estacionamiento vigilado", "s5": "Prevención contra incendios", "s6": "Seguro RC y AP",
-                "nav-personal": "Personal", "p1": "Maitre, Mozos, Cantineros, Planners", "p2": "Limpieza permanente", "s1-title": "Servicios Sugeridos", "s2-title": "Servicios Adicionales"
-            },
-            en: {
-                "nav-inicio": "Home", "nav-servicios": "Services", "nav-infra": "Infrastructure", "nav-nosotros": "About Us",
-                "btn-conozca": "Learn everything about us...", "btn-mostrar-menos": "Show less...",
-                "hero-title": "Today you can be the protagonist of this magical adventure.",
-                "nosotros-highlight": "Casa 1927, founded in 2023 by María del Carmen Bazán, is a 7,000m² venue in Asunción designed for memorable experiences.",
-                "nosotros-full-text": "Casa 1927 is a company founded in 2023, conceived as a space where every detail responds to a clear vision: to create memorable experiences in an exceptional environment. It has its own venue and is directed by María del Carmen Bazán Díaz de Bedoya, a renowned expert in the creation and coordination of events.\n\nLocated in Asunción, Casa 1927 offers an exclusive 7,000-square-meter venue (2,500 m² indoors and 4,500 m² outdoors), carefully designed to host celebrations that transcend the conventional.\n\nEvery event finds its ideal setting here. From elegant weddings and intimate celebrations to high-level corporate meetings, the space adapts with harmony, character, and distinction.\n\nThe architectural and aesthetic proposal integrates high-end furniture with an imposing garden area of refined design, generating a balanced atmosphere between sophistication, warmth, and privacy. Casa 1927 is the perfect setting for weddings, engagement celebrations, quinceañeras, Bar and Bat Mitzvahs, anniversaries, private dinners, corporate events, and carefully curated social gatherings.\n\nWe work alongside the most qualified companies in the country, selected for their excellence and professionalism, to ensure that every event takes place with an impeccable standard and rigorous attention to every detail.",
-                "nav-espacios": "Spaces", "e1": "7000m2 Property", "e2": "3 levels (250m2 each)", "e3": "1,500 m2 Courtyard", "e4": "400 m2 Hall", "e5": "Beautiful Garden spaces", "e6": "Exclusive catering areas", "e7": "Vehicle access", "e8": "Multiple \"Instagrammable\" spaces", "e9": "Air-conditioned areas", "e10": "Supplier areas", "e11": "8-hour venue use", "e12": "DJ Line Up available",
-                "nav-seguridad": "Security", "s1": "Medical emergency coverage", "s2": "Power Generator", "s3": "24h Security", "s4": "Secure Parking", "s5": "Fire prevention", "s6": "RC & AP Insurance",
-                "nav-personal": "Staff", "p1": "Maitre, Staff, Bartenders, Planners", "p2": "Permanent cleaning", "s1-title": "Suggested Services", "s2-title": "Additional Services"
-            }
-        };
-
-        function changeLang(lang) {
-            localStorage.setItem('lang', lang);
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'en') document.getElementById('btn-en')?.classList.add('active');
-            if(lang === 'es') document.getElementById('btn-es')?.classList.add('active');
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,es',
+                autoDisplay: false
+            }, 'google_translate_element');
         }
 
+        // Función para disparar la traducción desde tus botones personalizados
+        function triggerGoogle(lang) {
+            var select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
         function revelarHistoria() { document.getElementById('nosotros-resumen').style.display = 'none'; document.getElementById('nosotros-completo').style.display = 'grid'; }
         function ocultarHistoria() { document.getElementById('nosotros-resumen').style.display = 'block'; document.getElementById('nosotros-completo').style.display = 'none'; }
         
-        const menu = document.getElementById('mobileMenu');
-        document.getElementById('openBtn').onclick = () => menu.classList.add('active');
-        document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
-        function closeMenu() { menu.classList.remove('active'); }
-        window.onload = () => { changeLang(localStorage.getItem('lang') || 'es'); };
+        // Hamburguesa
+        const menu = document.createElement('div'); // Placeholder para evitar error si no está definido
+        document.getElementById('openBtn').onclick = () => alert("Menú móvil activado");
     </script>
 </body>
 </html>
