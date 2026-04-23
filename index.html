@@ -20,156 +20,113 @@
 
         /* --- BASE ANTI-DESBORDE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            width: 100%; 
-            overflow-x: hidden; 
-            background: var(--white); 
-            font-family: var(--font-body);
-        }
+        html, body { width: 100%; overflow-x: hidden; background: var(--white); font-family: var(--font-body); }
 
         /* --- HEADER PREMIUM NEGRO --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
-            background: var(--primary);
-            display: flex; justify-content: space-between; align-items: center;
+            background: var(--primary); display: flex; justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #222;
         }
-        
         .logo-container { height: 100%; display: flex; align-items: center; max-width: 280px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
 
-        /* Navegación Desktop Dorada */
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
         nav.nav-desktop li { position: relative; padding: 20px 0; }
-        nav.nav-desktop a { 
-            text-decoration: none; color: var(--gold); 
-            font-size: 0.68rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s;
-        }
+        nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
         nav.nav-desktop a:hover { color: var(--white); }
 
-        /* Submenú Desktop (Sin desborde) */
+        /* Submenú Desktop */
         .dropdown-content {
-            opacity: 0; visibility: hidden; 
-            position: absolute; top: 80%; left: 50%; transform: translateX(-50%);
-            background-color: var(--primary); min-width: 180px;
+            opacity: 0; visibility: hidden; position: absolute;
+            top: 100%; left: 50%; transform: translateX(-50%);
+            background-color: var(--primary); min-width: 200px;
             box-shadow: 0px 10px 25px rgba(0,0,0,0.5); border-top: 2px solid var(--gold);
-            z-index: 1100; padding: 15px 0; transition: 0.3s ease;
+            z-index: 1100; padding: 15px 0; transition: 0.3s;
         }
-        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; top: 100%; }
-        .dropdown-content a { 
-            color: var(--white) !important; padding: 10px 20px; 
-            display: block; font-size: 0.6rem; text-align: center; 
-        }
+        nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
+        .dropdown-content a { color: var(--white) !important; padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
         .dropdown-content a:hover { color: var(--gold) !important; background: #111; }
 
         /* WhatsApp Dorado */
-        .header-contact { border: 2px solid var(--gold); padding: 10px 18px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.4s; }
-        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .header-contact:hover { background: var(--gold); }
         .header-contact:hover .whatsapp-link { color: var(--primary); }
 
-        /* Hamburguesa Dorada */
         .hamburger { cursor: pointer; color: var(--gold); font-size: 1.8rem; display: none; }
 
-        /* --- MENÚ MÓVIL NEGRO --- */
+        /* --- MENÚ MÓVIL --- */
         .mobile-overlay {
             position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
             background: var(--primary); z-index: 2000; transition: 0.5s;
-            display: flex; flex-direction: column; padding: 30px; overflow-y: auto;
+            display: flex; flex-direction: column; padding: 40px; overflow-y: auto;
         }
         .mobile-overlay.active { right: 0; }
-        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .mobile-nav-list { list-style: none; text-align: center; }
-        .mobile-nav-list li { margin-bottom: 20px; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.6rem; color: var(--gold); text-transform: uppercase; text-decoration: none; }
-        
-        /* Acordeón Móvil */
-        .mobile-sub-list { display: none; list-style: none; margin-top: 10px; background: #111; padding: 10px; }
-        .mobile-sub-list.active { display: block; }
-        .mobile-sub-list a { font-size: 1rem !important; color: var(--white) !important; }
+        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold); text-decoration: none; text-transform: uppercase; display: block; margin-bottom: 20px; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); width: 100%; }
 
         /* Hero Video 50% Overlay */
         .hero { 
-            height: 80vh; position: relative; width: 100%; overflow: hidden; 
-            background: #000; display: flex; justify-content: center; align-items: flex-end; 
+            height: 80vh; position: relative; width: 100%; 
+            overflow: hidden; background: #000; 
+            display: flex; justify-content: center; align-items: flex-end; 
         }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; }
-        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; }
-        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; }
+        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; max-width: 800px; }
+        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; line-height: 1.4; }
 
-        /* Secciones */
+        /* Estilo General de Columnas */
         section { padding: 80px 10%; width: 100%; }
-        .flex-container { display: flex; align-items: center; gap: 60px; width: 100%; }
-        h2 { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); text-transform: uppercase; margin-bottom: 25px; }
-        p { line-height: 1.8; color: #555; font-size: 1.1rem; }
-        .foto-placeholder { background: #eee; width: 100%; min-height: 400px; display: flex; justify-content: center; align-items: center; color: #999; }
-
-        /* Estilo General de Columnas (Tarjetas) */
         .col-card { 
             background: #fff; padding: 25px; border: 1px solid #eee; 
             display: flex; flex-direction: column; align-items: center; transition: 0.3s;
         }
         .col-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .infra-img, .servicio-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
-        .infra-icon, .servicio-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+        .col-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
+        .col-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
         .col-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
         .col-list { list-style: none; text-align: left; width: 100%; }
         .col-list li { font-size: 0.85rem; line-height: 1.6; color: #444; margin-bottom: 8px; position: relative; padding-left: 18px; }
         .col-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
-        /* --- NUEVA SECCIÓN SERVICIOS GRID (2 COLUMNAS) --- */
-        .servicios-section { background: var(--light-grey); }
-        .servicios-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; }
+        /* Grids */
+        .section-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; }
         .servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; }
-
-        /* --- INFRAESTRUCTURA GRID (3 COLUMNAS) --- */
-        .infra-section { width: 100%; }
-        .infra-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; }
         .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; }
 
-        /* --- FOOTER RESTAURADO --- */
+        /* Footer */
         footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
         .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        .footer-col p { color: #888; font-size: 0.9rem; margin-bottom: 10px; cursor: pointer; }
         .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
-        /* --- MEDIA QUERIES --- */
         @media (max-width: 1024px) {
             :root { --header-h: 140px; }
-            header { padding: 0 5%; }
             .nav-desktop { display: none; }
             .hamburger { display: block; }
             .logo-img { max-height: 70px; }
             .hero { height: 65vh; }
-            section { padding: 60px 5%; }
-            .flex-container { flex-direction: column; text-align: center; }
-            .infra-grid, .servicios-grid { grid-template-columns: 1fr; gap: 30px; }
-            footer { grid-template-columns: repeat(2, 1fr); }
-            .whatsapp-link span { display: none; }
-        }
-    </media (max-width: 600px) {
+            .infra-grid, .servicios-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
+            .whatsapp-link span { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="logo2.png" alt="Casa 1927" class="logo-img">
-        </div>
-        
+        <div class="logo-container"><img src="logo2.png" alt="Casa 1927" class="logo-img"></div>
         <nav class="nav-desktop">
             <ul>
                 <li><a href="#inicio" data-i18n="nav-inicio">Inicio</a></li>
                 <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
                 <li>
-                    <a href="javascript:void(0)" data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
+                    <a data-i18n="nav-infra">Infraestructura <i class="fas fa-chevron-down" style="font-size: 0.5rem;"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="#espacios" data-i18n="nav-espacios">Espacios</a></li>
                         <li><a href="#seguridad" data-i18n="nav-seguridad">Seguridad</a></li>
@@ -182,14 +139,9 @@
                 </li>
             </ul>
         </nav>
-
         <a href="https://wa.me/595974812265" target="_blank" class="header-contact">
-            <div class="whatsapp-link">
-                <i class="fab fa-whatsapp"></i>
-                <span>+595 974812265</span>
-            </div>
+            <div class="whatsapp-link"><i class="fab fa-whatsapp"></i> <span>+595 974812265</span></div>
         </a>
-
         <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
     </header>
 
@@ -201,14 +153,6 @@
         <ul class="mobile-nav-list">
             <li><a href="#inicio" onclick="closeMenu()" data-i18n="nav-inicio">Inicio</a></li>
             <li><a href="#servicios" onclick="closeMenu()" data-i18n="nav-servicios">Servicios</a></li>
-            <li>
-                <a href="javascript:void(0)" onclick="toggleMobileSub()" data-i18n="nav-infra">Infraestructura <i class="fas fa-plus" style="font-size: 1rem; float: right;"></i></a>
-                <ul class="mobile-sub-list" id="mobileSub">
-                    <li><a href="#espacios" onclick="closeMenu()" data-i18n="nav-espacios">Espacios</a></li>
-                    <li><a href="#seguridad" onclick="closeMenu()" data-i18n="nav-seguridad">Seguridad</a></li>
-                    <li><a href="#personal" onclick="closeMenu()" data-i18n="nav-personal">Personal</a></li>
-                </ul>
-            </li>
             <li><a href="#nosotros" onclick="closeMenu()" data-i18n="nav-nosotros">Nosotros</a></li>
             <li style="margin-top: 30px;"><span onclick="changeLang('en')">ENGLISH</span> | <span onclick="changeLang('es')">ESPAÑOL</span></li>
         </ul>
@@ -231,70 +175,61 @@
                     <h2 data-i18n="nav-nosotros">Nosotros</h2>
                     <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
                 </div>
-                <div style="flex:1;">
-                    <div class="foto-placeholder" data-i18n="placeholder-foto">FOTO AQUÍ</div>
-                </div>
+                <div style="flex:1; background: #eee; height: 400px; display: flex; align-items: center; justify-content: center;" data-i18n="placeholder-foto">FOTO AQUÍ</div>
             </div>
         </section>
 
-        <section id="servicios" class="servicios-section">
-            <h2 class="servicios-title" data-i18n="nav-servicios">Servicios</h2>
+        <section id="servicios" style="background: var(--light-grey);">
+            <h2 class="section-title" data-i18n="nav-servicios">Servicios</h2>
             <div class="servicios-grid">
                 <div class="col-card">
-                    <div class="servicio-icon"><i class="fas fa-utensils"></i></div>
-                    <h3 data-i18n="s1-title">Catering de Élite</h3>
-                    <p style="text-align:center; color:#888; margin-bottom:20px;" data-i18n="blablabla">blablabla blablabla</p>
-                    <img src="servicio1.jpg" alt="Catering de Élite" class="servicio-img">
+                    <div class="col-icon"><i class="fas fa-utensils"></i></div>
+                    <h3 data-i18n="s1-title">Servicios Sugeridos</h3>
+                    <img src="servicio1.jpg" class="col-img">
                     <ul class="col-list">
-                        <li data-i18n="s1-b1">Menús personalizados</li>
-                        <li data-i18n="s1-b2">Opciones buffet y emplatado</li>
-                        <li data-i18n="s1-b3">Degustación previa</li>
-                        <li data-i18n="s1-b4">Catering para proveedores</li>
-                        <li data-i18n="s1-b5">Servicio de bebidas premium</li>
+                        <li data-i18n="s1-b1">Mesa de Dulces - Coffee Breaks</li>
+                        <li data-i18n="s1-b2">Mobiliarios Especiales - Barra de Tragos</li>
                     </ul>
                 </div>
                 <div class="col-card">
-                    <div class="servicio-icon"><i class="fas fa-leaf"></i></div>
-                    <h3 data-i18n="s2-title">Decoración & Diseño</h3>
-                    <p style="text-align:center; color:#888; margin-bottom:20px;" data-i18n="blablabla">blablabla blablabla</p>
-                    <img src="servicio2.jpg" alt="Decoración y Diseño" class="servicio-img">
+                    <div class="col-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 data-i18n="s2-title">Servicios Adicionales</h3>
+                    <img src="servicio2.jpg" class="col-img">
                     <ul class="col-list">
-                        <li data-i18n="s2-b1">Diseño floral exclusivo</li>
-                        <li data-i18n="s2-b2">Mobiliario premium</li>
-                        <li data-i18n="s2-b3">Ambientación temática</li>
-                        <li data-i18n="s2-b4">Coordinación de montaje</li>
-                        <li data-i18n="s2-b5">Iluminación decorativa</li>
+                        <li data-i18n="s2-b1">Iluminación & Audio - Valet Parking</li>
+                        <li data-i18n="s2-b2">Booking de Artistas</li>
+                        <li data-i18n="s2-b3">DECORACIÓN & AMBIENTACIÓN</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="infraestructura" class="infra-section">
-            <h2 class="infra-title" data-i18n="nav-infra">Infraestructura</h2>
+        <section id="espacios">
+            <h2 class="section-title" data-i18n="nav-infra">Infraestructura</h2>
             <div class="infra-grid">
-                <div class="col-card" id="espacios">
-                    <div class="infra-icon"><i class="fas fa-hotel"></i></div>
+                <div class="col-card">
+                    <div class="col-icon"><i class="fas fa-hotel"></i></div>
                     <h3 data-i18n="nav-espacios">Espacios</h3>
-                    <img src="FOTO1.jpeg" class="infra-img">
+                    <img src="FOTO1.jpeg" class="col-img">
                     <ul class="col-list">
                         <li data-i18n="e1">Propiedad de 7000m2</li>
                         <li data-i18n="e2">Casa con 3 niveles</li>
                         <li data-i18n="e5">Hermosos Jardines</li>
                     </ul>
                 </div>
-                <div class="col-card" id="seguridad">
-                    <div class="infra-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="col-card">
+                    <div class="col-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3 data-i18n="nav-seguridad">Seguridad</h3>
-                    <img src="seguridad.jpg" class="infra-img">
+                    <img src="seguridad.jpg" class="col-img">
                     <ul class="col-list">
                         <li data-i18n="s3">Seguridad 24h</li>
                         <li data-i18n="s4">Estacionamiento vigilado</li>
                     </ul>
                 </div>
-                <div class="col-card" id="personal">
-                    <div class="infra-icon"><i class="fas fa-user-tie"></i></div>
+                <div class="col-card">
+                    <div class="col-icon"><i class="fas fa-user-tie"></i></div>
                     <h3 data-i18n="nav-personal">Personal</h3>
-                    <img src="moza.jpg" class="infra-img">
+                    <img src="moza.jpg" class="col-img">
                     <ul class="col-list">
                         <li data-i18n="p1">Maitre y Mozos</li>
                         <li data-i18n="p4">Atención personalizada</li>
@@ -309,46 +244,39 @@
             <h4 data-i18n="nav-infra">Infraestructura</h4>
             <p data-i18n="nav-espacios">Espacios</p>
             <p data-i18n="nav-seguridad">Seguridad</p>
-            <p data-i18n="nav-personal">Personal</p>
         </div>
         <div class="footer-col">
             <h4 data-i18n="nav-servicios">Servicios</h4>
-            <p data-i18n="s1-title">Catering de Élite</p>
-            <p data-i18n="s2-title">Decoración & Diseño</p>
+            <p data-i18n="s1-title">Servicios Sugeridos</p>
+            <p data-i18n="s2-title">Servicios Adicionales</p>
         </div>
         <div class="footer-col">
             <h4 data-i18n="nav-contacto">Contacto</h4>
             <p>Asunción, Paraguay</p>
             <p>info@casa1927.com</p>
-            <p>+595 974812265</p>
         </div>
         <div class="footer-col">
-            <div class="footer-logo-box">
-                <img src="logo2.png" alt="Casa 1927" style="max-height: 60px; filter: brightness(0) invert(1);">
-            </div>
+            <div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: brightness(0) invert(1);"></div>
         </div>
     </footer>
 
     <script>
-        // MOTOR DE TRADUCCIÓN PROFESIONAL AMPLIA
         const translations = {
             es: {
-                "head-title": "Casa 1927 | Exclusive Venue", "nav-inicio": "Inicio", "nav-eventos": "Eventos", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
+                "nav-inicio": "Inicio", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
                 "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
                 "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.",
-                "placeholder-foto": "FOTO AQUÍ", "blablabla": "blablabla blablabla",
-                "s1-title": "Catering de Élite", "s1-b1": "Menús personalizados", "s1-b2": "Opciones buffet y emplatado", "s1-b3": "Degustación previa", "s1-b4": "Catering para proveedores", "s1-b5": "Servicio de bebidas premium",
-                "s2-title": "Decoración & Diseño", "s2-b1": "Diseño floral exclusivo", "s2-b2": "Mobiliario premium", "s2-b3": "Ambientación temática", "s2-b4": "Coordinación de montaje", "s2-b5": "Iluminación decorativa",
+                "s1-title": "Servicios Sugeridos", "s1-b1": "Mesa de Dulces - Coffee Breaks", "s1-b2": "Mobiliarios Especiales - Barra de Tragos",
+                "s2-title": "Servicios Adicionales", "s2-b1": "Iluminación & Audio - Valet Parking", "s2-b2": "Booking de Artistas", "s2-b3": "DECORACIÓN & AMBIENTACIÓN",
                 "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e5": "Hermosos Jardines", "s3": "Seguridad 24h", "s4": "Estacionamiento vigilado", "p1": "Maitre y Mozos", "p4": "Atención personalizada"
             },
             en: {
-                "head-title": "Casa 1927 | Exclusive Venue", "nav-inicio": "Home", "nav-eventos": "Events", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
+                "nav-inicio": "Home", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
                 "hero-title": "Today you can be the protagonist of this magical adventure.",
                 "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments.",
-                "placeholder-foto": "PHOTO HERE", "blablabla": "blablabla blablabla",
-                "s1-title": "Elite Catering", "s1-b1": "Personalized menus", "s1-b2": "Buffet & plated options", "s1-b3": "Prior tasting", "s1-b4": "Supplier catering", "s1-b5": "Premium beverage service",
-                "s2-title": "Decoration & Design", "s2-b1": "Exclusive floral design", "s2-b2": "Premium furniture", "s2-b3": "Thematic ambiance", "s2-b4": "Set-up coordination", "s2-b5": "Decorative lighting",
-                "e1": "7000m2 Property", "e2": "3-level House", "e5": "Beautiful Gardens", "s3": "24h Security", "s4": "Secure Parking", "p1": "Maitre & Waiters", "p4": "Personalized Service"
+                "s1-title": "Suggested Services", "s1-b1": "Sweet Table - Coffee Breaks", "s1-b2": "Special Furniture - Drink Bar",
+                "s2-title": "Additional Services", "s2-b1": "Lighting & Audio - Valet Parking", "s2-b2": "Artist Booking", "s2-b3": "DECORATION & AMBIANCE",
+                "e1": "7000m2 Property", "e2": "3-level House", "e5": "Beautiful Gardens", "s3": "24h Security", "s4": "Secure Parking", "p1": "Maitre & Staff", "p4": "Personalized Service"
             }
         };
 
@@ -358,18 +286,12 @@
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'en') document.getElementById('btn-en').classList.add('active');
-            if(lang === 'es') document.getElementById('btn-es').classList.add('active');
         }
 
-        // Navegación
         const menu = document.getElementById('mobileMenu');
         document.getElementById('openBtn').onclick = () => menu.classList.add('active');
         document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
         function closeMenu() { menu.classList.remove('active'); }
-        function toggleMobileSub() { document.getElementById('mobileSub').classList.toggle('active'); }
-
         window.onload = () => { changeLang(localStorage.getItem('lang') || 'es'); };
     </script>
 </body>
