@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title data-i18n="head-title">Casa 1927 | Exclusive Venue</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -18,25 +18,20 @@
             --header-h: 200px; 
         }
 
-        /* --- BASE ANTI-DESBORDE --- */
+        /* --- BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { width: 100%; overflow-x: hidden; background: var(--white); font-family: var(--font-body); }
 
-        /* --- HEADER PREMIUM NEGRO --- */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-h);
             background: var(--primary); display: flex; justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000; border-bottom: 1px solid #222;
         }
-        .logo-container { height: 100%; display: flex; align-items: center; max-width: 280px; }
         .logo-img { width: 100%; height: auto; max-height: 140px; object-fit: contain; }
-
         nav.nav-desktop ul { display: flex; list-style: none; gap: 15px; align-items: center; }
-        nav.nav-desktop li { position: relative; padding: 20px 0; }
-        nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; transition: 0.3s; }
-        nav.nav-desktop a:hover { color: var(--white); }
-
-        /* Submenú Desktop */
+        nav.nav-desktop a { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+        
         .dropdown-content {
             opacity: 0; visibility: hidden; position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
@@ -46,48 +41,46 @@
         }
         nav.nav-desktop li:hover .dropdown-content { opacity: 1; visibility: visible; }
         .dropdown-content a { color: var(--white) !important; padding: 10px 25px; display: block; font-size: 0.65rem; text-align: center; }
-        .dropdown-content a:hover { color: var(--gold) !important; background: #111; }
 
-        /* WhatsApp Dorado */
-        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; transition: 0.4s; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .header-contact:hover { background: var(--gold); }
-        .header-contact:hover .whatsapp-link { color: var(--primary); }
-
+        .header-contact { border: 2px solid var(--gold); padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-link { color: var(--gold); font-size: 1.1rem; font-weight: 700; }
         .hamburger { cursor: pointer; color: var(--gold); font-size: 1.8rem; display: none; }
-
-        /* --- MENÚ MÓVIL --- */
-        .mobile-overlay {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-            background: var(--primary); z-index: 2000; transition: 0.5s;
-            display: flex; flex-direction: column; padding: 40px; overflow-y: auto;
-        }
-        .mobile-overlay.active { right: 0; }
-        .mobile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .mobile-nav-list { list-style: none; text-align: center; }
-        .mobile-nav-list a { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold); text-decoration: none; text-transform: uppercase; display: block; margin-bottom: 20px; }
 
         /* --- CUERPO --- */
         main { margin-top: var(--header-h); width: 100%; }
 
-        /* Hero Video 50% Overlay */
+        /* HERO VIDEO */
         .hero { 
-            height: 80vh; position: relative; width: 100%; 
-            overflow: hidden; background: #000; 
+            height: 80vh; position: relative; width: 100%; overflow: hidden; background: #000; 
             display: flex; justify-content: center; align-items: flex-end; 
         }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; }
-        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; max-width: 800px; }
-        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; line-height: 1.4; }
+        .hero-info { position: relative; z-index: 3; text-align: center; padding-bottom: 40px; width: 90%; }
+        .hero-title { color: #f0e6d6; font-family: var(--font-title); font-size: clamp(1.2rem, 4vw, 2.5rem); font-weight: 200; letter-spacing: 2px; }
 
-        /* Estilo General de Columnas */
-        section { padding: 80px 10%; width: 100%; }
-        .col-card { 
-            background: #fff; padding: 25px; border: 1px solid #eee; 
-            display: flex; flex-direction: column; align-items: center; transition: 0.3s;
-        }
-        .col-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        /* --- SECCIÓN NOSOTROS (SISTEMA DE REVELACIÓN) --- */
+        .nosotros-section { padding: 100px 10%; background: #fff; text-align: center; }
+        .nosotros-title { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold); margin-bottom: 40px; text-transform: uppercase; }
+        
+        /* Contenedor Resumen (4 líneas) */
+        #nosotros-resumen { max-width: 900px; margin: 0 auto; display: block; }
+        .resumen-text { line-height: 1.8; color: #555; font-size: 1.1rem; margin-bottom: 25px; }
+        .btn-conozca { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-bottom: 1px solid var(--gold); padding-bottom: 5px; transition: 0.3s; }
+        .btn-conozca:hover { color: var(--primary); border-color: var(--primary); }
+
+        /* Contenedor Completo (Expandido) */
+        #nosotros-completo { display: none; gap: 60px; align-items: flex-start; text-align: left; animation: fadeIn 0.8s ease; }
+        .nosotros-col-img { flex: 1; }
+        .nosotros-img-frame { width: 100%; height: 600px; object-fit: cover; border: 1px solid #eee; }
+        .nosotros-col-text { flex: 1.5; }
+        .nosotros-full-p { line-height: 2; color: #444; font-size: 1.05rem; margin-bottom: 20px; white-space: pre-line; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* SECCIONES GRID (Servicios e Infraestructura) */
+        .section-grid-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; padding-top: 80px; }
+        .col-card { background: #fff; padding: 25px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .col-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 20px; border: 1px solid #eee; }
         .col-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
         .col-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; text-transform: uppercase; }
@@ -95,22 +88,22 @@
         .col-list li { font-size: 0.85rem; line-height: 1.6; color: #444; margin-bottom: 8px; position: relative; padding-left: 18px; }
         .col-list li::before { content: '•'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
-        /* Grids */
-        .section-title { font-family: var(--font-title); font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--gold); text-align: center; text-transform: uppercase; margin-bottom: 40px; }
-        .servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; }
-        .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; }
+        .servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
-        /* Footer */
-        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #222; }
-        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        /* FOOTER */
+        footer { background: var(--primary); color: var(--white); padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; font-size: 0.8rem; }
         .footer-logo-box { background: #111; padding: 15px; display: flex; justify-content: center; align-items: center; }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             :root { --header-h: 140px; }
             .nav-desktop { display: none; }
             .hamburger { display: block; }
-            .logo-img { max-height: 70px; }
-            .hero { height: 65vh; }
+            #nosotros-completo { flex-direction: column; }
+            .nosotros-col-img { width: 100%; }
+            .nosotros-img-frame { height: 400px; }
             .infra-grid, .servicios-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; text-align: center; }
             .whatsapp-link span { display: none; }
@@ -135,7 +128,7 @@
                 </li>
                 <li><a href="#nosotros" data-i18n="nav-nosotros">Nosotros</a></li>
                 <li style="color: var(--gold); font-size: 0.75rem; cursor: pointer;">
-                    <span onclick="changeLang('en')" id="btn-en">ENG</span> | <span onclick="changeLang('es')" id="btn-es">ESP</span>
+                    <span onclick="changeLang('en')">ENG</span> | <span onclick="changeLang('es')">ESP</span>
                 </li>
             </ul>
         </nav>
@@ -145,42 +138,45 @@
         <div class="hamburger" id="openBtn"><i class="fas fa-bars"></i></div>
     </header>
 
-    <div class="mobile-overlay" id="mobileMenu">
-        <div class="mobile-header">
-            <img src="logo2.png" alt="Logo" style="max-height: 50px;">
-            <div class="hamburger" id="closeBtn"><i class="fas fa-times"></i></div>
-        </div>
-        <ul class="mobile-nav-list">
-            <li><a href="#inicio" onclick="closeMenu()" data-i18n="nav-inicio">Inicio</a></li>
-            <li><a href="#servicios" onclick="closeMenu()" data-i18n="nav-servicios">Servicios</a></li>
-            <li><a href="#nosotros" onclick="closeMenu()" data-i18n="nav-nosotros">Nosotros</a></li>
-            <li style="margin-top: 30px;"><span onclick="changeLang('en')">ENGLISH</span> | <span onclick="changeLang('es')">ESPAÑOL</span></li>
-        </ul>
-    </div>
-
     <main>
         <div class="hero" id="inicio">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="videoportada.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="hero-video"><source src="videoportada.mp4" type="video/mp4"></video>
             <div class="hero-overlay"></div>
-            <div class="hero-info">
-                <h1 class="hero-title" data-i18n="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1>
-            </div>
+            <div class="hero-info"><h1 class="hero-title" data-i18n="hero-title">Hoy vos podes ser el protagonista de esta mágica aventura.</h1></div>
         </div>
 
-        <section id="nosotros">
-            <div class="flex-container">
-                <div style="flex:1;">
-                    <h2 data-i18n="nav-nosotros">Nosotros</h2>
-                    <p data-i18n="p-nosotros">Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.</p>
+        <section id="nosotros" class="nosotros-section">
+            <h2 class="nosotros-title" data-i18n="nav-nosotros">Nosotros</h2>
+            
+            <div id="nosotros-resumen">
+                <p class="resumen-text" data-i18n="nosotros-highlight">
+                    Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables. Ofrecemos un entorno excepcional con arquitectura refinada para celebraciones que trascienden lo convencional.
+                </p>
+                <a class="btn-conozca" onclick="revelarHistoria()" data-i18n="btn-conozca">Conozca todo acerca de nosotros...</a>
+            </div>
+
+            <div id="nosotros-completo">
+                <div class="nosotros-col-img">
+                    <img src="FOTO1.jpeg" alt="Casa 1927" class="nosotros-img-frame">
                 </div>
-                <div style="flex:1; background: #eee; height: 400px; display: flex; align-items: center; justify-content: center;" data-i18n="placeholder-foto">FOTO AQUÍ</div>
+                <div class="nosotros-col-text">
+                    <p class="nosotros-full-p" data-i18n="nosotros-full-text">
+                        Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara: crear experiencias memorables en un entorno excepcional. Cuenta con local propio y está dirigida por María del Carmen Bazán Díaz de Bedoya, reconocida experta en la creación y coordinación de eventos.
+
+                        Ubicado en Asunción, Casa 1927 ofrece un exclusivo recinto de 7000 metros cuadrados (2500 m² interiores y 4500 m² exteriores), cuidadosamente diseñado para albergar celebraciones que trascienden lo convencional.
+
+                        Cada evento encuentra aquí su escenario ideal. Desde bodas elegantes y celebraciones íntimas hasta encuentros corporativos de alto nivel, el espacio se adapta con armonía, carácter y distinción.
+
+                        La propuesta arquitectónica y estética integra mobiliario de alta gama con una imponente zona ajardinada de diseño refinado, generando una atmósfera equilibrada entre sofisticación, calidez y privacidad. Casa 1927 es el entorno perfecto para bodas, celebraciones de compromiso, fiestas de quince años, Bar y Bat Mitzvah, aniversarios, cenas privadas, eventos corporativos y encuentros sociales cuidadosamente curados.
+
+                        Trabajamos junto a las empresas más calificadas del país, seleccionadas por su excelencia y profesionalismo, para garantizar que cada evento se desarrolle con un estándar impecable y una atención rigurosa en cada detalle.
+                    </p>
+                </div>
             </div>
         </section>
 
         <section id="servicios" style="background: var(--light-grey);">
-            <h2 class="section-title" data-i18n="nav-servicios">Servicios</h2>
+            <h2 class="section-grid-title" data-i18n="nav-servicios">Servicios</h2>
             <div class="servicios-grid">
                 <div class="col-card">
                     <div class="col-icon"><i class="fas fa-utensils"></i></div>
@@ -204,8 +200,8 @@
             </div>
         </section>
 
-        <section id="espacios">
-            <h2 class="section-title" data-i18n="nav-infra">Infraestructura</h2>
+        <section id="infraestructura">
+            <h2 class="section-grid-title" data-i18n="nav-infra">Infraestructura</h2>
             <div class="infra-grid">
                 <div class="col-card">
                     <div class="col-icon"><i class="fas fa-hotel"></i></div>
@@ -240,24 +236,10 @@
     </main>
 
     <footer>
-        <div class="footer-col">
-            <h4 data-i18n="nav-infra">Infraestructura</h4>
-            <p data-i18n="nav-espacios">Espacios</p>
-            <p data-i18n="nav-seguridad">Seguridad</p>
-        </div>
-        <div class="footer-col">
-            <h4 data-i18n="nav-servicios">Servicios</h4>
-            <p data-i18n="s1-title">Servicios Sugeridos</p>
-            <p data-i18n="s2-title">Servicios Adicionales</p>
-        </div>
-        <div class="footer-col">
-            <h4 data-i18n="nav-contacto">Contacto</h4>
-            <p>Asunción, Paraguay</p>
-            <p>info@casa1927.com</p>
-        </div>
-        <div class="footer-col">
-            <div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: brightness(0) invert(1);"></div>
-        </div>
+        <div class="footer-col"><h4 data-i18n="nav-infra">Infraestructura</h4><p data-i18n="nav-espacios">Espacios</p><p data-i18n="nav-seguridad">Seguridad</p></div>
+        <div class="footer-col"><h4 data-i18n="nav-servicios">Servicios</h4><p data-i18n="s1-title">Sugeridos</p><p data-i18n="s2-title">Adicionales</p></div>
+        <div class="footer-col"><h4 data-i18n="nav-contacto">Contacto</h4><p>Asunción, Paraguay</p><p>+595 974812265</p></div>
+        <div class="footer-col"><div class="footer-logo-box"><img src="logo2.png" style="max-height: 60px; filter: invert(1);"></div></div>
     </footer>
 
     <script>
@@ -265,17 +247,19 @@
             es: {
                 "nav-inicio": "Inicio", "nav-infra": "Infraestructura", "nav-espacios": "Espacios", "nav-seguridad": "Seguridad", "nav-personal": "Personal", "nav-servicios": "Servicios", "nav-nosotros": "Nosotros",
                 "hero-title": "Hoy vos podes ser el protagonista de esta mágica aventura.",
-                "p-nosotros": "Bienvenidos al espacio donde la historia y la elegancia se encuentran para crear momentos inolvidables.",
-                "s1-title": "Servicios Sugeridos", "s1-b1": "Mesa de Dulces - Coffee Breaks", "s1-b2": "Mobiliarios Especiales - Barra de Tragos",
-                "s2-title": "Servicios Adicionales", "s2-b1": "Iluminación & Audio - Valet Parking", "s2-b2": "Booking de Artistas", "s2-b3": "DECORACIÓN & AMBIENTACIÓN",
+                "nosotros-highlight": "Casa 1927, fundada en 2023 por María del Carmen Bazán, es un espacio de 7000m² en Asunción diseñado para crear experiencias memorables. Ofrecemos un entorno excepcional con arquitectura refinada para celebraciones que trascienden lo convencional.",
+                "btn-conozca": "Conozca todo acerca de nosotros...",
+                "nosotros-full-text": "Casa 1927 es una empresa fundada en 2023, concebida como un espacio donde cada detalle responde a una visión clara...\n(Texto Completo Historia)",
+                "s1-title": "Servicios Sugeridos", "s2-title": "Servicios Adicionales",
                 "e1": "Propiedad de 7000m2", "e2": "Casa con 3 niveles", "e5": "Hermosos Jardines", "s3": "Seguridad 24h", "s4": "Estacionamiento vigilado", "p1": "Maitre y Mozos", "p4": "Atención personalizada"
             },
             en: {
                 "nav-inicio": "Home", "nav-infra": "Infrastructure", "nav-espacios": "Spaces", "nav-seguridad": "Security", "nav-personal": "Staff", "nav-servicios": "Services", "nav-nosotros": "About Us",
                 "hero-title": "Today you can be the protagonist of this magical adventure.",
-                "p-nosotros": "Welcome to the place where history and elegance meet to create unforgettable moments.",
-                "s1-title": "Suggested Services", "s1-b1": "Sweet Table - Coffee Breaks", "s1-b2": "Special Furniture - Drink Bar",
-                "s2-title": "Additional Services", "s2-b1": "Lighting & Audio - Valet Parking", "s2-b2": "Artist Booking", "s2-b3": "DECORATION & AMBIANCE",
+                "nosotros-highlight": "Casa 1927, founded in 2023 by María del Carmen Bazán, is a 7,000m² venue in Asunción designed to create memorable experiences. We offer an exceptional setting with refined architecture for celebrations that go beyond the conventional.",
+                "btn-conozca": "Learn everything about us...",
+                "nosotros-full-text": "Casa 1927 is a company founded in 2023, conceived as a space where every detail responds to a clear vision...\n(Full History Text)",
+                "s1-title": "Suggested Services", "s2-title": "Additional Services",
                 "e1": "7000m2 Property", "e2": "3-level House", "e5": "Beautiful Gardens", "s3": "24h Security", "s4": "Secure Parking", "p1": "Maitre & Staff", "p4": "Personalized Service"
             }
         };
@@ -288,10 +272,14 @@
             });
         }
 
+        function revelarHistoria() {
+            document.getElementById('nosotros-resumen').style.display = 'none';
+            document.getElementById('nosotros-completo').style.display = 'flex';
+        }
+
         const menu = document.getElementById('mobileMenu');
         document.getElementById('openBtn').onclick = () => menu.classList.add('active');
         document.getElementById('closeBtn').onclick = () => menu.classList.remove('active');
-        function closeMenu() { menu.classList.remove('active'); }
         window.onload = () => { changeLang(localStorage.getItem('lang') || 'es'); };
     </script>
 </body>
